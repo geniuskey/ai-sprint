@@ -1,0 +1,9 @@
+export type Category = 'A'|'B'|'C'|'D'|'E'|'F'|'G';
+export interface Question { id:string; conceptId:string; category:Category; type:'recall'|'application'; prompt:string; options:string[]; correctIndex:number; explanations:string[]; }
+export interface Concept { id:string; title:string; category:Category; priority:1|2|3; priorityReason:string; estimatedMinutes:number; prerequisites:string[]; summary:string; simpleExplanation:string; analogy:string; technicalExplanation:string; realWorldExample:string; commonMisconceptions:string[]; comparisons:{with:string; distinction:string}[]; keyTakeaways:string[]; quizQuestions:string[]; references:{title:string;url:string}[]; validation:{status:string;checkedAt:string;note:string}; }
+export interface Progress { conceptId:string; correct:number; incorrect:number; streak:number; rating:number|null; lastStudied:string; nextReview:string; mastery:number; }
+export interface Attempt { id:string; questionId:string; conceptId:string; selectedIndex:number; correct:boolean; at:string; source:string; }
+export interface Exam { id:string; mode:'A'|'B'; startedAt:string; expiresAt:string; submittedAt:string|null; questionIds:string[]; answers:Record<string,number>; bookmarks:string[]; score?:number; questions:Question[]; results?:{questionId:string;correct:boolean;selectedIndex:number|null;correctIndex:number;explanations:string[]}[]; }
+export interface State { progress:Record<string,Progress>; attempts:Attempt[]; bookmarks:string[]; settings:{theme:'light'|'dark';dailyGoal:number;generalMode:boolean}; exams:Exam[]; }
+export interface Scenario {id:string;title:string;situation:string;constraints:string[];options:string[];recommendedIndex:number;approach:string;tradeoffs:string[];verification:string[];conceptIds:string[];}
+export interface Catalog {concepts:Concept[];questions:Question[];scenarios:Scenario[];}

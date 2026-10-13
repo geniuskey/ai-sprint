@@ -1,0 +1,5384 @@
+{
+  "concepts": [
+    {
+      "id": "ai-taxonomy",
+      "title": "AI · ML · DL · 생성형 AI",
+      "category": "A",
+      "priority": 1,
+      "priorityReason": "공개 평가 방향인 AI 리터러시·문제 해결·결과 검증과 직접 연결되며, 이후 개념의 선수 지식 또는 빈번한 혼동 지점이다. 방법의 포함 관계와 출력 목적의 분류를 따로 설명할 수 있어야 한다.",
+      "estimatedMinutes": 4,
+      "prerequisites": [],
+      "summary": "AI는 지능적 과업을 수행하는 넓은 분야, ML은 데이터로 학습하는 접근, DL은 다층 신경망을 쓰는 ML이다. 생성형 AI는 새 콘텐츠 생성이라는 기능 분류다.",
+      "simpleExplanation": "AI가 모두 학습하는 것은 아니다. 사람이 작성한 규칙으로 판단하는 시스템도 AI에 포함될 수 있다. ML은 예시에서 규칙을 얻으며 DL은 그중 신경망으로 표현을 학습한다. 생성형 AI와 분류형 AI는 출력 목적을 구분하는 말이다.",
+      "analogy": "AI는 교통수단, ML은 자동차, DL은 특정 엔진 계열처럼 포함 관계를 생각할 수 있다. 생성형은 배달용처럼 사용 목적에 가까워 같은 계층으로 줄 세우면 부정확하다.",
+      "technicalExplanation": "현대 LLM과 확산 모델은 대체로 딥러닝 기반 생성 모델이다. 모든 딥러닝 모델이 생성형인 것은 아니며, 작은 통계적 생성 모델까지 모두 딥러닝일 필요도 없다.",
+      "realWorldExample": "불량 여부를 출력하는 CNN과 검사 보고서를 작성하는 LLM은 둘 다 딥러닝을 쓸 수 있다. 전자는 분류, 후자는 생성 과업이다. if 규칙만으로 장비를 정지시키는 로직은 학습이 없어 ML이라고 부르지 않는다.",
+      "commonMisconceptions": [
+        "생성형 AI를 DL 다음에 오는 엄격한 포함 단계라고 외우면 기능 분류와 방법 분류를 혼동한다."
+      ],
+      "comparisons": [
+        {
+          "with": "분류 모델",
+          "distinction": "분류는 정해진 범주를 예측하고 생성은 텍스트·이미지 등의 콘텐츠를 만든다. 기반 구조는 같을 수도 있다."
+        }
+      ],
+      "keyTakeaways": [
+        "AI는 지능적 과업을 수행하는 넓은 분야, ML은 데이터로 학습하는 접근, DL은 다층 신경망을 쓰는 ML이다. 생성형 AI는 새 콘텐츠 생성이라는 기능 분류다.",
+        "방법의 포함 관계와 출력 목적의 분류를 따로 설명할 수 있어야 한다."
+      ],
+      "quizQuestions": [
+        "ai-taxonomy-recall",
+        "ai-taxonomy-application"
+      ],
+      "references": [
+        {
+          "title": "Google Machine Learning Glossary",
+          "url": "https://developers.google.com/machine-learning/glossary"
+        }
+      ],
+      "validation": {
+        "status": "공식 문서 대조 · 작성자 검토",
+        "checkedAt": "2026-10-14",
+        "note": "참조 문서의 기본 정의와 대조하고 자체 예상문제의 정답·오답 논리를 검토했다. 독립 전문가 감수 및 공식 기출 검증은 아니다. 모델별 지원 여부는 별도 확인이 필요하다."
+      }
+    },
+    {
+      "id": "supervised-learning",
+      "title": "지도학습",
+      "category": "A",
+      "priority": 1,
+      "priorityReason": "공개 평가 방향인 AI 리터러시·문제 해결·결과 검증과 직접 연결되며, 이후 개념의 선수 지식 또는 빈번한 혼동 지점이다. 분류와 회귀 모두 지도학습으로 풀 수 있다.",
+      "estimatedMinutes": 4,
+      "prerequisites": [
+        "ai-taxonomy"
+      ],
+      "summary": "입력과 정답의 쌍을 사용해 새 입력의 정답을 예측하는 규칙을 학습한다.",
+      "simpleExplanation": "센서 값과 실제 불량 여부를 함께 보여 주면 모델은 둘의 관계를 배운다. 배운 관계가 새 로트에도 통하는지가 중요하다. 정답이 있어도 틀린 라벨이나 편향된 표본이면 좋은 모델이 되지 않는다.",
+      "analogy": "정답이 붙은 문제집으로 풀이 규칙을 연습하는 것과 같다. 문제집을 외우는 것과 새 문제를 푸는 능력은 다르다.",
+      "technicalExplanation": "훈련 데이터 (x,y)에 대해 예측 fθ(x)와 y 사이의 손실을 최소화한다. 분류에는 교차 엔트로피, 회귀에는 평균 제곱 오차 등을 쓴다. 평가 데이터는 파라미터 학습에서 분리한다.",
+      "realWorldExample": "Python으로 장비 온도·압력에서 다음 공정의 측정 두께를 예측한다. 입력은 온도·압력, 라벨은 실제 두께다. 출하 후 생기는 정보는 예측 시점에 없으므로 입력에서 뺀다.",
+      "commonMisconceptions": [
+        "지도학습의 지도는 사람이 실행 중 매번 답을 알려 준다는 뜻이 아니다. 훈련 시 정답 신호가 있다는 뜻이다."
+      ],
+      "comparisons": [
+        {
+          "with": "비지도학습",
+          "distinction": "지도학습은 목표 정답을 사용하고 비지도학습은 정답 없이 데이터 구조를 찾는다."
+        }
+      ],
+      "keyTakeaways": [
+        "입력과 정답의 쌍을 사용해 새 입력의 정답을 예측하는 규칙을 학습한다.",
+        "분류와 회귀 모두 지도학습으로 풀 수 있다."
+      ],
+      "quizQuestions": [
+        "supervised-learning-recall",
+        "supervised-learning-application"
+      ],
+      "references": [
+        {
+          "title": "Google Machine Learning Glossary",
+          "url": "https://developers.google.com/machine-learning/glossary"
+        }
+      ],
+      "validation": {
+        "status": "공식 문서 대조 · 작성자 검토",
+        "checkedAt": "2026-10-14",
+        "note": "참조 문서의 기본 정의와 대조하고 자체 예상문제의 정답·오답 논리를 검토했다. 독립 전문가 감수 및 공식 기출 검증은 아니다. 모델별 지원 여부는 별도 확인이 필요하다."
+      }
+    },
+    {
+      "id": "unsupervised-learning",
+      "title": "비지도학습",
+      "category": "A",
+      "priority": 1,
+      "priorityReason": "공개 평가 방향인 AI 리터러시·문제 해결·결과 검증과 직접 연결되며, 이후 개념의 선수 지식 또는 빈번한 혼동 지점이다. 구조 발견 결과를 업무 의미와 연결하는 검증이 필요하다.",
+      "estimatedMinutes": 4,
+      "prerequisites": [
+        "supervised-learning"
+      ],
+      "summary": "목표 정답 라벨 없이 데이터의 구조·분포·패턴을 찾는 학습이다.",
+      "simpleExplanation": "장비 로그에 정상 유형 이름이 없어도 서로 비슷한 묶음을 찾거나 차원을 줄일 수 있다. 발견한 묶음이 업무적으로 의미 있는지는 사람이 검증해야 한다. 라벨이 없다는 것이 평가가 불필요하다는 뜻은 아니다.",
+      "analogy": "제목 없는 서류를 내용이 비슷한 것끼리 분류하는 정리 작업과 같다. 묶음 이름은 나중에 붙일 수 있다.",
+      "technicalExplanation": "군집화, 차원 축소, 밀도 추정 등이 대표적이다. 비지도 학습 목표는 데이터 구조에 관한 것이며, 군집의 내부 응집도와 다운스트림 유용성을 구분해 평가한다.",
+      "realWorldExample": "수천 개 장비 로그의 임베딩을 군집화해 새로운 장애 유형 후보를 찾는다. 엔지니어가 군집별 대표 로그를 검토하여 같은 원인이 묶였는지 확인한다.",
+      "commonMisconceptions": [
+        "비지도학습 결과의 군집 번호는 자동으로 정상/불량 정답이 되지 않는다."
+      ],
+      "comparisons": [
+        {
+          "with": "지도학습",
+          "distinction": "라벨 없는 패턴 발견과 라벨을 맞히는 예측은 목표가 다르다."
+        }
+      ],
+      "keyTakeaways": [
+        "목표 정답 라벨 없이 데이터의 구조·분포·패턴을 찾는 학습이다.",
+        "구조 발견 결과를 업무 의미와 연결하는 검증이 필요하다."
+      ],
+      "quizQuestions": [
+        "unsupervised-learning-recall",
+        "unsupervised-learning-application"
+      ],
+      "references": [
+        {
+          "title": "Google Machine Learning Glossary",
+          "url": "https://developers.google.com/machine-learning/glossary"
+        }
+      ],
+      "validation": {
+        "status": "공식 문서 대조 · 작성자 검토",
+        "checkedAt": "2026-10-14",
+        "note": "참조 문서의 기본 정의와 대조하고 자체 예상문제의 정답·오답 논리를 검토했다. 독립 전문가 감수 및 공식 기출 검증은 아니다. 모델별 지원 여부는 별도 확인이 필요하다."
+      }
+    },
+    {
+      "id": "reinforcement-learning",
+      "title": "강화학습",
+      "category": "A",
+      "priority": 2,
+      "priorityReason": "기초 판단을 실제 구현과 연결하는 보강 개념이다. 핵심 개념을 먼저 익힌 뒤 학습한다. 보상은 실제 업무 목표의 대리 지표이므로 부작용을 검증해야 한다.",
+      "estimatedMinutes": 4,
+      "prerequisites": [
+        "ai-taxonomy"
+      ],
+      "summary": "환경과 상호작용하며 장기 누적 보상을 높이는 행동 정책을 학습한다.",
+      "simpleExplanation": "현재 좋은 선택이 나중에는 손해일 수 있는 순차 의사결정을 다룬다. 에이전트는 상태를 보고 행동하고 보상을 받는다. 보상 설계가 실제 목표와 어긋나면 점수만 높이는 잘못된 전략을 학습할 수 있다.",
+      "analogy": "매 수의 정답을 알려 주지 않고 최종 점수를 보며 게임 전략을 익히는 것과 같다. 현실 공정에서는 무작정 탐험할 수 없다는 차이가 있다.",
+      "technicalExplanation": "정책 π(a|s)는 상태에서 행동을 고르는 규칙이다. 보통 할인 누적 보상 E[Σγ^t r_t]를 최적화한다. 탐험과 활용, 지연 보상, 환경 안전성이 주요 쟁점이다.",
+      "realWorldExample": "장비 제어의 에너지 비용을 줄이면서 수율을 유지하려면 행동의 장기 영향을 고려해야 한다. 실제 설비에서 탐험하기 전 시뮬레이터와 제약 검증이 필요하다.",
+      "commonMisconceptions": [
+        "강화학습은 정답 라벨이 없다는 이유만으로 일반적인 군집화와 같아지지 않는다."
+      ],
+      "comparisons": [
+        {
+          "with": "지도학습",
+          "distinction": "지도학습은 주어진 목표값 오차를 줄이고 강화학습은 행동이 바꾸는 환경의 누적 보상을 최적화한다."
+        }
+      ],
+      "keyTakeaways": [
+        "환경과 상호작용하며 장기 누적 보상을 높이는 행동 정책을 학습한다.",
+        "보상은 실제 업무 목표의 대리 지표이므로 부작용을 검증해야 한다."
+      ],
+      "quizQuestions": [
+        "reinforcement-learning-recall",
+        "reinforcement-learning-application"
+      ],
+      "references": [
+        {
+          "title": "Google Machine Learning Glossary",
+          "url": "https://developers.google.com/machine-learning/glossary"
+        }
+      ],
+      "validation": {
+        "status": "공식 문서 대조 · 작성자 검토",
+        "checkedAt": "2026-10-14",
+        "note": "참조 문서의 기본 정의와 대조하고 자체 예상문제의 정답·오답 논리를 검토했다. 독립 전문가 감수 및 공식 기출 검증은 아니다. 모델별 지원 여부는 별도 확인이 필요하다."
+      }
+    },
+    {
+      "id": "classification",
+      "title": "분류",
+      "category": "A",
+      "priority": 1,
+      "priorityReason": "공개 평가 방향인 AI 리터러시·문제 해결·결과 검증과 직접 연결되며, 이후 개념의 선수 지식 또는 빈번한 혼동 지점이다. 문제의 출력 의미와 운영 임계값을 구분한다.",
+      "estimatedMinutes": 4,
+      "prerequisites": [
+        "supervised-learning"
+      ],
+      "summary": "입력을 미리 정한 범주로 예측하는 과업이다. 확률 점수와 최종 라벨은 구분한다.",
+      "simpleExplanation": "정상/불량처럼 두 종류면 이진 분류, 결함 유형이 여러 개면 다중 클래스 분류다. 한 이미지에 여러 결함이 동시에 있으면 다중 라벨 문제일 수 있다. 어떤 형식인지 먼저 정해야 평가가 맞는다.",
+      "analogy": "메일을 정상·스팸함에 넣는 작업과 같다. 스팸일 가능성 점수와 실제로 스팸함에 넣는 결정은 별개다.",
+      "technicalExplanation": "이진 모델이 p(y=1|x)를 내면 임계값 t 이상일 때 양성으로 결정할 수 있다. t를 바꾸면 정밀도·재현율이 달라진다. 분류 확률의 보정과 순위 성능 역시 다르다.",
+      "realWorldExample": "불량 놓침 비용이 큰 공정에서는 0.5가 아닌 검증 데이터에서 정한 임계값을 사용할 수 있다. 검사 인력과 오경보 비용도 함께 고려한다.",
+      "commonMisconceptions": [
+        "모든 분류기의 임계값을 반드시 0.5로 설정해야 한다는 규칙은 없다."
+      ],
+      "comparisons": [
+        {
+          "with": "회귀",
+          "distinction": "분류는 범주, 회귀는 연속 수치를 목표로 한다. 범주 번호를 숫자로 저장해도 자동으로 회귀가 되지 않는다."
+        }
+      ],
+      "keyTakeaways": [
+        "입력을 미리 정한 범주로 예측하는 과업이다. 확률 점수와 최종 라벨은 구분한다.",
+        "문제의 출력 의미와 운영 임계값을 구분한다."
+      ],
+      "quizQuestions": [
+        "classification-recall",
+        "classification-application"
+      ],
+      "references": [
+        {
+          "title": "Google Machine Learning Glossary",
+          "url": "https://developers.google.com/machine-learning/glossary"
+        }
+      ],
+      "validation": {
+        "status": "공식 문서 대조 · 작성자 검토",
+        "checkedAt": "2026-10-14",
+        "note": "참조 문서의 기본 정의와 대조하고 자체 예상문제의 정답·오답 논리를 검토했다. 독립 전문가 감수 및 공식 기출 검증은 아니다. 모델별 지원 여부는 별도 확인이 필요하다."
+      }
+    },
+    {
+      "id": "regression",
+      "title": "회귀",
+      "category": "A",
+      "priority": 1,
+      "priorityReason": "공개 평가 방향인 AI 리터러시·문제 해결·결과 검증과 직접 연결되며, 이후 개념의 선수 지식 또는 빈번한 혼동 지점이다. 평가 지표의 단위와 큰 오차에 대한 민감도를 확인한다.",
+      "estimatedMinutes": 4,
+      "prerequisites": [
+        "supervised-learning"
+      ],
+      "summary": "가격·온도·두께처럼 연속적인 수치를 예측하는 과업이다.",
+      "simpleExplanation": "예측값이 실제값에서 얼마나 떨어졌는지가 중요하다. 100을 예측해야 할 때 101과 1000은 둘 다 틀렸지만 오류의 크기가 다르다. 단위와 큰 오차에 대한 비용을 생각해 지표를 고른다.",
+      "analogy": "과녁의 구역 이름을 맞히는 대신 중심에서 얼마나 떨어졌는지 재는 것과 같다.",
+      "technicalExplanation": "MAE는 |y−ŷ|의 평균이고 RMSE는 제곱 오차 평균의 제곱근이다. RMSE는 큰 오차에 더 민감하다. R²가 높아도 분포 변화나 특정 그룹의 큰 오차를 놓칠 수 있다.",
+      "realWorldExample": "웨이퍼 막 두께를 nm 단위로 예측할 때 MAE=2 nm는 평균 절대 오차를 뜻한다. 평균만 보지 말고 허용 오차를 넘는 비율과 장비별 오차도 함께 확인한다.",
+      "commonMisconceptions": [
+        "회귀라는 이름 때문에 과거로 돌아가 예측하는 방법이라고 이해하면 안 된다."
+      ],
+      "comparisons": [
+        {
+          "with": "분류",
+          "distinction": "불량 여부는 분류, 불량 크기나 수율 수치 예측은 회귀로 정의할 수 있다."
+        }
+      ],
+      "keyTakeaways": [
+        "가격·온도·두께처럼 연속적인 수치를 예측하는 과업이다.",
+        "평가 지표의 단위와 큰 오차에 대한 민감도를 확인한다."
+      ],
+      "quizQuestions": [
+        "regression-recall",
+        "regression-application"
+      ],
+      "references": [
+        {
+          "title": "scikit-learn · Model evaluation",
+          "url": "https://scikit-learn.org/stable/modules/model_evaluation.html"
+        }
+      ],
+      "validation": {
+        "status": "공식 문서 대조 · 작성자 검토",
+        "checkedAt": "2026-10-14",
+        "note": "참조 문서의 기본 정의와 대조하고 자체 예상문제의 정답·오답 논리를 검토했다. 독립 전문가 감수 및 공식 기출 검증은 아니다. 모델별 지원 여부는 별도 확인이 필요하다."
+      }
+    },
+    {
+      "id": "clustering",
+      "title": "군집화",
+      "category": "A",
+      "priority": 2,
+      "priorityReason": "기초 판단을 실제 구현과 연결하는 보강 개념이다. 핵심 개념을 먼저 익힌 뒤 학습한다. 거리·스케일·군집 가정이 결과에 미치는 영향을 설명한다.",
+      "estimatedMinutes": 4,
+      "prerequisites": [
+        "unsupervised-learning"
+      ],
+      "summary": "라벨 없이 데이터의 유사성을 기준으로 그룹을 찾는다.",
+      "simpleExplanation": "어떤 거리를 쓰고 입력의 크기를 어떻게 맞추는지에 따라 묶음이 달라진다. 가까운 점이 항상 같은 업무 원인이라는 뜻은 아니다. 군집 결과는 탐색과 가설 생성에 특히 유용하다.",
+      "analogy": "책을 제목 대신 표지 색과 두께로 모으면 주제별 분류와 다른 묶음이 생기는 것과 같다. 유사성 기준이 결과를 만든다.",
+      "technicalExplanation": "K-means는 중심과 각 점 사이의 제곱 거리를 줄인다. 스케일·초기화·군집 수의 영향을 받고 비구형 군집에는 부적합할 수 있다. DBSCAN 등은 다른 구조 가정을 사용한다.",
+      "realWorldExample": "센서 A가 0~1이고 B가 0~10000이면 거리 계산이 B에 지배될 수 있다. 훈련 데이터로 스케일을 정하고 군집별 대표 샘플을 확인한다.",
+      "commonMisconceptions": [
+        "군집 수를 늘리면 업무적 품질이 무조건 좋아지는 것은 아니다."
+      ],
+      "comparisons": [
+        {
+          "with": "분류",
+          "distinction": "분류는 정해진 라벨을 예측한다. 군집은 유사성에 따라 그룹을 발견한다."
+        }
+      ],
+      "keyTakeaways": [
+        "라벨 없이 데이터의 유사성을 기준으로 그룹을 찾는다.",
+        "거리·스케일·군집 가정이 결과에 미치는 영향을 설명한다."
+      ],
+      "quizQuestions": [
+        "clustering-recall",
+        "clustering-application"
+      ],
+      "references": [
+        {
+          "title": "Google Machine Learning Glossary",
+          "url": "https://developers.google.com/machine-learning/glossary"
+        }
+      ],
+      "validation": {
+        "status": "공식 문서 대조 · 작성자 검토",
+        "checkedAt": "2026-10-14",
+        "note": "참조 문서의 기본 정의와 대조하고 자체 예상문제의 정답·오답 논리를 검토했다. 독립 전문가 감수 및 공식 기출 검증은 아니다. 모델별 지원 여부는 별도 확인이 필요하다."
+      }
+    },
+    {
+      "id": "data-split",
+      "title": "Training · Validation · Test",
+      "category": "A",
+      "priority": 1,
+      "priorityReason": "공개 평가 방향인 AI 리터러시·문제 해결·결과 검증과 직접 연결되며, 이후 개념의 선수 지식 또는 빈번한 혼동 지점이다. 배포 시점과 대상에 맞게 시간·그룹 누출을 차단한다.",
+      "estimatedMinutes": 4,
+      "prerequisites": [
+        "supervised-learning"
+      ],
+      "summary": "훈련으로 모델을 학습하고, 검증으로 설정을 고르며, 테스트로 최종 일반화 성능을 평가한다.",
+      "simpleExplanation": "모델을 여러 번 바꾸며 본 데이터는 이미 선택에 영향을 준 데이터다. 테스트 점수를 보고 설정을 고치면 그 데이터는 사실상 검증용이 된다. 같은 장비·환자·로트가 양쪽에 섞이는지도 확인한다.",
+      "analogy": "훈련은 연습문제, 검증은 모의고사, 테스트는 처음 보는 최종시험이다. 최종시험 답을 보고 연습하면 실력 평가가 부풀려진다.",
+      "technicalExplanation": "분할은 배포 상황을 모사해야 한다. 미래를 예측하면 시간순 분할, 새 개체를 예측하면 그룹 분할이 필요할 수 있다. 데이터 크기와 분포에 맞게 비율을 결정하며 8:1:1은 고정 법칙이 아니다.",
+      "realWorldExample": "최근 공정 데이터를 맞히는 시스템은 과거로 훈련하고 그다음 기간으로 검증하며 가장 최근 기간을 최종 테스트로 보관한다. 전처리 통계도 훈련에서만 학습한다.",
+      "commonMisconceptions": [
+        "테스트 정확도를 반복 확인하며 최적 모델을 선택하면 독립적인 테스트가 아니다."
+      ],
+      "comparisons": [
+        {
+          "with": "교차 검증",
+          "distinction": "교차 검증은 훈련 영역 내부의 모델 선택 안정성을 높일 수 있지만 최종 독립 평가의 목적을 없애지 않는다."
+        }
+      ],
+      "keyTakeaways": [
+        "훈련으로 모델을 학습하고, 검증으로 설정을 고르며, 테스트로 최종 일반화 성능을 평가한다.",
+        "배포 시점과 대상에 맞게 시간·그룹 누출을 차단한다."
+      ],
+      "quizQuestions": [
+        "data-split-recall",
+        "data-split-application"
+      ],
+      "references": [
+        {
+          "title": "scikit-learn · Cross-validation",
+          "url": "https://scikit-learn.org/stable/modules/cross_validation.html"
+        },
+        {
+          "title": "scikit-learn · Common pitfalls",
+          "url": "https://scikit-learn.org/stable/common_pitfalls.html"
+        }
+      ],
+      "validation": {
+        "status": "공식 문서 대조 · 작성자 검토",
+        "checkedAt": "2026-10-14",
+        "note": "참조 문서의 기본 정의와 대조하고 자체 예상문제의 정답·오답 논리를 검토했다. 독립 전문가 감수 및 공식 기출 검증은 아니다. 모델별 지원 여부는 별도 확인이 필요하다."
+      }
+    },
+    {
+      "id": "overfitting",
+      "title": "과적합 · Overfitting",
+      "category": "A",
+      "priority": 1,
+      "priorityReason": "공개 평가 방향인 AI 리터러시·문제 해결·결과 검증과 직접 연결되며, 이후 개념의 선수 지식 또는 빈번한 혼동 지점이다. 훈련과 검증의 차이를 보고 원인을 분리한다.",
+      "estimatedMinutes": 4,
+      "prerequisites": [
+        "data-split"
+      ],
+      "summary": "훈련 데이터의 우연한 패턴까지 학습하여 새 데이터에서 성능이 떨어지는 현상이다.",
+      "simpleExplanation": "훈련 점수만 높고 검증 점수가 낮다면 과적합을 의심한다. 데이터 누출이나 분포 차이도 비슷한 증상을 만들 수 있어 원인을 함께 확인해야 한다. 규제, 데이터 품질 개선, 조기 종료 등을 검토한다.",
+      "analogy": "연습문제 답을 외웠지만 숫자가 조금 바뀐 문제는 풀지 못하는 모습과 같다.",
+      "technicalExplanation": "모델 용량, 표본 수, 잡음, 학습 시간이 일반화 간격에 영향을 준다. 가중치 규제는 복잡도를 억제하고 early stopping은 검증 성능이 악화되기 전 학습을 멈춘다.",
+      "realWorldExample": "학습 손실은 계속 줄지만 검증 손실이 여러 epoch 동안 증가하면 최저 검증 손실 시점의 체크포인트를 선택한다. 최종 테스트로 반복 선택하지 않는다.",
+      "commonMisconceptions": [
+        "훈련 정확도가 100%라는 사실만으로 과적합이 확정되지는 않는다. 새 데이터 성능과 데이터 특성을 봐야 한다."
+      ],
+      "comparisons": [
+        {
+          "with": "과소적합",
+          "distinction": "과적합은 훈련에 지나치게 맞고, 과소적합은 훈련의 유효한 패턴도 충분히 배우지 못한다."
+        }
+      ],
+      "keyTakeaways": [
+        "훈련 데이터의 우연한 패턴까지 학습하여 새 데이터에서 성능이 떨어지는 현상이다.",
+        "훈련과 검증의 차이를 보고 원인을 분리한다."
+      ],
+      "quizQuestions": [
+        "overfitting-recall",
+        "overfitting-application"
+      ],
+      "references": [
+        {
+          "title": "Google Machine Learning Glossary",
+          "url": "https://developers.google.com/machine-learning/glossary"
+        }
+      ],
+      "validation": {
+        "status": "공식 문서 대조 · 작성자 검토",
+        "checkedAt": "2026-10-14",
+        "note": "참조 문서의 기본 정의와 대조하고 자체 예상문제의 정답·오답 논리를 검토했다. 독립 전문가 감수 및 공식 기출 검증은 아니다. 모델별 지원 여부는 별도 확인이 필요하다."
+      }
+    },
+    {
+      "id": "underfitting",
+      "title": "과소적합 · Underfitting",
+      "category": "A",
+      "priority": 2,
+      "priorityReason": "기초 판단을 실제 구현과 연결하는 보강 개념이다. 핵심 개념을 먼저 익힌 뒤 학습한다. 학습 부족과 표현력 부족을 구분해 조치한다.",
+      "estimatedMinutes": 4,
+      "prerequisites": [
+        "overfitting"
+      ],
+      "summary": "모델이 데이터의 중요한 패턴을 충분히 학습하지 못한 상태다.",
+      "simpleExplanation": "훈련에서도 틀리고 검증에서도 틀린다면 모델 표현력 부족, 불충분한 학습, 과도한 규제, 잘못된 특성을 점검한다. 큰 모델로 바꾸는 것이 언제나 정답은 아니다. 라벨과 코드부터 확인할 가치가 있다.",
+      "analogy": "곡선 도로를 자 하나로 직선처럼 표현하려다 어디에도 잘 맞지 않는 상황과 같다.",
+      "technicalExplanation": "훈련 손실이 높은 이유에는 최적화 실패와 모델의 제한된 가설 공간이 있다. 학습 곡선과 간단한 소량 데이터 과적합 실험으로 구현 문제를 구분할 수 있다.",
+      "realWorldExample": "두께가 온도의 제곱에 따라 변하는데 선형 항만 쓰면 체계적인 잔차가 남을 수 있다. 비선형 특성이나 더 적합한 모델을 검증 데이터에서 비교한다.",
+      "commonMisconceptions": [
+        "과소적합은 데이터가 적어서만 생기는 것이 아니다. 표현력·학습·전처리 문제도 원인이 된다."
+      ],
+      "comparisons": [
+        {
+          "with": "과적합",
+          "distinction": "과소적합에서는 훈련 성능 개선 여지가 크고 과적합에서는 일반화 개선이 핵심이다."
+        }
+      ],
+      "keyTakeaways": [
+        "모델이 데이터의 중요한 패턴을 충분히 학습하지 못한 상태다.",
+        "학습 부족과 표현력 부족을 구분해 조치한다."
+      ],
+      "quizQuestions": [
+        "underfitting-recall",
+        "underfitting-application"
+      ],
+      "references": [
+        {
+          "title": "Google Machine Learning Glossary",
+          "url": "https://developers.google.com/machine-learning/glossary"
+        }
+      ],
+      "validation": {
+        "status": "공식 문서 대조 · 작성자 검토",
+        "checkedAt": "2026-10-14",
+        "note": "참조 문서의 기본 정의와 대조하고 자체 예상문제의 정답·오답 논리를 검토했다. 독립 전문가 감수 및 공식 기출 검증은 아니다. 모델별 지원 여부는 별도 확인이 필요하다."
+      }
+    },
+    {
+      "id": "bias-variance",
+      "title": "편향과 분산 · Bias / Variance",
+      "category": "A",
+      "priority": 2,
+      "priorityReason": "기초 판단을 실제 구현과 연결하는 보강 개념이다. 핵심 개념을 먼저 익힌 뒤 학습한다. 표본 변화에 흔들리는지와 체계적으로 놓치는지를 따로 본다.",
+      "estimatedMinutes": 4,
+      "prerequisites": [
+        "overfitting",
+        "underfitting"
+      ],
+      "summary": "편향은 단순화 때문에 생기는 체계적 오차, 분산은 훈련 표본 변화에 대한 예측의 민감도다.",
+      "simpleExplanation": "너무 단순하면 중요한 곡선을 놓치고, 너무 민감하면 표본의 잡음에 흔들린다. 복잡도를 바꾸며 두 문제의 균형을 검증한다. 여기서 편향은 사회적 편향과 구분되는 통계적 의미다.",
+      "analogy": "과녁에서 탄착군이 중심과 멀면 편향, 여러 번 쐈을 때 흩어지면 분산에 비유할 수 있다.",
+      "technicalExplanation": "제곱 오차 회귀에서는 기대 오차를 편향², 분산, 제거 불가능한 잡음으로 분해할 수 있다. 이는 특정 가정 아래의 분석이며 모든 현대 모델 곡선이 단순한 U자 모양이라는 보장은 없다.",
+      "realWorldExample": "서로 다른 로트 표본으로 학습할 때 트리 예측이 크게 흔들리면 앙상블이나 규제로 분산을 줄일 수 있다. 반면 모든 표본에서 같은 곡률을 놓치면 표현력을 검토한다.",
+      "commonMisconceptions": [
+        "통계적 편향이 낮다고 사회적 차별이나 데이터 편향이 없다는 뜻은 아니다."
+      ],
+      "comparisons": [
+        {
+          "with": "과적합 / 과소적합",
+          "distinction": "높은 편향은 과소적합, 높은 분산은 과적합과 연결되지만 관측 점수만으로 원인을 단정하지 않는다."
+        }
+      ],
+      "keyTakeaways": [
+        "편향은 단순화 때문에 생기는 체계적 오차, 분산은 훈련 표본 변화에 대한 예측의 민감도다.",
+        "표본 변화에 흔들리는지와 체계적으로 놓치는지를 따로 본다."
+      ],
+      "quizQuestions": [
+        "bias-variance-recall",
+        "bias-variance-application"
+      ],
+      "references": [
+        {
+          "title": "Google Machine Learning Glossary",
+          "url": "https://developers.google.com/machine-learning/glossary"
+        }
+      ],
+      "validation": {
+        "status": "공식 문서 대조 · 작성자 검토",
+        "checkedAt": "2026-10-14",
+        "note": "참조 문서의 기본 정의와 대조하고 자체 예상문제의 정답·오답 논리를 검토했다. 독립 전문가 감수 및 공식 기출 검증은 아니다. 모델별 지원 여부는 별도 확인이 필요하다."
+      }
+    },
+    {
+      "id": "data-leakage",
+      "title": "데이터 누출 · Data Leakage",
+      "category": "A",
+      "priority": 1,
+      "priorityReason": "공개 평가 방향인 AI 리터러시·문제 해결·결과 검증과 직접 연결되며, 이후 개념의 선수 지식 또는 빈번한 혼동 지점이다. 각 특성에 대해 예측 순간에 알 수 있는지 질문한다.",
+      "estimatedMinutes": 4,
+      "prerequisites": [
+        "data-split"
+      ],
+      "summary": "예측 시 알 수 없거나 평가에서 분리해야 할 정보가 학습·선택 과정에 들어가는 문제다.",
+      "simpleExplanation": "불량을 예측하면서 불량 판정 후의 재검사 횟수를 입력하면 답의 흔적을 미리 준 셈이다. 전체 데이터로 정규화한 뒤 나누는 것도 평가 정보가 전처리에 들어갈 수 있다. 높은 점수를 먼저 의심해야 할 때가 있다.",
+      "analogy": "시험 답안의 잉크 자국을 보고 정답을 맞히는 것과 같다. 새 시험에는 그 자국이 없어서 실패한다.",
+      "technicalExplanation": "타깃 누출, 훈련·테스트 오염, 시간·그룹 누출을 구분한다. 분할 후 훈련에만 fit하고 다른 집합에는 transform한다. 교차 검증에서는 Pipeline 내부에서 각 fold의 전처리를 학습한다.",
+      "realWorldExample": "공정 종료 전에 불량을 예측하려는데 출하 보류 코드를 특성으로 넣었다. 해당 코드는 최종 검사 후 생성되므로 제거하고 예측 시점에 존재한 센서만 남긴다.",
+      "commonMisconceptions": [
+        "정답 열을 지웠다는 사실만으로 누출이 사라지지 않는다. 정답의 결과나 미래 정보가 다른 열에 남을 수 있다."
+      ],
+      "comparisons": [
+        {
+          "with": "과적합",
+          "distinction": "과적합은 훈련 패턴에 과도하게 맞춘 현상이고 누출은 사용할 수 없는 정보가 새어 들어간 절차 문제다."
+        }
+      ],
+      "keyTakeaways": [
+        "예측 시 알 수 없거나 평가에서 분리해야 할 정보가 학습·선택 과정에 들어가는 문제다.",
+        "각 특성에 대해 예측 순간에 알 수 있는지 질문한다."
+      ],
+      "quizQuestions": [
+        "data-leakage-recall",
+        "data-leakage-application"
+      ],
+      "references": [
+        {
+          "title": "scikit-learn · Common pitfalls",
+          "url": "https://scikit-learn.org/stable/common_pitfalls.html"
+        }
+      ],
+      "validation": {
+        "status": "공식 문서 대조 · 작성자 검토",
+        "checkedAt": "2026-10-14",
+        "note": "참조 문서의 기본 정의와 대조하고 자체 예상문제의 정답·오답 논리를 검토했다. 독립 전문가 감수 및 공식 기출 검증은 아니다. 모델별 지원 여부는 별도 확인이 필요하다."
+      }
+    },
+    {
+      "id": "feature-engineering",
+      "title": "특성 공학 · Feature Engineering",
+      "category": "A",
+      "priority": 2,
+      "priorityReason": "기초 판단을 실제 구현과 연결하는 보강 개념이다. 핵심 개념을 먼저 익힌 뒤 학습한다. 유용성뿐 아니라 예측 시점의 가용성과 재현성을 검증한다.",
+      "estimatedMinutes": 4,
+      "prerequisites": [
+        "data-leakage"
+      ],
+      "summary": "원자료를 예측에 유용하고 배포 시에도 계산 가능한 입력 표현으로 바꾸는 과정이다.",
+      "simpleExplanation": "온도 한 번의 값보다 최근 5분 평균과 변동폭이 고장을 더 잘 설명할 수 있다. 이때 평균 구간에 미래가 섞이면 안 된다. 좋은 특성은 도메인 지식과 검증으로 판단한다.",
+      "analogy": "요리 재료를 잘라 익히기 좋은 형태로 준비하는 것과 같다. 재료를 예쁘게 담는 것만으로 맛이 보장되지 않듯 특성도 실험해야 한다.",
+      "technicalExplanation": "인코딩, 스케일링, 결측치 처리, 상호작용 항, 집계 특성 등이 포함된다. 학습과 추론에 동일한 변환을 적용하고 변환에 필요한 통계는 훈련 데이터에서 추정한다.",
+      "realWorldExample": "장비 고장 예측에 최근 10분 진동 RMS를 추가한다. 윈도 끝을 예측 시각에 맞추고 검증 시 동일 계산을 재현하며, 기존 모델 대비 개선을 비교한다.",
+      "commonMisconceptions": [
+        "입력 열을 많이 만들수록 무조건 성능이 좋아지는 것은 아니다. 잡음·누출·운영 비용이 늘 수 있다."
+      ],
+      "comparisons": [
+        {
+          "with": "표현 학습",
+          "distinction": "특성 공학은 사람이 설계한 변환을 강조하고 표현 학습은 모델이 유용한 표현을 데이터로 학습하는 것을 강조한다."
+        }
+      ],
+      "keyTakeaways": [
+        "원자료를 예측에 유용하고 배포 시에도 계산 가능한 입력 표현으로 바꾸는 과정이다.",
+        "유용성뿐 아니라 예측 시점의 가용성과 재현성을 검증한다."
+      ],
+      "quizQuestions": [
+        "feature-engineering-recall",
+        "feature-engineering-application"
+      ],
+      "references": [
+        {
+          "title": "scikit-learn · Common pitfalls",
+          "url": "https://scikit-learn.org/stable/common_pitfalls.html"
+        },
+        {
+          "title": "Google Machine Learning Glossary",
+          "url": "https://developers.google.com/machine-learning/glossary"
+        }
+      ],
+      "validation": {
+        "status": "공식 문서 대조 · 작성자 검토",
+        "checkedAt": "2026-10-14",
+        "note": "참조 문서의 기본 정의와 대조하고 자체 예상문제의 정답·오답 논리를 검토했다. 독립 전문가 감수 및 공식 기출 검증은 아니다. 모델별 지원 여부는 별도 확인이 필요하다."
+      }
+    },
+    {
+      "id": "cross-validation",
+      "title": "교차 검증 · Cross Validation",
+      "category": "A",
+      "priority": 1,
+      "priorityReason": "공개 평가 방향인 AI 리터러시·문제 해결·결과 검증과 직접 연결되며, 이후 개념의 선수 지식 또는 빈번한 혼동 지점이다. 분할 전략은 데이터 구조와 실제 일반화 대상을 따라야 한다.",
+      "estimatedMinutes": 4,
+      "prerequisites": [
+        "data-split",
+        "data-leakage"
+      ],
+      "summary": "데이터를 여러 분할로 번갈아 학습·검증하여 모델 성능과 설정 선택의 안정성을 평가한다.",
+      "simpleExplanation": "한 번의 운 좋은 분할에 의존하지 않도록 여러 번 검증한다. 같은 장비의 반복 측정이나 시계열처럼 독립성이 없는 데이터에는 무작위 K-fold가 적합하지 않을 수 있다.",
+      "analogy": "한 상대와 한 번 경기해서 실력을 판단하지 않고 조건을 바꿔 여러 번 겨루는 것과 같다.",
+      "technicalExplanation": "K-fold는 K−1개 fold로 학습하고 나머지 하나로 검증하는 절차를 K번 반복한다. 클래스 비율은 StratifiedKFold, 그룹은 GroupKFold, 시간 순서는 TimeSeriesSplit 등으로 반영한다. 전처리는 매 학습 fold 안에서 fit한다.",
+      "realWorldExample": "10개 장비 중 새 장비로 확장할 성능을 알고 싶다면 장비별 그룹 교차 검증을 쓴다. 같은 장비의 시간 샘플을 무작위 분할하면 장비 특성을 외운 효과가 섞일 수 있다.",
+      "commonMisconceptions": [
+        "교차 검증을 했다는 이유만으로 시간·그룹 누출이 자동 해결되지 않는다."
+      ],
+      "comparisons": [
+        {
+          "with": "단일 검증 분할",
+          "distinction": "단일 분할보다 여러 분할의 변동을 볼 수 있지만 학습 비용이 늘고 분할 가정은 여전히 중요하다."
+        }
+      ],
+      "keyTakeaways": [
+        "데이터를 여러 분할로 번갈아 학습·검증하여 모델 성능과 설정 선택의 안정성을 평가한다.",
+        "분할 전략은 데이터 구조와 실제 일반화 대상을 따라야 한다."
+      ],
+      "quizQuestions": [
+        "cross-validation-recall",
+        "cross-validation-application"
+      ],
+      "references": [
+        {
+          "title": "scikit-learn · Cross-validation",
+          "url": "https://scikit-learn.org/stable/modules/cross_validation.html"
+        },
+        {
+          "title": "scikit-learn · Common pitfalls",
+          "url": "https://scikit-learn.org/stable/common_pitfalls.html"
+        }
+      ],
+      "validation": {
+        "status": "공식 문서 대조 · 작성자 검토",
+        "checkedAt": "2026-10-14",
+        "note": "참조 문서의 기본 정의와 대조하고 자체 예상문제의 정답·오답 논리를 검토했다. 독립 전문가 감수 및 공식 기출 검증은 아니다. 모델별 지원 여부는 별도 확인이 필요하다."
+      }
+    },
+    {
+      "id": "confusion-matrix",
+      "title": "혼동 행렬 · Confusion Matrix",
+      "category": "A",
+      "priority": 1,
+      "priorityReason": "공개 평가 방향인 AI 리터러시·문제 해결·결과 검증과 직접 연결되며, 이후 개념의 선수 지식 또는 빈번한 혼동 지점이다. 양성의 정의부터 확인한 다음 실제/예측을 따라 TP·FP·FN·TN을 센다.",
+      "estimatedMinutes": 4,
+      "prerequisites": [
+        "classification"
+      ],
+      "summary": "실제 라벨과 예측 라벨의 조합을 세어 어떤 오류가 발생하는지 보여 주는 표다.",
+      "simpleExplanation": "불량을 양성으로 정하면 실제 불량을 잡은 것은 TP, 놓친 것은 FN이다. 정상을 잘못 불량으로 잡으면 FP, 정상으로 맞히면 TN이다. 양성이 무엇인지 먼저 정해야 지표를 해석할 수 있다.",
+      "analogy": "경비원이 위험한 사람을 잡았는지, 무고한 사람을 막았는지를 네 칸으로 기록한 출입 장부와 같다.",
+      "technicalExplanation": "TP+FN은 실제 양성 수, TP+FP는 예측 양성 수다. 행과 열 배치는 도구마다 다를 수 있으므로 라벨을 읽는다. 다중 클래스에서는 클래스별로 일대다 방식으로 분석할 수 있다.",
+      "realWorldExample": "검사 100개에서 TP=8, FN=2, FP=9, TN=81이라면 실제 불량은 10개, 불량 판정은 17개다. 전체 정답 89개만 보지 말고 놓침 2개와 재검사 9개를 따로 본다.",
+      "commonMisconceptions": [
+        "FP와 FN은 단순히 표의 위치로 외우지 말고 실제와 예측의 의미로 구분한다."
+      ],
+      "comparisons": [
+        {
+          "with": "정확도",
+          "distinction": "혼동 행렬은 오류 종류를 보존하지만 정확도 하나는 서로 다른 오류 비용을 합쳐 숨길 수 있다."
+        }
+      ],
+      "keyTakeaways": [
+        "실제 라벨과 예측 라벨의 조합을 세어 어떤 오류가 발생하는지 보여 주는 표다.",
+        "양성의 정의부터 확인한 다음 실제/예측을 따라 TP·FP·FN·TN을 센다."
+      ],
+      "quizQuestions": [
+        "confusion-matrix-recall",
+        "confusion-matrix-application"
+      ],
+      "references": [
+        {
+          "title": "scikit-learn · Model evaluation",
+          "url": "https://scikit-learn.org/stable/modules/model_evaluation.html"
+        }
+      ],
+      "validation": {
+        "status": "공식 문서 대조 · 작성자 검토",
+        "checkedAt": "2026-10-14",
+        "note": "참조 문서의 기본 정의와 대조하고 자체 예상문제의 정답·오답 논리를 검토했다. 독립 전문가 감수 및 공식 기출 검증은 아니다. 모델별 지원 여부는 별도 확인이 필요하다."
+      }
+    },
+    {
+      "id": "accuracy",
+      "title": "정확도 · Accuracy",
+      "category": "A",
+      "priority": 1,
+      "priorityReason": "공개 평가 방향인 AI 리터러시·문제 해결·결과 검증과 직접 연결되며, 이후 개념의 선수 지식 또는 빈번한 혼동 지점이다. 불균형 데이터는 다수 클래스 기준선과 비교한다.",
+      "estimatedMinutes": 4,
+      "prerequisites": [
+        "confusion-matrix"
+      ],
+      "summary": "전체 예측 중 맞힌 비율이다. 클래스가 불균형하면 높아도 중요한 대상을 놓칠 수 있다.",
+      "simpleExplanation": "불량이 1%인 데이터에서 모두 정상이라고 해도 정확도는 99%다. 하지만 불량은 한 개도 못 잡는다. 정확도가 좋은지 판단하려면 기준 모델, 클래스 분포, 오류 비용을 함께 알아야 한다.",
+      "analogy": "대부분 맑은 지역에서 매일 맑음이라고 말하는 예보는 정답률은 높아도 폭우 대비에는 쓸모없을 수 있다.",
+      "technicalExplanation": "Accuracy=(TP+TN)/(TP+TN+FP+FN). 다중 클래스에서는 전체 정답 수를 표본 수로 나눈다. 클래스별 성능, balanced accuracy, precision·recall 등을 목적에 맞게 보완한다.",
+      "realWorldExample": "정상 990개와 불량 10개에서 모두 정상이라고 예측하면 990/1000=99%다. 불량 탐지 과업에서는 recall=0도 함께 표시해야 한다.",
+      "commonMisconceptions": [
+        "정확도 99%를 업무 성공률 99%로 그대로 해석하면 안 된다."
+      ],
+      "comparisons": [
+        {
+          "with": "정밀도",
+          "distinction": "정확도는 전체에서 맞힌 비율, 정밀도는 양성으로 예측한 것 중 실제 양성 비율이다."
+        }
+      ],
+      "keyTakeaways": [
+        "전체 예측 중 맞힌 비율이다. 클래스가 불균형하면 높아도 중요한 대상을 놓칠 수 있다.",
+        "불균형 데이터는 다수 클래스 기준선과 비교한다."
+      ],
+      "quizQuestions": [
+        "accuracy-recall",
+        "accuracy-application"
+      ],
+      "references": [
+        {
+          "title": "scikit-learn · Model evaluation",
+          "url": "https://scikit-learn.org/stable/modules/model_evaluation.html"
+        }
+      ],
+      "validation": {
+        "status": "공식 문서 대조 · 작성자 검토",
+        "checkedAt": "2026-10-14",
+        "note": "참조 문서의 기본 정의와 대조하고 자체 예상문제의 정답·오답 논리를 검토했다. 독립 전문가 감수 및 공식 기출 검증은 아니다. 모델별 지원 여부는 별도 확인이 필요하다."
+      }
+    },
+    {
+      "id": "precision",
+      "title": "정밀도 · Precision",
+      "category": "A",
+      "priority": 1,
+      "priorityReason": "공개 평가 방향인 AI 리터러시·문제 해결·결과 검증과 직접 연결되며, 이후 개념의 선수 지식 또는 빈번한 혼동 지점이다. 경보 중 진짜가 얼마나 되는지를 묻는 지표다.",
+      "estimatedMinutes": 4,
+      "prerequisites": [
+        "confusion-matrix"
+      ],
+      "summary": "양성이라고 예측한 것 중 실제 양성인 비율로, 양성 판정의 신뢰도를 본다.",
+      "simpleExplanation": "불량 경보가 10번 울렸는데 실제 불량이 8번이면 정밀도는 80%다. 거짓 경보의 부담이 클수록 중요하다. 정밀도만 올리려고 아주 확실한 한 건만 잡으면 많은 불량을 놓칠 수 있다.",
+      "analogy": "낚은 물고기 중 목표 어종의 비율과 같다. 많이 놓쳤는지는 이 비율만으로 모른다.",
+      "technicalExplanation": "Precision=TP/(TP+FP). 예측 양성이 0개일 때 분모가 0이므로 라이브러리의 zero_division 처리 규칙을 명시해야 한다. 클래스 비율과 임계값 변화에 영향을 받는다.",
+      "realWorldExample": "사람이 확인할 수 있는 경보가 하루 20개뿐이라면 높은 정밀도가 재검사 부담을 줄인다. 다만 허용 가능한 불량 놓침 수준을 함께 설정한다.",
+      "commonMisconceptions": [
+        "정밀도가 높다는 이유만으로 실제 불량 대부분을 찾아냈다고 결론 내릴 수 없다."
+      ],
+      "comparisons": [
+        {
+          "with": "재현율",
+          "distinction": "정밀도 분모는 예측 양성, 재현율 분모는 실제 양성이다."
+        }
+      ],
+      "keyTakeaways": [
+        "양성이라고 예측한 것 중 실제 양성인 비율로, 양성 판정의 신뢰도를 본다.",
+        "경보 중 진짜가 얼마나 되는지를 묻는 지표다."
+      ],
+      "quizQuestions": [
+        "precision-recall",
+        "precision-application"
+      ],
+      "references": [
+        {
+          "title": "scikit-learn · Model evaluation",
+          "url": "https://scikit-learn.org/stable/modules/model_evaluation.html"
+        }
+      ],
+      "validation": {
+        "status": "공식 문서 대조 · 작성자 검토",
+        "checkedAt": "2026-10-14",
+        "note": "참조 문서의 기본 정의와 대조하고 자체 예상문제의 정답·오답 논리를 검토했다. 독립 전문가 감수 및 공식 기출 검증은 아니다. 모델별 지원 여부는 별도 확인이 필요하다."
+      }
+    },
+    {
+      "id": "recall",
+      "title": "재현율 · Recall",
+      "category": "A",
+      "priority": 1,
+      "priorityReason": "공개 평가 방향인 AI 리터러시·문제 해결·결과 검증과 직접 연결되며, 이후 개념의 선수 지식 또는 빈번한 혼동 지점이다. 놓침 비용이 중요하면 FN과 재현율을 먼저 확인한다.",
+      "estimatedMinutes": 4,
+      "prerequisites": [
+        "precision"
+      ],
+      "summary": "실제 양성 중 모델이 찾아낸 비율로, 놓침을 얼마나 줄였는지 본다.",
+      "simpleExplanation": "실제 불량 20개 중 18개를 찾아냈다면 재현율은 90%다. 치명적인 불량 누락을 줄일 때 중요하다. 모든 샘플에 경보를 내면 재현율은 높아도 재검사 비용이 폭증할 수 있다.",
+      "analogy": "연못의 목표 물고기 중 그물로 잡은 비율이다. 그물 안에 다른 물고기가 얼마나 섞였는지는 정밀도로 본다.",
+      "technicalExplanation": "Recall=TP/(TP+FN), sensitivity 또는 true positive rate라고도 한다. 같은 점수에서 임계값을 내리면 양성 판정 집합이 커져 재현율은 감소하지 않지만 정밀도 변화는 데이터에 따라 달라진다.",
+      "realWorldExample": "결함 유출 비용이 큰 공정은 검증 데이터에서 최소 재현율을 만족하는 임계값을 선택하고 그때의 정밀도와 검사량을 보고 운영 가능성을 판단한다.",
+      "commonMisconceptions": [
+        "재현율 100%는 오경보가 없다는 뜻이 아니다."
+      ],
+      "comparisons": [
+        {
+          "with": "정밀도",
+          "distinction": "재현율은 실제 대상의 회수율, 정밀도는 경보의 순도다."
+        }
+      ],
+      "keyTakeaways": [
+        "실제 양성 중 모델이 찾아낸 비율로, 놓침을 얼마나 줄였는지 본다.",
+        "놓침 비용이 중요하면 FN과 재현율을 먼저 확인한다."
+      ],
+      "quizQuestions": [
+        "recall-recall",
+        "recall-application"
+      ],
+      "references": [
+        {
+          "title": "scikit-learn · Model evaluation",
+          "url": "https://scikit-learn.org/stable/modules/model_evaluation.html"
+        }
+      ],
+      "validation": {
+        "status": "공식 문서 대조 · 작성자 검토",
+        "checkedAt": "2026-10-14",
+        "note": "참조 문서의 기본 정의와 대조하고 자체 예상문제의 정답·오답 논리를 검토했다. 독립 전문가 감수 및 공식 기출 검증은 아니다. 모델별 지원 여부는 별도 확인이 필요하다."
+      }
+    },
+    {
+      "id": "f1-score",
+      "title": "F1 점수",
+      "category": "A",
+      "priority": 1,
+      "priorityReason": "공개 평가 방향인 AI 리터러시·문제 해결·결과 검증과 직접 연결되며, 이후 개념의 선수 지식 또는 빈번한 혼동 지점이다. F1 공식과 macro·micro의 집계 단위를 구분한다.",
+      "estimatedMinutes": 4,
+      "prerequisites": [
+        "precision",
+        "recall"
+      ],
+      "summary": "정밀도와 재현율의 조화평균으로 두 지표의 균형을 요약한다.",
+      "simpleExplanation": "정밀도만 높고 재현율이 낮으면 F1도 낮아진다. 산술평균보다 낮은 쪽에 민감하다. 하지만 거짓 양성과 놓침 비용을 똑같이 취급해도 되는지 먼저 판단해야 한다.",
+      "analogy": "두 과목 모두 기본 실력을 갖춰야 올라가는 종합 점수와 같다. 한 과목만 만점이라고 다른 과목의 낙제를 덮지 못한다.",
+      "technicalExplanation": "F1=2PR/(P+R)=2TP/(2TP+FP+FN). TN을 직접 쓰지 않는다. 다중 클래스에서 macro는 클래스별 평균, micro는 전체 TP·FP·FN을 합쳐 계산하므로 불균형에서 결과가 다르다.",
+      "realWorldExample": "정밀도 0.5, 재현율 1.0이면 F1은 약 0.667이다. 산술평균 0.75가 아니다. 불량 누락에 더 큰 가중치를 주려면 Fβ나 명시적인 비용 지표를 검토한다.",
+      "commonMisconceptions": [
+        "F1은 모든 문제에 최적인 지표도, 정확도와 같은 지표도 아니다."
+      ],
+      "comparisons": [
+        {
+          "with": "정확도",
+          "distinction": "F1은 양성 탐지의 정밀도·재현율을 합치며 TN을 직접 보지 않는다. 정확도는 TN을 포함한다."
+        }
+      ],
+      "keyTakeaways": [
+        "정밀도와 재현율의 조화평균으로 두 지표의 균형을 요약한다.",
+        "F1 공식과 macro·micro의 집계 단위를 구분한다."
+      ],
+      "quizQuestions": [
+        "f1-score-recall",
+        "f1-score-application"
+      ],
+      "references": [
+        {
+          "title": "scikit-learn · Model evaluation",
+          "url": "https://scikit-learn.org/stable/modules/model_evaluation.html"
+        }
+      ],
+      "validation": {
+        "status": "공식 문서 대조 · 작성자 검토",
+        "checkedAt": "2026-10-14",
+        "note": "참조 문서의 기본 정의와 대조하고 자체 예상문제의 정답·오답 논리를 검토했다. 독립 전문가 감수 및 공식 기출 검증은 아니다. 모델별 지원 여부는 별도 확인이 필요하다."
+      }
+    },
+    {
+      "id": "roc-auc",
+      "title": "ROC-AUC",
+      "category": "A",
+      "priority": 2,
+      "priorityReason": "기초 판단을 실제 구현과 연결하는 보강 개념이다. 핵심 개념을 먼저 익힌 뒤 학습한다. 순위 성능과 운영 임계값 성능을 구분한다.",
+      "estimatedMinutes": 4,
+      "prerequisites": [
+        "confusion-matrix",
+        "recall"
+      ],
+      "summary": "여러 임계값에서 거짓 양성률과 참 양성률의 관계를 그린 ROC 곡선 아래 면적이다.",
+      "simpleExplanation": "한 임계값의 정확도보다 점수가 양성을 음성 위에 정렬하는 능력을 본다. AUC가 좋아도 실제 운영 임계값에서 거짓 경보가 너무 많을 수 있다. 드문 양성에서는 PR 곡선과 실제 검사량도 확인한다.",
+      "analogy": "경기 순위를 잘 매기는 능력과 합격선을 어디에 놓을지는 다른 문제인 것과 같다.",
+      "technicalExplanation": "TPR=TP/(TP+FN), FPR=FP/(FP+TN). 이진 AUC는 무작위 양성의 점수가 무작위 음성보다 높을 확률로 해석할 수 있으며 동점은 절반 기여한다. 무작위 순위의 기준은 약 0.5다.",
+      "realWorldExample": "불량률 0.1%인 10만 개 공정에서 FPR 1%도 약 천 개의 정상 오경보를 만든다. ROC-AUC 하나 대신 원하는 재현율에서 정밀도·검사량을 검증한다.",
+      "commonMisconceptions": [
+        "AUC=0.9를 정확도 90%나 확률 보정이 완벽하다는 뜻으로 해석하면 안 된다."
+      ],
+      "comparisons": [
+        {
+          "with": "PR-AUC",
+          "distinction": "ROC는 TPR/FPR 관계, PR은 정밀도/재현율 관계를 본다. 드문 양성에서는 PR 분석이 운영 부담을 더 직접 보여 줄 수 있다."
+        }
+      ],
+      "keyTakeaways": [
+        "여러 임계값에서 거짓 양성률과 참 양성률의 관계를 그린 ROC 곡선 아래 면적이다.",
+        "순위 성능과 운영 임계값 성능을 구분한다."
+      ],
+      "quizQuestions": [
+        "roc-auc-recall",
+        "roc-auc-application"
+      ],
+      "references": [
+        {
+          "title": "scikit-learn · Model evaluation",
+          "url": "https://scikit-learn.org/stable/modules/model_evaluation.html"
+        }
+      ],
+      "validation": {
+        "status": "공식 문서 대조 · 작성자 검토",
+        "checkedAt": "2026-10-14",
+        "note": "참조 문서의 기본 정의와 대조하고 자체 예상문제의 정답·오답 논리를 검토했다. 독립 전문가 감수 및 공식 기출 검증은 아니다. 모델별 지원 여부는 별도 확인이 필요하다."
+      }
+    },
+    {
+      "id": "neural-network",
+      "title": "신경망 · Neural Network",
+      "category": "B",
+      "priority": 1,
+      "priorityReason": "공개 평가 방향인 AI 리터러시·문제 해결·결과 검증과 직접 연결되며, 이후 개념의 선수 지식 또는 빈번한 혼동 지점이다. 가중치·활성화·손실의 역할을 따로 이해한다.",
+      "estimatedMinutes": 4,
+      "prerequisites": [
+        "ai-taxonomy"
+      ],
+      "summary": "가중치가 있는 연산과 비선형 함수를 층으로 연결해 입력을 출력으로 변환하는 모델이다.",
+      "simpleExplanation": "입력 특성에 가중치를 곱해 합치고 비선형 변환을 반복한다. 학습은 결과가 정답에 가까워지도록 가중치를 바꾸는 과정이다. 층이 깊다는 사실만으로 좋은 성능이 보장되지는 않는다.",
+      "analogy": "여러 공정이 차례로 재료를 가공하는 생산 라인과 같다. 각 단계의 설정이 가중치이며 최종 품질을 보고 조절한다. 실제 뇌를 그대로 재현한 것은 아니다.",
+      "technicalExplanation": "한 층은 보통 h=σ(Wx+b)로 표현한다. 비선형 활성화 없이 선형 층만 여러 개 연결하면 전체도 하나의 아핀 변환이며, 편향이 없으면 선형 변환이다. 구조·손실·최적화·데이터가 함께 성능을 결정한다.",
+      "realWorldExample": "이미지 분류 CNN은 초기 층에서 국소 패턴을, 뒤쪽 층에서 과업에 유용한 복합 표현을 배울 수 있다. 특정 뉴런이 항상 사람이 이해하는 개념 하나에 대응한다고 단정하지 않는다.",
+      "commonMisconceptions": [
+        "신경망은 인간 뇌를 정확히 복제한 장치가 아니며 학습된 가중치의 수가 곧 지능 점수는 아니다."
+      ],
+      "comparisons": [
+        {
+          "with": "선형 모델",
+          "distinction": "비선형 활성화가 있는 다층망은 복잡한 관계를 표현할 수 있다. 선형 변환만 쌓으면 표현력이 같은 방식으로 늘지 않는다."
+        }
+      ],
+      "keyTakeaways": [
+        "가중치가 있는 연산과 비선형 함수를 층으로 연결해 입력을 출력으로 변환하는 모델이다.",
+        "가중치·활성화·손실의 역할을 따로 이해한다."
+      ],
+      "quizQuestions": [
+        "neural-network-recall",
+        "neural-network-application"
+      ],
+      "references": [
+        {
+          "title": "Google Machine Learning Glossary",
+          "url": "https://developers.google.com/machine-learning/glossary"
+        }
+      ],
+      "validation": {
+        "status": "공식 문서 대조 · 작성자 검토",
+        "checkedAt": "2026-10-14",
+        "note": "참조 문서의 기본 정의와 대조하고 자체 예상문제의 정답·오답 논리를 검토했다. 독립 전문가 감수 및 공식 기출 검증은 아니다. 모델별 지원 여부는 별도 확인이 필요하다."
+      }
+    },
+    {
+      "id": "backpropagation",
+      "title": "역전파 · Backpropagation",
+      "category": "B",
+      "priority": 1,
+      "priorityReason": "공개 평가 방향인 AI 리터러시·문제 해결·결과 검증과 직접 연결되며, 이후 개념의 선수 지식 또는 빈번한 혼동 지점이다. 기울기 계산과 가중치 갱신을 분리해 설명한다.",
+      "estimatedMinutes": 4,
+      "prerequisites": [
+        "neural-network"
+      ],
+      "summary": "연쇄법칙으로 손실이 각 파라미터에 얼마나 민감한지 기울기를 계산하는 절차다.",
+      "simpleExplanation": "최종 오차에서 거꾸로 따라가며 앞선 연산이 오차에 미친 영향을 계산한다. 기울기를 계산하는 일과 실제 가중치를 갱신하는 일은 다르다. PyTorch에서는 backward와 optimizer.step이 각각 담당한다.",
+      "analogy": "제품 불량 원인을 마지막 공정부터 거슬러 올라가 각 설정의 영향도를 계산하는 것에 비유할 수 있다. 책임을 정성적으로 비난하는 것이 아니라 미분을 계산한다.",
+      "technicalExplanation": "계산 그래프에 대해 reverse-mode automatic differentiation을 적용한다. loss.backward()는 .grad에 기울기를 누적하므로 일반적인 학습 루프에서는 필요한 시점에 zero_grad()로 초기화한다.",
+      "realWorldExample": "PyTorch에서 optimizer.zero_grad(); loss.backward(); optimizer.step() 순으로 한 배치 학습을 수행한다. 의도치 않게 초기화를 생략하면 여러 배치 기울기가 누적되어 예상과 다른 업데이트가 생긴다.",
+      "commonMisconceptions": [
+        "backward() 호출만으로 가중치가 자동 갱신되는 것은 아니다. 일반적인 경우 optimizer.step()이 필요하다."
+      ],
+      "comparisons": [
+        {
+          "with": "경사하강법",
+          "distinction": "역전파는 기울기 계산, 경사하강법은 그 기울기로 파라미터를 바꾸는 최적화 방법이다."
+        }
+      ],
+      "keyTakeaways": [
+        "연쇄법칙으로 손실이 각 파라미터에 얼마나 민감한지 기울기를 계산하는 절차다.",
+        "기울기 계산과 가중치 갱신을 분리해 설명한다."
+      ],
+      "quizQuestions": [
+        "backpropagation-recall",
+        "backpropagation-application"
+      ],
+      "references": [
+        {
+          "title": "PyTorch · Automatic differentiation",
+          "url": "https://docs.pytorch.org/tutorials/beginner/basics/autogradqs_tutorial.html"
+        }
+      ],
+      "validation": {
+        "status": "공식 문서 대조 · 작성자 검토",
+        "checkedAt": "2026-10-14",
+        "note": "참조 문서의 기본 정의와 대조하고 자체 예상문제의 정답·오답 논리를 검토했다. 독립 전문가 감수 및 공식 기출 검증은 아니다. 모델별 지원 여부는 별도 확인이 필요하다."
+      }
+    },
+    {
+      "id": "gradient-descent",
+      "title": "경사하강법 · Gradient Descent",
+      "category": "B",
+      "priority": 1,
+      "priorityReason": "공개 평가 방향인 AI 리터러시·문제 해결·결과 검증과 직접 연결되며, 이후 개념의 선수 지식 또는 빈번한 혼동 지점이다. 학습률은 이동 크기이며 최적화 안정성과 속도의 균형을 만든다.",
+      "estimatedMinutes": 4,
+      "prerequisites": [
+        "backpropagation"
+      ],
+      "summary": "손실의 기울기 반대 방향으로 파라미터를 조금씩 이동시켜 손실을 줄이는 최적화 방법이다.",
+      "simpleExplanation": "경사가 가리키는 증가 방향과 반대로 움직인다. 한 번에 얼마나 움직일지는 학습률이 결정한다. 너무 크면 좋은 지점을 지나치고 너무 작으면 학습이 느리다. 항상 전역 최적점에 도착하는 보장은 없다.",
+      "analogy": "안개 낀 산에서 발밑 경사를 보고 낮은 곳으로 걷는 것과 같다. 보폭이 학습률이며 골짜기 하나에 도착해도 가장 낮은 곳이라는 보장은 없다.",
+      "technicalExplanation": "기본 갱신식은 θ←θ−η∇θL이다. 미니배치 SGD는 일부 데이터로 기울기를 추정하고 Adam 같은 optimizer는 모멘텀과 적응적 스케일링을 사용한다.",
+      "realWorldExample": "학습 손실이 크게 진동하거나 발산하면 학습률과 입력 스케일을 점검한다. 학습률을 낮춘 대조 실험을 하고 데이터·기울기의 NaN 여부를 함께 확인한다.",
+      "commonMisconceptions": [
+        "학습률을 높이면 학습이 항상 더 빠르고 잘 되는 것은 아니다."
+      ],
+      "comparisons": [
+        {
+          "with": "역전파",
+          "distinction": "역전파가 구한 기울기를 이용해 경사하강법이 실제 파라미터를 갱신한다."
+        }
+      ],
+      "keyTakeaways": [
+        "손실의 기울기 반대 방향으로 파라미터를 조금씩 이동시켜 손실을 줄이는 최적화 방법이다.",
+        "학습률은 이동 크기이며 최적화 안정성과 속도의 균형을 만든다."
+      ],
+      "quizQuestions": [
+        "gradient-descent-recall",
+        "gradient-descent-application"
+      ],
+      "references": [
+        {
+          "title": "Google Machine Learning Glossary",
+          "url": "https://developers.google.com/machine-learning/glossary"
+        },
+        {
+          "title": "PyTorch · Automatic differentiation",
+          "url": "https://docs.pytorch.org/tutorials/beginner/basics/autogradqs_tutorial.html"
+        }
+      ],
+      "validation": {
+        "status": "공식 문서 대조 · 작성자 검토",
+        "checkedAt": "2026-10-14",
+        "note": "참조 문서의 기본 정의와 대조하고 자체 예상문제의 정답·오답 논리를 검토했다. 독립 전문가 감수 및 공식 기출 검증은 아니다. 모델별 지원 여부는 별도 확인이 필요하다."
+      }
+    },
+    {
+      "id": "transformer",
+      "title": "Transformer",
+      "category": "B",
+      "priority": 1,
+      "priorityReason": "공개 평가 방향인 AI 리터러시·문제 해결·결과 검증과 직접 연결되며, 이후 개념의 선수 지식 또는 빈번한 혼동 지점이다. 구조 이름과 생성 방식, 마스크 종류를 구분한다.",
+      "estimatedMinutes": 4,
+      "prerequisites": [
+        "neural-network"
+      ],
+      "summary": "어텐션을 중심으로 토큰 사이의 관계를 처리하는 신경망 구조다.",
+      "simpleExplanation": "문장의 단어를 하나씩만 전달하는 대신 각 위치가 다른 위치를 참고하도록 만든다. 원래 구조는 encoder와 decoder를 모두 사용했지만 오늘날에는 encoder-only, decoder-only 등 다양한 형태가 있다.",
+      "analogy": "각 직원이 필요한 동료의 메모를 직접 참고하며 자기 보고서를 갱신하는 회의실과 같다. 누가 누구의 메모를 볼지는 마스크로 제한할 수 있다.",
+      "technicalExplanation": "일반적인 블록에는 multi-head attention, feed-forward network, residual connection, normalization이 포함된다. 자기회귀 decoder는 미래 토큰을 보지 못하게 causal mask를 사용한다.",
+      "realWorldExample": "코딩 LLM은 앞선 코드 토큰을 참고해 다음 토큰을 만든다. 학습에서는 마스크 아래 여러 위치의 손실을 병렬 계산할 수 있지만 자기회귀 생성은 새 토큰에 따라 순차 진행된다.",
+      "commonMisconceptions": [
+        "Transformer가 항상 encoder-decoder 전체 구조이거나 모든 토큰을 무제한으로 본다고 생각하면 안 된다."
+      ],
+      "comparisons": [
+        {
+          "with": "RNN",
+          "distinction": "RNN은 순환 상태로 순서 정보를 전달하고 Transformer는 어텐션과 위치 정보를 중심으로 관계를 처리한다."
+        }
+      ],
+      "keyTakeaways": [
+        "어텐션을 중심으로 토큰 사이의 관계를 처리하는 신경망 구조다.",
+        "구조 이름과 생성 방식, 마스크 종류를 구분한다."
+      ],
+      "quizQuestions": [
+        "transformer-recall",
+        "transformer-application"
+      ],
+      "references": [
+        {
+          "title": "Vaswani et al. · Attention Is All You Need",
+          "url": "https://arxiv.org/abs/1706.03762"
+        }
+      ],
+      "validation": {
+        "status": "공식 문서 대조 · 작성자 검토",
+        "checkedAt": "2026-10-14",
+        "note": "참조 문서의 기본 정의와 대조하고 자체 예상문제의 정답·오답 논리를 검토했다. 독립 전문가 감수 및 공식 기출 검증은 아니다. 모델별 지원 여부는 별도 확인이 필요하다."
+      }
+    },
+    {
+      "id": "self-attention",
+      "title": "Self-Attention",
+      "category": "B",
+      "priority": 1,
+      "priorityReason": "공개 평가 방향인 AI 리터러시·문제 해결·결과 검증과 직접 연결되며, 이후 개념의 선수 지식 또는 빈번한 혼동 지점이다. Q·K는 참고 비중, V는 합칠 정보의 역할을 한다.",
+      "estimatedMinutes": 4,
+      "prerequisites": [
+        "transformer"
+      ],
+      "summary": "한 시퀀스 안에서 각 토큰이 다른 토큰을 얼마나 참고할지 계산해 표현을 갱신한다.",
+      "simpleExplanation": "문장 속 같은 단어도 주변 내용에 따라 의미가 달라진다. 자기 어텐션은 토큰 간 관련성을 가중치로 계산해 필요한 정보를 섞는다. 이름의 self는 자기 토큰만 본다는 뜻이 아니라 같은 시퀀스에서 관계를 계산한다는 뜻이다.",
+      "analogy": "회의록의 한 문장을 이해하려고 같은 회의록의 다른 문장을 참고하는 것과 같다. 다른 문서의 정보와 연결하는 cross-attention과 구분할 수 있다.",
+      "technicalExplanation": "일반적인 scaled dot-product attention은 softmax(QKᵀ/√dₖ)V다. Q·K로 관련성 점수를 만들고 정규화된 가중치로 V를 합친다. 마스크에 따라 참고 가능한 위치가 제한된다.",
+      "realWorldExample": "코드에서 변수가 나중에 쓰일 때 앞선 선언을 참고하는 표현을 만들 수 있다. 다만 큰 어텐션 값 하나를 그대로 모델 판단의 완전한 설명으로 보기는 어렵다.",
+      "commonMisconceptions": [
+        "어텐션 가중치가 높다는 것이 곧 인과적 중요성이나 사실의 진실성을 증명하지 않는다."
+      ],
+      "comparisons": [
+        {
+          "with": "Cross-Attention",
+          "distinction": "Self-attention은 같은 시퀀스에서 Q·K·V를 만들고 cross-attention은 보통 Q와 K·V의 출처가 다르다."
+        }
+      ],
+      "keyTakeaways": [
+        "한 시퀀스 안에서 각 토큰이 다른 토큰을 얼마나 참고할지 계산해 표현을 갱신한다.",
+        "Q·K는 참고 비중, V는 합칠 정보의 역할을 한다."
+      ],
+      "quizQuestions": [
+        "self-attention-recall",
+        "self-attention-application"
+      ],
+      "references": [
+        {
+          "title": "Vaswani et al. · Attention Is All You Need",
+          "url": "https://arxiv.org/abs/1706.03762"
+        }
+      ],
+      "validation": {
+        "status": "공식 문서 대조 · 작성자 검토",
+        "checkedAt": "2026-10-14",
+        "note": "참조 문서의 기본 정의와 대조하고 자체 예상문제의 정답·오답 논리를 검토했다. 독립 전문가 감수 및 공식 기출 검증은 아니다. 모델별 지원 여부는 별도 확인이 필요하다."
+      }
+    },
+    {
+      "id": "multi-head-attention",
+      "title": "Multi-Head Attention",
+      "category": "B",
+      "priority": 2,
+      "priorityReason": "기초 판단을 실제 구현과 연결하는 보강 개념이다. 핵심 개념을 먼저 익힌 뒤 학습한다. 여러 관점은 학습 결과이며 역할의 고정 보장은 없다.",
+      "estimatedMinutes": 4,
+      "prerequisites": [
+        "self-attention"
+      ],
+      "summary": "서로 다른 투영 공간에서 여러 어텐션을 병렬 계산하고 결과를 합치는 방식이다.",
+      "simpleExplanation": "한 가지 관계만 보는 대신 여러 관점의 연결을 함께 학습한다. 어떤 head가 문법, 어떤 head가 지시어를 담당할 수 있지만 역할이 고정 규칙으로 주어지는 것은 아니다. head 수가 많다고 항상 더 좋지는 않다.",
+      "analogy": "같은 회의록을 여러 검토자가 각자의 관점으로 읽은 뒤 의견을 합치는 모습과 같다. 각 검토자가 반드시 전문 분야 하나만 맡는다고 보장되지는 않는다.",
+      "technicalExplanation": "각 head는 별도 Q·K·V 투영을 사용하고 결과를 연결한 뒤 출력 투영을 적용한다. 통상 전체 hidden size를 head들에 나누므로 head 수 증가가 무조건 모델 차원의 증가를 뜻하지 않는다.",
+      "realWorldExample": "코드 토큰 관계에서 지역 문법과 멀리 있는 선언 등을 다양한 투영이 포착할 수 있다. 실제로 무엇을 학습했는지는 분석과 실험이 필요하다.",
+      "commonMisconceptions": [
+        "head마다 사람이 정한 단 하나의 의미 역할이 영구적으로 부여된다고 외우지 않는다."
+      ],
+      "comparisons": [
+        {
+          "with": "Single-Head Attention",
+          "distinction": "하나의 가중합 관점 대신 여러 투영 공간에서 관계를 계산하고 통합한다."
+        }
+      ],
+      "keyTakeaways": [
+        "서로 다른 투영 공간에서 여러 어텐션을 병렬 계산하고 결과를 합치는 방식이다.",
+        "여러 관점은 학습 결과이며 역할의 고정 보장은 없다."
+      ],
+      "quizQuestions": [
+        "multi-head-attention-recall",
+        "multi-head-attention-application"
+      ],
+      "references": [
+        {
+          "title": "Vaswani et al. · Attention Is All You Need",
+          "url": "https://arxiv.org/abs/1706.03762"
+        }
+      ],
+      "validation": {
+        "status": "공식 문서 대조 · 작성자 검토",
+        "checkedAt": "2026-10-14",
+        "note": "참조 문서의 기본 정의와 대조하고 자체 예상문제의 정답·오답 논리를 검토했다. 독립 전문가 감수 및 공식 기출 검증은 아니다. 모델별 지원 여부는 별도 확인이 필요하다."
+      }
+    },
+    {
+      "id": "positional-encoding",
+      "title": "위치 표현 · Positional Encoding",
+      "category": "B",
+      "priority": 2,
+      "priorityReason": "기초 판단을 실제 구현과 연결하는 보강 개념이다. 핵심 개념을 먼저 익힌 뒤 학습한다. 같은 토큰 집합이라도 순서가 의미를 바꾼다.",
+      "estimatedMinutes": 4,
+      "prerequisites": [
+        "self-attention"
+      ],
+      "summary": "토큰의 순서나 상대적 위치를 모델이 구별하도록 주는 정보다.",
+      "simpleExplanation": "같은 단어를 써도 순서가 바뀌면 의미가 달라진다. 기본 어텐션만으로는 순서를 충분히 표현하지 못하므로 위치 정보를 더하거나 어텐션 계산에 반영한다. 방식은 모델마다 다르다.",
+      "analogy": "이름만 적힌 참가자에게 좌석 번호를 함께 알려 주는 것과 같다. 상대 위치 방식은 절대 좌석보다 서로 몇 칸 떨어졌는지 알려 주는 방식에 가깝다.",
+      "technicalExplanation": "원래 Transformer의 사인·코사인 위치 인코딩, 학습된 위치 임베딩, 상대 위치 편향, rotary positional embedding 등 방식이 있다. 훈련 범위를 넘어선 길이 일반화는 방법과 학습에 좌우된다.",
+      "realWorldExample": "코드의 a-b와 b-a는 토큰 종류가 같지만 결과가 다르다. 순서 정보를 반영해야 이러한 차이를 구별할 수 있다.",
+      "commonMisconceptions": [
+        "컨텍스트를 늘릴 때 위치 인덱스만 크게 바꾸면 긴 문맥 품질이 자동 보장되는 것은 아니다."
+      ],
+      "comparisons": [
+        {
+          "with": "토큰 임베딩",
+          "distinction": "토큰 임베딩은 토큰의 표현, 위치 표현은 시퀀스 내 위치 관계를 제공한다."
+        }
+      ],
+      "keyTakeaways": [
+        "토큰의 순서나 상대적 위치를 모델이 구별하도록 주는 정보다.",
+        "같은 토큰 집합이라도 순서가 의미를 바꾼다."
+      ],
+      "quizQuestions": [
+        "positional-encoding-recall",
+        "positional-encoding-application"
+      ],
+      "references": [
+        {
+          "title": "Vaswani et al. · Attention Is All You Need",
+          "url": "https://arxiv.org/abs/1706.03762"
+        }
+      ],
+      "validation": {
+        "status": "공식 문서 대조 · 작성자 검토",
+        "checkedAt": "2026-10-14",
+        "note": "참조 문서의 기본 정의와 대조하고 자체 예상문제의 정답·오답 논리를 검토했다. 독립 전문가 감수 및 공식 기출 검증은 아니다. 모델별 지원 여부는 별도 확인이 필요하다."
+      }
+    },
+    {
+      "id": "tokenization",
+      "title": "토큰화 · Tokenization",
+      "category": "B",
+      "priority": 1,
+      "priorityReason": "공개 평가 방향인 AI 리터러시·문제 해결·결과 검증과 직접 연결되며, 이후 개념의 선수 지식 또는 빈번한 혼동 지점이다. 길이·비용·컨텍스트 예산은 문자 수가 아니라 해당 모델 토큰 기준으로 확인한다.",
+      "estimatedMinutes": 4,
+      "prerequisites": [
+        "ai-taxonomy"
+      ],
+      "summary": "텍스트를 모델이 처리하는 토큰 단위로 나누고 ID로 변환하는 과정이다.",
+      "simpleExplanation": "토큰은 단어 하나일 수도, 단어 일부나 문자·바이트 조각일 수도 있다. 한국어 한 글자와 토큰 하나가 항상 대응하지 않는다. 같은 문장도 토크나이저에 따라 토큰 수가 달라진다.",
+      "analogy": "문장을 모델의 부품 상자에 있는 조각으로 분해하는 작업과 같다. 조각에 붙인 번호가 token ID이고 그 번호를 벡터로 바꾸는 것은 임베딩이다.",
+      "technicalExplanation": "BPE, WordPiece, SentencePiece 계열 등 여러 방식이 쓰인다. 모델과 호환되는 토크나이저·특수 토큰·chat template을 사용해야 한다. 토큰 예산은 실제 토크나이저로 계산한다.",
+      "realWorldExample": "긴 한국어 사내 문서를 영어의 단어 수 기준으로 예산 잡으면 컨텍스트를 초과할 수 있다. 실제 모델 토크나이저로 입력과 예상 출력을 합산한다.",
+      "commonMisconceptions": [
+        "한 단어=한 토큰, 한 글자=한 토큰이라는 고정 규칙은 없다."
+      ],
+      "comparisons": [
+        {
+          "with": "임베딩",
+          "distinction": "토큰화는 분할과 ID 변환이고 임베딩은 ID 등을 수치 벡터로 표현하는 단계다."
+        }
+      ],
+      "keyTakeaways": [
+        "텍스트를 모델이 처리하는 토큰 단위로 나누고 ID로 변환하는 과정이다.",
+        "길이·비용·컨텍스트 예산은 문자 수가 아니라 해당 모델 토큰 기준으로 확인한다."
+      ],
+      "quizQuestions": [
+        "tokenization-recall",
+        "tokenization-application"
+      ],
+      "references": [
+        {
+          "title": "Google Machine Learning Glossary",
+          "url": "https://developers.google.com/machine-learning/glossary"
+        },
+        {
+          "title": "Hugging Face · LLM Course",
+          "url": "https://huggingface.co/learn/llm-course/chapter1/1"
+        }
+      ],
+      "validation": {
+        "status": "공식 문서 대조 · 작성자 검토",
+        "checkedAt": "2026-10-14",
+        "note": "참조 문서의 기본 정의와 대조하고 자체 예상문제의 정답·오답 논리를 검토했다. 독립 전문가 감수 및 공식 기출 검증은 아니다. 모델별 지원 여부는 별도 확인이 필요하다."
+      }
+    },
+    {
+      "id": "embedding",
+      "title": "임베딩 · Embedding",
+      "category": "B",
+      "priority": 1,
+      "priorityReason": "공개 평가 방향인 AI 리터러시·문제 해결·결과 검증과 직접 연결되며, 이후 개념의 선수 지식 또는 빈번한 혼동 지점이다. 유사도는 의미 관련성의 신호이지 사실성의 보장이 아니다.",
+      "estimatedMinutes": 4,
+      "prerequisites": [
+        "tokenization"
+      ],
+      "summary": "토큰·문장·이미지 등을 학습된 수치 벡터로 표현하는 방법이다.",
+      "simpleExplanation": "비슷한 의미의 항목을 가까이 배치하도록 학습할 수 있다. 벡터의 각 숫자가 사람이 이해하는 속성 하나와 꼭 대응하지는 않는다. 서로 다른 모델의 벡터는 같은 공간이라고 가정하면 안 된다.",
+      "analogy": "의미를 지도 위 좌표로 배치하는 것과 같다. 지도 제작법이 다른 두 좌표를 직접 비교하면 안 되며 실제 벡터는 훨씬 많은 차원을 가진다.",
+      "technicalExplanation": "토큰 임베딩은 보통 ID에 대응하는 학습된 벡터를 조회한다. 검색용 문장 임베딩은 문장 전체를 벡터로 인코딩하고 과업에 맞는 거리로 비교한다. LLM 내부 토큰 표현과 검색 임베딩은 목적이 다를 수 있다.",
+      "realWorldExample": "사내 검색에서 문서와 질문을 호환되는 임베딩 모델로 인코딩한다. 모델을 교체하면 기존 문서를 재임베딩하거나 별도 인덱스로 관리해야 한다.",
+      "commonMisconceptions": [
+        "임베딩은 원문을 완전 복원하는 압축 파일도, 사실을 보증하는 인증서도 아니다."
+      ],
+      "comparisons": [
+        {
+          "with": "토큰",
+          "distinction": "토큰은 처리 단위 또는 ID이며 임베딩은 그 대상을 연산 가능한 벡터로 나타낸 표현이다."
+        }
+      ],
+      "keyTakeaways": [
+        "토큰·문장·이미지 등을 학습된 수치 벡터로 표현하는 방법이다.",
+        "유사도는 의미 관련성의 신호이지 사실성의 보장이 아니다."
+      ],
+      "quizQuestions": [
+        "embedding-recall",
+        "embedding-application"
+      ],
+      "references": [
+        {
+          "title": "Google Machine Learning Glossary",
+          "url": "https://developers.google.com/machine-learning/glossary"
+        }
+      ],
+      "validation": {
+        "status": "공식 문서 대조 · 작성자 검토",
+        "checkedAt": "2026-10-14",
+        "note": "참조 문서의 기본 정의와 대조하고 자체 예상문제의 정답·오답 논리를 검토했다. 독립 전문가 감수 및 공식 기출 검증은 아니다. 모델별 지원 여부는 별도 확인이 필요하다."
+      }
+    },
+    {
+      "id": "context-window",
+      "title": "컨텍스트 윈도 · Context Window",
+      "category": "B",
+      "priority": 1,
+      "priorityReason": "공개 평가 방향인 AI 리터러시·문제 해결·결과 검증과 직접 연결되며, 이후 개념의 선수 지식 또는 빈번한 혼동 지점이다. 문맥 한도와 실제 장문 활용 품질은 따로 평가한다.",
+      "estimatedMinutes": 4,
+      "prerequisites": [
+        "tokenization"
+      ],
+      "summary": "한 번의 모델 처리에서 사용할 수 있는 토큰 문맥의 한도다.",
+      "simpleExplanation": "대화 기록, 지시문, 검색 문서, 도구 결과와 출력 예산이 문맥 한도에 영향을 준다. 창이 크다고 모든 정보를 똑같이 잘 활용하는 것은 아니다. 모델별 입력·출력 제한과 계산 규칙을 확인해야 한다.",
+      "analogy": "작업대에 펼쳐 놓고 볼 수 있는 자료의 양과 같다. 책장에 영구 보관하는 기억이나 머릿속 학습 지식과는 다르다.",
+      "technicalExplanation": "자기회귀 모델에서는 문맥과 생성 토큰이 길이 한도를 공유하는 경우가 많지만 API별 최대 입력·출력·추론 토큰 정책은 다르다. 긴 문맥은 메모리와 비용·지연을 늘릴 수 있으며 선택적 검색·요약을 활용한다.",
+      "realWorldExample": "검색한 매뉴얼 100개를 전부 넣기보다 관련 청크와 질문에 필요한 근거를 선택한다. 요약하면 중요 조건이 빠질 수 있으므로 원문 출처와 연결을 보존한다.",
+      "commonMisconceptions": [
+        "컨텍스트에 넣은 내용이 모델 가중치에 영구 학습되는 것은 아니다."
+      ],
+      "comparisons": [
+        {
+          "with": "장기 메모리",
+          "distinction": "컨텍스트는 현재 호출의 작업 공간이며 장기 메모리는 별도 저장·검색 시스템이나 제품 기능으로 관리될 수 있다."
+        }
+      ],
+      "keyTakeaways": [
+        "한 번의 모델 처리에서 사용할 수 있는 토큰 문맥의 한도다.",
+        "문맥 한도와 실제 장문 활용 품질은 따로 평가한다."
+      ],
+      "quizQuestions": [
+        "context-window-recall",
+        "context-window-application"
+      ],
+      "references": [
+        {
+          "title": "Google Machine Learning Glossary",
+          "url": "https://developers.google.com/machine-learning/glossary"
+        },
+        {
+          "title": "Hugging Face · Generation",
+          "url": "https://huggingface.co/docs/transformers/main_classes/text_generation"
+        }
+      ],
+      "validation": {
+        "status": "공식 문서 대조 · 작성자 검토",
+        "checkedAt": "2026-10-14",
+        "note": "참조 문서의 기본 정의와 대조하고 자체 예상문제의 정답·오답 논리를 검토했다. 독립 전문가 감수 및 공식 기출 검증은 아니다. 모델별 지원 여부는 별도 확인이 필요하다."
+      }
+    },
+    {
+      "id": "next-token",
+      "title": "다음 토큰 예측 · Next Token Prediction",
+      "category": "B",
+      "priority": 1,
+      "priorityReason": "공개 평가 방향인 AI 리터러시·문제 해결·결과 검증과 직접 연결되며, 이후 개념의 선수 지식 또는 빈번한 혼동 지점이다. 유창한 생성과 검증된 사실을 분리한다.",
+      "estimatedMinutes": 4,
+      "prerequisites": [
+        "tokenization"
+      ],
+      "summary": "앞선 토큰을 조건으로 다음 토큰의 확률 분포를 예측하는 자기회귀 언어 모델의 기본 과업이다.",
+      "simpleExplanation": "문장을 한 번에 정답으로 꺼내는 것이 아니라 이어질 토큰을 반복 선택한다. 이 학습을 통해 다양한 언어 패턴을 익히지만 높은 확률의 문장이 사실이라는 보장은 없다.",
+      "analogy": "앞부분을 보고 빈칸 하나를 채운 뒤 그 결과를 포함해 다음 빈칸을 채우는 과정이다. 자동완성과 닮았지만 학습 규모와 표현력으로 복잡한 과업도 수행할 수 있다.",
+      "technicalExplanation": "p(x₁…xₙ)=∏p(xₜ|x₍<t₎)로 시퀀스 확률을 분해한다. 훈련은 보통 정답 다음 토큰의 로그 확률을 높이며 추론에서는 샘플링 또는 디코딩 전략으로 토큰을 선택한다.",
+      "realWorldExample": "코드 함수 뒤에 return이 나올 확률이 높아도 실제 요구사항을 만족하는 구현인지는 테스트해야 한다. 자연스러운 이어쓰기와 프로그램 정확성은 별개다.",
+      "commonMisconceptions": [
+        "다음 토큰 확률은 문장 전체가 참일 확률과 같지 않다."
+      ],
+      "comparisons": [
+        {
+          "with": "사실 검증",
+          "distinction": "언어 모델링은 토큰 분포를 학습하고 사실 검증은 주장과 증거의 일치 여부를 확인한다."
+        }
+      ],
+      "keyTakeaways": [
+        "앞선 토큰을 조건으로 다음 토큰의 확률 분포를 예측하는 자기회귀 언어 모델의 기본 과업이다.",
+        "유창한 생성과 검증된 사실을 분리한다."
+      ],
+      "quizQuestions": [
+        "next-token-recall",
+        "next-token-application"
+      ],
+      "references": [
+        {
+          "title": "Google Machine Learning Glossary",
+          "url": "https://developers.google.com/machine-learning/glossary"
+        }
+      ],
+      "validation": {
+        "status": "공식 문서 대조 · 작성자 검토",
+        "checkedAt": "2026-10-14",
+        "note": "참조 문서의 기본 정의와 대조하고 자체 예상문제의 정답·오답 논리를 검토했다. 독립 전문가 감수 및 공식 기출 검증은 아니다. 모델별 지원 여부는 별도 확인이 필요하다."
+      }
+    },
+    {
+      "id": "pretraining",
+      "title": "사전학습 · Pretraining",
+      "category": "B",
+      "priority": 1,
+      "priorityReason": "공개 평가 방향인 AI 리터러시·문제 해결·결과 검증과 직접 연결되며, 이후 개념의 선수 지식 또는 빈번한 혼동 지점이다. 일반 능력과 조직별 최신 지식의 차이를 이해한다.",
+      "estimatedMinutes": 4,
+      "prerequisites": [
+        "next-token"
+      ],
+      "summary": "대규모 데이터로 일반적인 표현과 패턴을 먼저 학습하는 단계다.",
+      "simpleExplanation": "특정 회사 업무를 배우기 전에 폭넓은 언어와 코드 패턴을 익히는 과정이다. 이후 지시 따르기나 선호 정렬을 학습할 수 있다. 사전학습만 했다고 최신 정보와 모든 업무 규칙을 정확히 아는 것은 아니다.",
+      "analogy": "전문 직무 교육 전에 기초 교양과 언어를 익히는 것에 비유할 수 있다. 사람처럼 경험을 이해한다는 동일성 주장은 아니다.",
+      "technicalExplanation": "자기회귀 모델은 다음 토큰 예측, 다른 모델은 마스크 복원 등 자기지도 목표를 사용할 수 있다. 라벨은 원자료에서 만들 수 있지만 데이터 품질·중복·오염 관리는 여전히 중요하다.",
+      "realWorldExample": "공개 코드로 사전학습한 모델은 Python 문법을 잘 다룰 수 있지만 사내 비공개 API의 실제 시그니처는 모를 수 있다. 문서 제공과 실행 테스트가 필요하다.",
+      "commonMisconceptions": [
+        "사전학습 데이터가 많으면 모든 최신 사실을 정확히 기억한다는 보장은 없다."
+      ],
+      "comparisons": [
+        {
+          "with": "SFT",
+          "distinction": "사전학습은 넓은 기반 패턴 학습, SFT는 지시·응답 예시로 원하는 행동을 학습하는 단계다."
+        }
+      ],
+      "keyTakeaways": [
+        "대규모 데이터로 일반적인 표현과 패턴을 먼저 학습하는 단계다.",
+        "일반 능력과 조직별 최신 지식의 차이를 이해한다."
+      ],
+      "quizQuestions": [
+        "pretraining-recall",
+        "pretraining-application"
+      ],
+      "references": [
+        {
+          "title": "Google Machine Learning Glossary",
+          "url": "https://developers.google.com/machine-learning/glossary"
+        },
+        {
+          "title": "Hugging Face · LLM Course",
+          "url": "https://huggingface.co/learn/llm-course/chapter1/1"
+        }
+      ],
+      "validation": {
+        "status": "공식 문서 대조 · 작성자 검토",
+        "checkedAt": "2026-10-14",
+        "note": "참조 문서의 기본 정의와 대조하고 자체 예상문제의 정답·오답 논리를 검토했다. 독립 전문가 감수 및 공식 기출 검증은 아니다. 모델별 지원 여부는 별도 확인이 필요하다."
+      }
+    },
+    {
+      "id": "sft",
+      "title": "지도 미세조정 · SFT",
+      "category": "B",
+      "priority": 1,
+      "priorityReason": "공개 평가 방향인 AI 리터러시·문제 해결·결과 검증과 직접 연결되며, 이후 개념의 선수 지식 또는 빈번한 혼동 지점이다. 가중치 변경 여부로 문맥 학습과 구분한다.",
+      "estimatedMinutes": 4,
+      "prerequisites": [
+        "pretraining",
+        "supervised-learning"
+      ],
+      "summary": "지시와 원하는 응답 예시를 사용해 기존 모델의 파라미터를 추가 학습하는 방법이다.",
+      "simpleExplanation": "질문에 어떤 형식과 내용으로 답해야 하는지 예시를 반복 학습한다. 매 호출마다 예시를 넣는 few-shot과 달리 모델 가중치가 바뀐다. 데이터의 오류와 민감정보도 학습될 수 있으므로 품질이 중요하다.",
+      "analogy": "직원이 좋은 업무 답안 모음을 보며 행동 습관을 익히는 교육과 같다. 책상에 참고 문서를 올려 놓는 검색과는 다른 접근이다.",
+      "technicalExplanation": "일반적으로 목표 응답 토큰에 대한 교차 엔트로피 손실을 최적화한다. 전체 가중치 또는 LoRA 같은 일부 파라미터를 학습할 수 있다. 별도 평가로 과적합과 기존 능력 저하를 확인한다.",
+      "realWorldExample": "항상 정해진 분류 체계와 어조로 답해야 하는 업무에 검수된 지시·응답 쌍을 준비한다. 매일 바뀌는 재고 수치 자체를 외우게 하기보다는 조회 도구를 연결하는 편이 적절할 수 있다.",
+      "commonMisconceptions": [
+        "SFT는 최신 데이터베이스 조회를 자동 대체하지 않는다."
+      ],
+      "comparisons": [
+        {
+          "with": "Few-shot",
+          "distinction": "Few-shot은 문맥에 예시를 넣고 SFT는 예시로 파라미터를 학습한다."
+        }
+      ],
+      "keyTakeaways": [
+        "지시와 원하는 응답 예시를 사용해 기존 모델의 파라미터를 추가 학습하는 방법이다.",
+        "가중치 변경 여부로 문맥 학습과 구분한다."
+      ],
+      "quizQuestions": [
+        "sft-recall",
+        "sft-application"
+      ],
+      "references": [
+        {
+          "title": "Google Machine Learning Glossary",
+          "url": "https://developers.google.com/machine-learning/glossary"
+        }
+      ],
+      "validation": {
+        "status": "공식 문서 대조 · 작성자 검토",
+        "checkedAt": "2026-10-14",
+        "note": "참조 문서의 기본 정의와 대조하고 자체 예상문제의 정답·오답 논리를 검토했다. 독립 전문가 감수 및 공식 기출 검증은 아니다. 모델별 지원 여부는 별도 확인이 필요하다."
+      }
+    },
+    {
+      "id": "rlhf",
+      "title": "인간 피드백 강화학습 · RLHF",
+      "category": "B",
+      "priority": 2,
+      "priorityReason": "기초 판단을 실제 구현과 연결하는 보강 개념이다. 핵심 개념을 먼저 익힌 뒤 학습한다. 선호 최적화와 사실 검증은 서로 보완해야 한다.",
+      "estimatedMinutes": 4,
+      "prerequisites": [
+        "sft",
+        "reinforcement-learning"
+      ],
+      "summary": "사람의 선호 피드백을 활용해 모델의 응답 행동을 개선하는 정렬 접근이다.",
+      "simpleExplanation": "두 답 중 어느 쪽이 더 유용한지 사람의 평가를 모아 모델을 개선한다. 대표적인 방식은 선호를 예측하는 보상 모델을 만들고 정책을 최적화한다. 사람 선호와 사실 정확성은 완전히 같지 않다.",
+      "analogy": "심사위원의 평가 기준을 배운 코치가 답변을 훈련시키는 것과 같다. 심사 기준이 편향되면 결과에도 그 영향이 남는다.",
+      "technicalExplanation": "전통적인 파이프라인은 SFT 모델, 선호 데이터 기반 reward model, PPO 등 정책 최적화를 포함한다. 원래 모델에서 과도하게 벗어나지 않도록 KL 페널티를 사용하는 방식이 있다. 모든 선호 학습이 이 절차를 따르지는 않는다.",
+      "realWorldExample": "사용자가 좋아하는 정중한 답이 틀린 사실을 포함할 수 있다. 선호 점수 외에 근거 일치율과 안전성 평가를 별도로 유지한다.",
+      "commonMisconceptions": [
+        "인간 피드백으로 정렬했다고 환각이나 편향이 완전히 사라지지는 않는다."
+      ],
+      "comparisons": [
+        {
+          "with": "DPO",
+          "distinction": "DPO는 선호 쌍으로 직접 최적화하며 전통적인 RLHF의 별도 보상 모델·온라인 RL 루프와 차이가 있다."
+        }
+      ],
+      "keyTakeaways": [
+        "사람의 선호 피드백을 활용해 모델의 응답 행동을 개선하는 정렬 접근이다.",
+        "선호 최적화와 사실 검증은 서로 보완해야 한다."
+      ],
+      "quizQuestions": [
+        "rlhf-recall",
+        "rlhf-application"
+      ],
+      "references": [
+        {
+          "title": "Google Machine Learning Glossary",
+          "url": "https://developers.google.com/machine-learning/glossary"
+        },
+        {
+          "title": "Rafailov et al. · Direct Preference Optimization",
+          "url": "https://arxiv.org/abs/2305.18290"
+        }
+      ],
+      "validation": {
+        "status": "공식 문서 대조 · 작성자 검토",
+        "checkedAt": "2026-10-14",
+        "note": "참조 문서의 기본 정의와 대조하고 자체 예상문제의 정답·오답 논리를 검토했다. 독립 전문가 감수 및 공식 기출 검증은 아니다. 모델별 지원 여부는 별도 확인이 필요하다."
+      }
+    },
+    {
+      "id": "dpo",
+      "title": "직접 선호 최적화 · DPO",
+      "category": "B",
+      "priority": 2,
+      "priorityReason": "기초 판단을 실제 구현과 연결하는 보강 개념이다. 핵심 개념을 먼저 익힌 뒤 학습한다. 선호 쌍과 기준 모델의 역할을 기억한다.",
+      "estimatedMinutes": 4,
+      "prerequisites": [
+        "sft",
+        "rlhf"
+      ],
+      "summary": "선호되는 응답과 덜 선호되는 응답의 쌍을 이용해 정책 모델을 직접 최적화하는 방법이다.",
+      "simpleExplanation": "좋은 답과 나쁜 답의 상대적 선호를 학습한다. 원래 DPO는 별도 보상 모델을 학습하고 온라인 강화학습으로 정책을 업데이트하는 절차를 간소화한다. 선호 데이터 품질과 기준 모델은 여전히 중요하다.",
+      "analogy": "별도 심판을 먼저 만드는 대신 비교된 답안 쌍을 직접 보고 더 나은 답을 내도록 연습하는 방식에 가깝다.",
+      "technicalExplanation": "선호 응답과 비선호 응답의 정책 로그 확률 차이를 기준 모델과 비교하는 목적 함수를 쓴다. DPO가 강화학습과 수학적으로 연결된다고 해서 환경 탐험이나 온라인 rollout이 항상 필요한 것은 아니다.",
+      "realWorldExample": "코드 설명 두 개를 전문가가 비교해 더 정확하고 명확한 쪽을 표시한다. DPO 데이터로 쓸 때 길이 선호 같은 편향과 평가 데이터 중복을 점검한다.",
+      "commonMisconceptions": [
+        "DPO는 아무 정답 없이 인터넷을 스스로 탐험하면 되는 방법이 아니다. 선호 쌍 등의 학습 자료가 필요하다."
+      ],
+      "comparisons": [
+        {
+          "with": "SFT",
+          "distinction": "SFT는 목표 응답을 모방하고 DPO는 응답 사이 상대 선호를 직접 학습한다."
+        }
+      ],
+      "keyTakeaways": [
+        "선호되는 응답과 덜 선호되는 응답의 쌍을 이용해 정책 모델을 직접 최적화하는 방법이다.",
+        "선호 쌍과 기준 모델의 역할을 기억한다."
+      ],
+      "quizQuestions": [
+        "dpo-recall",
+        "dpo-application"
+      ],
+      "references": [
+        {
+          "title": "Rafailov et al. · Direct Preference Optimization",
+          "url": "https://arxiv.org/abs/2305.18290"
+        }
+      ],
+      "validation": {
+        "status": "공식 문서 대조 · 작성자 검토",
+        "checkedAt": "2026-10-14",
+        "note": "참조 문서의 기본 정의와 대조하고 자체 예상문제의 정답·오답 논리를 검토했다. 독립 전문가 감수 및 공식 기출 검증은 아니다. 모델별 지원 여부는 별도 확인이 필요하다."
+      }
+    },
+    {
+      "id": "inference",
+      "title": "추론 · Inference",
+      "category": "B",
+      "priority": 1,
+      "priorityReason": "공개 평가 방향인 AI 리터러시·문제 해결·결과 검증과 직접 연결되며, 이후 개념의 선수 지식 또는 빈번한 혼동 지점이다. eval 모드와 기울기 비활성화는 서로 다른 기능이다.",
+      "estimatedMinutes": 4,
+      "prerequisites": [
+        "pretraining"
+      ],
+      "summary": "학습한 모델을 사용해 새 입력의 예측이나 출력을 계산하는 단계다.",
+      "simpleExplanation": "모델을 서비스에서 호출하는 것은 보통 추론이다. 대화 문맥이 늘어 결과가 달라져도 모델 가중치가 즉시 학습된다는 뜻은 아니다. 일부 시스템은 별도 온라인 학습을 할 수 있으므로 파이프라인을 확인한다.",
+      "analogy": "교육받은 직원이 실제 업무를 수행하는 단계다. 참고자료가 달라지는 것과 직원의 훈련 과정은 구분할 수 있다.",
+      "technicalExplanation": "일반적인 추론에서는 gradient와 optimizer 업데이트가 필요 없다. PyTorch에서 eval()은 dropout·batch norm 등의 동작 모드를 바꾸고 no_grad()/inference_mode()는 자동 미분 추적을 제어하므로 같은 명령이 아니다.",
+      "realWorldExample": "검사 모델을 배포할 때 model.eval()과 torch.inference_mode()를 적절히 사용한다. 정답이 없는 실시간 입력에 대해 forward를 실행하고 추후 라벨로 성능을 모니터링한다.",
+      "commonMisconceptions": [
+        "LLM이 질문을 받고 답하는 모든 순간에 새로 사전학습한다는 것은 일반적인 동작이 아니다."
+      ],
+      "comparisons": [
+        {
+          "with": "Training",
+          "distinction": "Training은 손실을 이용해 파라미터를 학습하고 inference는 학습된 파라미터로 출력을 계산한다."
+        }
+      ],
+      "keyTakeaways": [
+        "학습한 모델을 사용해 새 입력의 예측이나 출력을 계산하는 단계다.",
+        "eval 모드와 기울기 비활성화는 서로 다른 기능이다."
+      ],
+      "quizQuestions": [
+        "inference-recall",
+        "inference-application"
+      ],
+      "references": [
+        {
+          "title": "Google Machine Learning Glossary",
+          "url": "https://developers.google.com/machine-learning/glossary"
+        },
+        {
+          "title": "PyTorch · Automatic differentiation",
+          "url": "https://docs.pytorch.org/tutorials/beginner/basics/autogradqs_tutorial.html"
+        }
+      ],
+      "validation": {
+        "status": "공식 문서 대조 · 작성자 검토",
+        "checkedAt": "2026-10-14",
+        "note": "참조 문서의 기본 정의와 대조하고 자체 예상문제의 정답·오답 논리를 검토했다. 독립 전문가 감수 및 공식 기출 검증은 아니다. 모델별 지원 여부는 별도 확인이 필요하다."
+      }
+    },
+    {
+      "id": "temperature",
+      "title": "Temperature",
+      "category": "B",
+      "priority": 1,
+      "priorityReason": "공개 평가 방향인 AI 리터러시·문제 해결·결과 검증과 직접 연결되며, 이후 개념의 선수 지식 또는 빈번한 혼동 지점이다. 무작위성 조절과 사실 검증을 혼동하지 않는다.",
+      "estimatedMinutes": 4,
+      "prerequisites": [
+        "next-token"
+      ],
+      "summary": "샘플링 전 토큰 확률 분포의 날카로움을 조절하는 생성 설정이다.",
+      "simpleExplanation": "낮추면 높은 점수 토큰에 더 집중하고 높이면 덜 유력한 토큰도 더 자주 선택될 수 있다. 창의성이나 정확성을 직접 측정하는 다이얼은 아니다. 0에 가까워도 사실 오류나 환경에 따른 비결정성이 남을 수 있다.",
+      "analogy": "후보자 투표에서 1위에게 표를 더 몰아주거나 여러 후보에게 고르게 나누는 조절과 같다. 후보의 진실성을 심사하는 과정은 아니다.",
+      "technicalExplanation": "양의 T에서 softmax(logits/T)를 적용하는 형태가 대표적이다. T→0에서는 최댓값 집중이 강해진다. API별 허용 범위와 일부 모델의 지원 여부는 다르며 temperature=0의 처리는 구현에 따른다.",
+      "realWorldExample": "정형 데이터 추출은 낮은 무작위성을 시작점으로 평가하고, 광고 문구 발상은 다양성 필요에 따라 조정한다. 정확한 날짜 추출은 낮은 T뿐 아니라 스키마·근거 검증도 필요하다.",
+      "commonMisconceptions": [
+        "Temperature=0이 항상 같은 응답이나 환각 제거를 보장하지 않는다."
+      ],
+      "comparisons": [
+        {
+          "with": "Top-p",
+          "distinction": "Temperature는 분포 모양을 바꾸고 top-p는 누적 확률 기준으로 샘플링 후보를 제한한다."
+        }
+      ],
+      "keyTakeaways": [
+        "샘플링 전 토큰 확률 분포의 날카로움을 조절하는 생성 설정이다.",
+        "무작위성 조절과 사실 검증을 혼동하지 않는다."
+      ],
+      "quizQuestions": [
+        "temperature-recall",
+        "temperature-application"
+      ],
+      "references": [
+        {
+          "title": "Hugging Face · Generation",
+          "url": "https://huggingface.co/docs/transformers/main_classes/text_generation"
+        }
+      ],
+      "validation": {
+        "status": "공식 문서 대조 · 작성자 검토",
+        "checkedAt": "2026-10-14",
+        "note": "참조 문서의 기본 정의와 대조하고 자체 예상문제의 정답·오답 논리를 검토했다. 독립 전문가 감수 및 공식 기출 검증은 아니다. 모델별 지원 여부는 별도 확인이 필요하다."
+      }
+    },
+    {
+      "id": "top-p",
+      "title": "Top-p · Nucleus Sampling",
+      "category": "B",
+      "priority": 2,
+      "priorityReason": "기초 판단을 실제 구현과 연결하는 보강 개념이다. 핵심 개념을 먼저 익힌 뒤 학습한다. 확률 합의 기준과 고정 후보 수를 구분한다.",
+      "estimatedMinutes": 4,
+      "prerequisites": [
+        "temperature"
+      ],
+      "summary": "확률이 높은 순으로 누적 확률이 p에 도달하는 최소 후보 집합에서 샘플링한다.",
+      "simpleExplanation": "모델이 한 답에 확신하면 후보가 적고 여러 답에 비슷한 확률을 주면 후보가 많아질 수 있다. 후보 개수가 고정되지 않는 것이 top-k와 다르다. 설정만으로 답의 진실성을 보장하지 않는다.",
+      "analogy": "투표 득표율 합이 정한 기준을 넘을 때까지 상위 후보를 초대하는 방식이다. 매 투표마다 초대 인원은 달라진다.",
+      "technicalExplanation": "확률 내림차순으로 합산해 임계 p를 넘는 최소 집합을 선택한 뒤 정규화해 샘플링한다. 실제 적용 순서는 temperature·top-k 등과 결합한 구현에 따라 달라질 수 있다.",
+      "realWorldExample": "확률이 0.6, 0.25, 0.1, 0.05일 때 top-p=0.8이면 상위 두 후보의 누적 0.85가 기준을 만족하므로 두 후보가 남는다.",
+      "commonMisconceptions": [
+        "Top-p=0.9는 정확도 90%라는 의미가 아니다."
+      ],
+      "comparisons": [
+        {
+          "with": "Top-k",
+          "distinction": "Top-k는 개수 k를 고정하고 top-p는 누적 확률로 개수를 결정한다."
+        }
+      ],
+      "keyTakeaways": [
+        "확률이 높은 순으로 누적 확률이 p에 도달하는 최소 후보 집합에서 샘플링한다.",
+        "확률 합의 기준과 고정 후보 수를 구분한다."
+      ],
+      "quizQuestions": [
+        "top-p-recall",
+        "top-p-application"
+      ],
+      "references": [
+        {
+          "title": "Hugging Face · Generation",
+          "url": "https://huggingface.co/docs/transformers/main_classes/text_generation"
+        }
+      ],
+      "validation": {
+        "status": "공식 문서 대조 · 작성자 검토",
+        "checkedAt": "2026-10-14",
+        "note": "참조 문서의 기본 정의와 대조하고 자체 예상문제의 정답·오답 논리를 검토했다. 독립 전문가 감수 및 공식 기출 검증은 아니다. 모델별 지원 여부는 별도 확인이 필요하다."
+      }
+    },
+    {
+      "id": "top-k",
+      "title": "Top-k Sampling",
+      "category": "B",
+      "priority": 2,
+      "priorityReason": "기초 판단을 실제 구현과 연결하는 보강 개념이다. 핵심 개념을 먼저 익힌 뒤 학습한다. 같은 top-k 용어라도 단계와 대상이 무엇인지 확인한다.",
+      "estimatedMinutes": 4,
+      "prerequisites": [
+        "top-p"
+      ],
+      "summary": "점수가 높은 k개의 토큰 후보로 범위를 제한한 뒤 그 안에서 선택하는 생성 방식이다.",
+      "simpleExplanation": "아주 낮은 가능성의 토큰을 제외할 수 있지만 고정된 후보 수가 모든 문맥에 적합한 것은 아니다. 검색에서 말하는 top-k 문서 개수와 용어가 같아도 대상과 단계가 다르다.",
+      "analogy": "상위 k등까지만 결선에 올리는 방식이다. 점수 차이가 크든 작든 우선 인원수로 자른다.",
+      "technicalExplanation": "Top-k sampling은 분포에서 k개 후보를 유지하고 보통 다시 정규화한다. k=1이면 최고 점수 후보만 남는다. 동점 처리와 다른 샘플링 설정 결합은 구현별로 확인한다.",
+      "realWorldExample": "확률 0.7, 0.2, 0.08, 0.02에서 k=2면 앞의 두 후보만 유지한다. p=0.6인 nucleus sampling이라면 한 후보만 남으므로 결과가 다르다.",
+      "commonMisconceptions": [
+        "생성 top-k=5가 검색 문서 5개를 가져온다는 뜻은 아니다."
+      ],
+      "comparisons": [
+        {
+          "with": "검색 Top-k",
+          "distinction": "검색의 top-k는 문서·청크 후보 수, 생성 top-k는 다음 토큰 후보 수다."
+        }
+      ],
+      "keyTakeaways": [
+        "점수가 높은 k개의 토큰 후보로 범위를 제한한 뒤 그 안에서 선택하는 생성 방식이다.",
+        "같은 top-k 용어라도 단계와 대상이 무엇인지 확인한다."
+      ],
+      "quizQuestions": [
+        "top-k-recall",
+        "top-k-application"
+      ],
+      "references": [
+        {
+          "title": "Hugging Face · Generation",
+          "url": "https://huggingface.co/docs/transformers/main_classes/text_generation"
+        }
+      ],
+      "validation": {
+        "status": "공식 문서 대조 · 작성자 검토",
+        "checkedAt": "2026-10-14",
+        "note": "참조 문서의 기본 정의와 대조하고 자체 예상문제의 정답·오답 논리를 검토했다. 독립 전문가 감수 및 공식 기출 검증은 아니다. 모델별 지원 여부는 별도 확인이 필요하다."
+      }
+    },
+    {
+      "id": "hallucination",
+      "title": "환각 · Hallucination",
+      "category": "B",
+      "priority": 1,
+      "priorityReason": "공개 평가 방향인 AI 리터러시·문제 해결·결과 검증과 직접 연결되며, 이후 개념의 선수 지식 또는 빈번한 혼동 지점이다. 주장 단위로 근거와 일치 여부를 확인한다.",
+      "estimatedMinutes": 4,
+      "prerequisites": [
+        "next-token"
+      ],
+      "summary": "모델이 사실이나 주어진 근거와 맞지 않는 내용을 그럴듯하게 생성하는 현상이다.",
+      "simpleExplanation": "없는 논문, 틀린 사내 규정, 문서에 없는 수치를 자신 있게 말할 수 있다. 자신감 있는 말투나 반복 일치만으로 사실을 판단하면 안 된다. 근거 제공과 불확실성 표시가 도움이 되지만 완전히 없애지는 못한다.",
+      "analogy": "빈 기억을 자연스러운 이야기로 메우는 현상에 비유할 수 있지만 모델의 의도적인 거짓말이나 인간의 기억 과정과 동일하다고 볼 필요는 없다.",
+      "technicalExplanation": "외부 세계의 사실 오류와 제공된 문맥에 충실하지 않은 오류를 구분해 평가할 수 있다. 검색 실패, 문맥 해석 오류, 생성 오류를 나누어 원인을 분석한다. 출처 링크의 존재만 아니라 주장 지지 여부를 확인한다.",
+      "realWorldExample": "사내 휴가 규정 질문에 가짜 조항을 답했다면 원문 버전과 해당 문장을 찾아 대조한다. 근거가 없을 때 답변을 보류하도록 하고 동일 유형 평가셋을 추가한다.",
+      "commonMisconceptions": [
+        "출처 링크가 붙었거나 temperature가 낮다는 이유만으로 환각이 없는 것은 아니다."
+      ],
+      "comparisons": [
+        {
+          "with": "프롬프트 인젝션",
+          "distinction": "환각은 근거 없는 생성 오류이고 인젝션은 외부 내용이 지시로 작용하도록 유도하는 공격이다. 결과적으로 함께 발생할 수 있다."
+        }
+      ],
+      "keyTakeaways": [
+        "모델이 사실이나 주어진 근거와 맞지 않는 내용을 그럴듯하게 생성하는 현상이다.",
+        "주장 단위로 근거와 일치 여부를 확인한다."
+      ],
+      "quizQuestions": [
+        "hallucination-recall",
+        "hallucination-application"
+      ],
+      "references": [
+        {
+          "title": "Google Machine Learning Glossary",
+          "url": "https://developers.google.com/machine-learning/glossary"
+        }
+      ],
+      "validation": {
+        "status": "공식 문서 대조 · 작성자 검토",
+        "checkedAt": "2026-10-14",
+        "note": "참조 문서의 기본 정의와 대조하고 자체 예상문제의 정답·오답 논리를 검토했다. 독립 전문가 감수 및 공식 기출 검증은 아니다. 모델별 지원 여부는 별도 확인이 필요하다."
+      }
+    },
+    {
+      "id": "quantization",
+      "title": "양자화 · Quantization",
+      "category": "B",
+      "priority": 2,
+      "priorityReason": "기초 판단을 실제 구현과 연결하는 보강 개념이다. 핵심 개념을 먼저 익힌 뒤 학습한다. 가중치 크기 절감과 실행 속도·품질을 각각 검증한다.",
+      "estimatedMinutes": 4,
+      "prerequisites": [
+        "inference"
+      ],
+      "summary": "가중치나 활성값을 더 적은 비트의 표현으로 바꿔 메모리와 연산 비용을 줄이는 기술이다.",
+      "simpleExplanation": "소수점 정밀도를 줄여 작은 장치에서도 모델을 돌리기 쉽게 만든다. 대신 반올림·범위 손실로 품질이 떨어질 수 있다. 실제 속도 개선은 하드웨어와 커널 지원에 따라 달라진다.",
+      "analogy": "정밀한 지도를 더 적은 색과 눈금으로 저장하는 것과 같다. 용량은 줄지만 작은 차이를 놓칠 수 있다.",
+      "technicalExplanation": "예를 들어 FP16 가중치를 4비트로 표현하면 순수 가중치 저장량은 이론상 약 1/4이지만 스케일·메타데이터·KV cache 등 추가 메모리가 있다. PTQ와 quantization-aware training은 절차가 다르다.",
+      "realWorldExample": "로컬 LLM을 4비트로 바꾼 뒤 코드 정확도, 한글 응답, 처리 속도와 최대 문맥 메모리를 실제 측정한다. 가중치 파일 크기만으로 전체 RAM 요구량을 계산하지 않는다.",
+      "commonMisconceptions": [
+        "4비트 양자화가 모델의 전체 메모리를 반드시 정확히 1/4로 만들거나 모든 장치에서 빠르게 하는 것은 아니다."
+      ],
+      "comparisons": [
+        {
+          "with": "증류",
+          "distinction": "양자화는 수치 표현의 정밀도를 줄이고 증류는 교사 모델의 행동을 학생 모델에 학습시킨다."
+        }
+      ],
+      "keyTakeaways": [
+        "가중치나 활성값을 더 적은 비트의 표현으로 바꿔 메모리와 연산 비용을 줄이는 기술이다.",
+        "가중치 크기 절감과 실행 속도·품질을 각각 검증한다."
+      ],
+      "quizQuestions": [
+        "quantization-recall",
+        "quantization-application"
+      ],
+      "references": [
+        {
+          "title": "Google Machine Learning Glossary",
+          "url": "https://developers.google.com/machine-learning/glossary"
+        }
+      ],
+      "validation": {
+        "status": "공식 문서 대조 · 작성자 검토",
+        "checkedAt": "2026-10-14",
+        "note": "참조 문서의 기본 정의와 대조하고 자체 예상문제의 정답·오답 논리를 검토했다. 독립 전문가 감수 및 공식 기출 검증은 아니다. 모델별 지원 여부는 별도 확인이 필요하다."
+      }
+    },
+    {
+      "id": "distillation",
+      "title": "지식 증류 · Distillation",
+      "category": "B",
+      "priority": 2,
+      "priorityReason": "기초 판단을 실제 구현과 연결하는 보강 개념이다. 핵심 개념을 먼저 익힌 뒤 학습한다. 교사 오류 전파와 목표 과업 성능을 확인한다.",
+      "estimatedMinutes": 4,
+      "prerequisites": [
+        "sft"
+      ],
+      "summary": "교사 모델의 출력·확률·표현 등을 학습 신호로 사용해 학생 모델에 능력을 전달하는 방법이다.",
+      "simpleExplanation": "큰 모델이 만든 좋은 예시를 작은 모델이 배워 비용을 낮출 수 있다. 학생이 교사의 모든 능력을 그대로 얻는 것은 아니고 교사의 오류도 전달될 수 있다. 어떤 과업을 보존할지 정하고 평가한다.",
+      "analogy": "숙련자의 풀이와 판단을 신입이 연습하는 교육과 같다. 답만 복사하는 경우보다 여러 가능한 답의 분포가 더 풍부한 신호가 될 수 있다.",
+      "technicalExplanation": "전통적인 증류는 교사와 학생의 softened 출력 분포 차이를 줄이는 손실을 사용한다. LLM에서는 교사가 생성한 지시·응답 데이터로 학습하는 방식도 널리 쓰인다. 교사 사용 권한과 데이터 품질을 확인한다.",
+      "realWorldExample": "비용이 큰 모델로 검사 보고서 분류 예시를 검수해 만들고 작은 모델을 학습한다. 같은 시험셋에서 정확도·드문 유형 오류·지연·비용을 비교해 전환 여부를 결정한다.",
+      "commonMisconceptions": [
+        "증류 모델이 작다는 이유만으로 항상 교사와 같은 정확도이거나 모든 과업에서 더 빠른 것은 아니다."
+      ],
+      "comparisons": [
+        {
+          "with": "양자화",
+          "distinction": "증류는 학습 신호 전달, 양자화는 수치 표현 절감이며 함께 사용할 수도 있다."
+        }
+      ],
+      "keyTakeaways": [
+        "교사 모델의 출력·확률·표현 등을 학습 신호로 사용해 학생 모델에 능력을 전달하는 방법이다.",
+        "교사 오류 전파와 목표 과업 성능을 확인한다."
+      ],
+      "quizQuestions": [
+        "distillation-recall",
+        "distillation-application"
+      ],
+      "references": [
+        {
+          "title": "Google Machine Learning Glossary",
+          "url": "https://developers.google.com/machine-learning/glossary"
+        }
+      ],
+      "validation": {
+        "status": "공식 문서 대조 · 작성자 검토",
+        "checkedAt": "2026-10-14",
+        "note": "참조 문서의 기본 정의와 대조하고 자체 예상문제의 정답·오답 논리를 검토했다. 독립 전문가 감수 및 공식 기출 검증은 아니다. 모델별 지원 여부는 별도 확인이 필요하다."
+      }
+    },
+    {
+      "id": "mixture-of-experts",
+      "title": "전문가 혼합 · MoE",
+      "category": "B",
+      "priority": 3,
+      "priorityReason": "기술 선택의 시야를 넓히는 확장 개념이다. 확인된 세부 출제 범위가 없어 핵심 복습 뒤 배치한다. 전체 파라미터·활성 파라미터·실제 메모리를 구분한다.",
+      "estimatedMinutes": 4,
+      "prerequisites": [
+        "transformer"
+      ],
+      "summary": "여러 전문가 서브네트워크 중 일부를 라우터가 선택해 입력을 처리하는 구조다.",
+      "simpleExplanation": "전체 모델에는 많은 파라미터가 있어도 토큰마다 일부 전문가만 활성화될 수 있다. 그래서 전체 파라미터와 활성 파라미터를 구분한다. 전문가가 사람이 정한 업무 하나씩을 전담한다고 보장되지는 않는다.",
+      "analogy": "여러 작업대 중 라우터가 일부에 작업을 보내는 공장과 같다. 모든 작업대가 한 작업에 동시에 참여하지 않지만 설비를 보관할 공간은 여전히 필요하다.",
+      "technicalExplanation": "Sparse MoE에서는 gating/router가 토큰별 전문가를 선택한다. 부하 균형, 전문가 용량, 장치 간 통신이 효율에 영향을 준다. 활성 연산량 감소와 전체 가중치 메모리 감소는 같은 의미가 아니다.",
+      "realWorldExample": "로컬 모델을 고를 때 총 100B와 활성 10B라는 설명을 보면 연산 비용뿐 아니라 전체 가중치를 어떻게 메모리에 배치하는지 확인한다. 활성 파라미터만으로 RAM을 산정하지 않는다.",
+      "commonMisconceptions": [
+        "MoE의 expert는 외부 사람이나 독립적으로 대화하는 여러 에이전트를 뜻하지 않는다."
+      ],
+      "comparisons": [
+        {
+          "with": "Multi-Agent",
+          "distinction": "MoE는 모델 내부 신경망 라우팅 구조, multi-agent는 여러 에이전트의 시스템 수준 협업이다."
+        }
+      ],
+      "keyTakeaways": [
+        "여러 전문가 서브네트워크 중 일부를 라우터가 선택해 입력을 처리하는 구조다.",
+        "전체 파라미터·활성 파라미터·실제 메모리를 구분한다."
+      ],
+      "quizQuestions": [
+        "mixture-of-experts-recall",
+        "mixture-of-experts-application"
+      ],
+      "references": [
+        {
+          "title": "Google Machine Learning Glossary",
+          "url": "https://developers.google.com/machine-learning/glossary"
+        }
+      ],
+      "validation": {
+        "status": "공식 문서 대조 · 작성자 검토",
+        "checkedAt": "2026-10-14",
+        "note": "참조 문서의 기본 정의와 대조하고 자체 예상문제의 정답·오답 논리를 검토했다. 독립 전문가 감수 및 공식 기출 검증은 아니다. 모델별 지원 여부는 별도 확인이 필요하다."
+      }
+    },
+    {
+      "id": "shot-prompting",
+      "title": "Zero-shot · One-shot · Few-shot",
+      "category": "C",
+      "priority": 1,
+      "priorityReason": "공개 평가 방향인 AI 리터러시·문제 해결·결과 검증과 직접 연결되며, 이후 개념의 선수 지식 또는 빈번한 혼동 지점이다. 예시 개수보다 분류 경계와 형식의 일관성을 점검한다.",
+      "estimatedMinutes": 4,
+      "prerequisites": [
+        "context-window"
+      ],
+      "summary": "현재 프롬프트에 과업 예시를 몇 개 제공하는지에 따라 zero-shot, one-shot, few-shot을 구분한다.",
+      "simpleExplanation": "예시 없이 요청하면 zero-shot, 입력과 원하는 출력 예시 하나를 보여 주면 one-shot, 몇 개 보여 주면 few-shot이다. 예시는 형식과 분류 경계를 전달한다. 호출 중 예시를 보여 주는 것만으로 가중치가 업데이트되지는 않는다.",
+      "analogy": "신입에게 설명만 주거나 완성된 업무 샘플을 한 개 또는 여러 개 보여 주는 차이다. 예시를 읽는 것과 장기간 재교육하는 것은 다르다.",
+      "technicalExplanation": "In-context learning에서는 예시가 입력 토큰으로 들어간다. 예시의 일관성·대표성·순서가 결과에 영향을 줄 수 있다. 정답을 알고 있는 테스트 문항을 예시로 넣으면 해당 문항의 독립 평가가 오염된다.",
+      "realWorldExample": "장비 로그를 긴급/일반으로 나눌 때 정상 예시만 열 개 주는 대신 경계 사례를 포함한 입력·라벨 쌍을 제시한다. 별도 로그 평가셋으로 예시 추가 전후 성능을 비교한다.",
+      "commonMisconceptions": [
+        "Few-shot이라는 말이 반드시 몇 번의 gradient update를 뜻하는 것은 아니다. 프롬프팅 문맥에서는 입력 예시 수다."
+      ],
+      "comparisons": [
+        {
+          "with": "SFT",
+          "distinction": "Few-shot 프롬프팅은 입력 문맥에 예시를 제공하고 SFT는 데이터로 모델 파라미터를 학습한다."
+        }
+      ],
+      "keyTakeaways": [
+        "현재 프롬프트에 과업 예시를 몇 개 제공하는지에 따라 zero-shot, one-shot, few-shot을 구분한다.",
+        "예시 개수보다 분류 경계와 형식의 일관성을 점검한다."
+      ],
+      "quizQuestions": [
+        "shot-prompting-recall",
+        "shot-prompting-application"
+      ],
+      "references": [
+        {
+          "title": "Anthropic · Prompt engineering overview",
+          "url": "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/overview"
+        },
+        {
+          "title": "Google Machine Learning Glossary",
+          "url": "https://developers.google.com/machine-learning/glossary"
+        }
+      ],
+      "validation": {
+        "status": "공식 문서 대조 · 작성자 검토",
+        "checkedAt": "2026-10-14",
+        "note": "참조 문서의 기본 정의와 대조하고 자체 예상문제의 정답·오답 논리를 검토했다. 독립 전문가 감수 및 공식 기출 검증은 아니다. 모델별 지원 여부는 별도 확인이 필요하다."
+      }
+    },
+    {
+      "id": "instruction-design",
+      "title": "명확한 지시 설계 · Instruction Design",
+      "category": "C",
+      "priority": 1,
+      "priorityReason": "공개 평가 방향인 AI 리터러시·문제 해결·결과 검증과 직접 연결되며, 이후 개념의 선수 지식 또는 빈번한 혼동 지점이다. 누락 정보 처리와 성공 기준을 문장으로 명시한다.",
+      "estimatedMinutes": 4,
+      "prerequisites": [
+        "shot-prompting"
+      ],
+      "summary": "목표·입력·성공 기준·출력 형식을 명확히 써서 모델이 수행할 작업을 구체화한다.",
+      "simpleExplanation": "잘 정리해 줘보다 누구를 위한 무엇인지 지정하면 결과를 평가하기 쉬워진다. 모르는 정보는 추측하지 말고 누락으로 표시하도록 정한다. 서로 모순되는 지시를 많이 넣는다고 품질이 높아지지는 않는다.",
+      "analogy": "완성품의 용도와 규격이 있는 작업 지시서와 같다. 상세하지만 상충하는 규격은 작업자를 혼란스럽게 한다.",
+      "technicalExplanation": "지시와 자료를 구분하고 출력 필드·단위·허용 값·불확실성 처리 규칙을 정의한다. 자연어 지시는 확률적 모델의 동작을 유도하며 스키마 검사나 권한 통제를 대체하지 않는다.",
+      "realWorldExample": "검사 보고서에서 lot_id, defect_count, 근거 문장을 추출하라고 요청한다. 수량이 없으면 null, 추정 금지, 원문 인용 유지라고 명시하고 실제 원문과 비교한다.",
+      "commonMisconceptions": [
+        "프롬프트가 길거나 권위적인 말투일수록 항상 결과가 좋아지는 것은 아니다."
+      ],
+      "comparisons": [
+        {
+          "with": "역할 지정",
+          "distinction": "역할은 관점과 말투를 조정하는 단서이고 지시 설계는 실제 목표와 판정 가능한 완료 조건을 정의한다."
+        }
+      ],
+      "keyTakeaways": [
+        "목표·입력·성공 기준·출력 형식을 명확히 써서 모델이 수행할 작업을 구체화한다.",
+        "누락 정보 처리와 성공 기준을 문장으로 명시한다."
+      ],
+      "quizQuestions": [
+        "instruction-design-recall",
+        "instruction-design-application"
+      ],
+      "references": [
+        {
+          "title": "Anthropic · Prompt engineering overview",
+          "url": "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/overview"
+        }
+      ],
+      "validation": {
+        "status": "공식 문서 대조 · 작성자 검토",
+        "checkedAt": "2026-10-14",
+        "note": "참조 문서의 기본 정의와 대조하고 자체 예상문제의 정답·오답 논리를 검토했다. 독립 전문가 감수 및 공식 기출 검증은 아니다. 모델별 지원 여부는 별도 확인이 필요하다."
+      }
+    },
+    {
+      "id": "role-context-constraint",
+      "title": "Role · Context · Constraint",
+      "category": "C",
+      "priority": 1,
+      "priorityReason": "공개 평가 방향인 AI 리터러시·문제 해결·결과 검증과 직접 연결되며, 이후 개념의 선수 지식 또는 빈번한 혼동 지점이다. 역할·근거·제약을 각각 써 보고 부족한 요소를 찾는다.",
+      "estimatedMinutes": 4,
+      "prerequisites": [
+        "instruction-design"
+      ],
+      "summary": "역할은 관점, 문맥은 판단 재료, 제약은 답변이 지켜야 할 경계를 제공한다.",
+      "simpleExplanation": "품질 엔지니어 관점이라는 역할, 검사 로그라는 문맥, 근거 없는 원인 확정 금지라는 제약은 기능이 다르다. 역할만 지정해도 전문 자격이나 실제 사내 데이터 접근 권한이 생기는 것은 아니다.",
+      "analogy": "담당 직무, 참고 서류, 업무 규정을 각각 전달하는 것과 같다. 직함이 있다고 서류의 빈칸이 자동으로 채워지지는 않는다.",
+      "technicalExplanation": "관련 문맥은 필요한 범위로 제공하고 데이터의 버전과 시점을 포함한다. 제약은 출력 길이뿐 아니라 근거 부족 시 처리, 허용 데이터 범위 등을 포함한다. 실제 실행 권한은 애플리케이션 계층에서 제한한다.",
+      "realWorldExample": "역할: 품질 분석 보조. 문맥: 10월 장비 로그와 검사 기준. 제약: 원인을 확정하지 말고 가설과 추가 측정 항목을 분리. 이렇게 요청하면 검토 가능한 초안을 얻기 쉽다.",
+      "commonMisconceptions": [
+        "보안 전문가 역할을 부여했다고 도구의 보안 권한이 자동으로 제한되지는 않는다."
+      ],
+      "comparisons": [
+        {
+          "with": "권한 통제",
+          "distinction": "프롬프트 제약은 행동 지시이고 권한 통제는 실행 가능한 작업을 시스템에서 실제로 제한한다."
+        }
+      ],
+      "keyTakeaways": [
+        "역할은 관점, 문맥은 판단 재료, 제약은 답변이 지켜야 할 경계를 제공한다.",
+        "역할·근거·제약을 각각 써 보고 부족한 요소를 찾는다."
+      ],
+      "quizQuestions": [
+        "role-context-constraint-recall",
+        "role-context-constraint-application"
+      ],
+      "references": [
+        {
+          "title": "Anthropic · Prompt engineering overview",
+          "url": "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/overview"
+        },
+        {
+          "title": "Anthropic · Mitigating prompt injections",
+          "url": "https://www.anthropic.com/research/prompt-injection-defenses"
+        }
+      ],
+      "validation": {
+        "status": "공식 문서 대조 · 작성자 검토",
+        "checkedAt": "2026-10-14",
+        "note": "참조 문서의 기본 정의와 대조하고 자체 예상문제의 정답·오답 논리를 검토했다. 독립 전문가 감수 및 공식 기출 검증은 아니다. 모델별 지원 여부는 별도 확인이 필요하다."
+      }
+    },
+    {
+      "id": "structured-output",
+      "title": "구조화된 출력 · Structured Output",
+      "category": "C",
+      "priority": 1,
+      "priorityReason": "공개 평가 방향인 AI 리터러시·문제 해결·결과 검증과 직접 연결되며, 이후 개념의 선수 지식 또는 빈번한 혼동 지점이다. 문법·스키마·의미 검증을 각각 수행한다.",
+      "estimatedMinutes": 4,
+      "prerequisites": [
+        "instruction-design"
+      ],
+      "summary": "정해진 필드와 타입에 맞춰 결과를 생성하여 프로그램이 처리하기 쉽게 하는 방식이다.",
+      "simpleExplanation": "자유로운 문장 대신 JSON 등으로 필드를 고정하면 파싱과 후속 자동화가 쉬워진다. JSON 문법이 올바른 것, 스키마를 만족하는 것, 내용이 사실인 것은 서로 다른 조건이다.",
+      "analogy": "자유 서술 보고서를 표준 신청서에 옮기는 것과 같다. 모든 칸을 제대로 채워도 기입한 숫자가 사실인지는 따로 확인해야 한다.",
+      "technicalExplanation": "단순 프롬프트 요청과 모델/API의 제약된 생성 지원을 구분한다. 지원되는 스키마 범위, 거절 응답, 잘림 처리도 확인한다. 파싱→스키마 검사→업무 규칙·근거 검증 순서가 유용하다.",
+      "realWorldExample": "보고서에서 {\"lot_id\":\"L12\",\"count\":3}을 받으면 JSON 파싱 후 count가 정수인지 검사하고 원문의 불량 개수가 3인지 대조한다. 잘못된 값을 조용히 기본값으로 바꾸지 않는다.",
+      "commonMisconceptions": [
+        "스키마 준수는 값의 사실성이나 모든 업무 규칙의 준수를 보장하지 않는다."
+      ],
+      "comparisons": [
+        {
+          "with": "JSON Schema",
+          "distinction": "구조화 출력은 결과 생성 방식이고 JSON Schema는 그 결과의 구조와 제약을 기술하는 명세다."
+        }
+      ],
+      "keyTakeaways": [
+        "정해진 필드와 타입에 맞춰 결과를 생성하여 프로그램이 처리하기 쉽게 하는 방식이다.",
+        "문법·스키마·의미 검증을 각각 수행한다."
+      ],
+      "quizQuestions": [
+        "structured-output-recall",
+        "structured-output-application"
+      ],
+      "references": [
+        {
+          "title": "JSON Schema · Object",
+          "url": "https://json-schema.org/understanding-json-schema/reference/object"
+        },
+        {
+          "title": "Anthropic · Prompt engineering overview",
+          "url": "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/overview"
+        }
+      ],
+      "validation": {
+        "status": "공식 문서 대조 · 작성자 검토",
+        "checkedAt": "2026-10-14",
+        "note": "참조 문서의 기본 정의와 대조하고 자체 예상문제의 정답·오답 논리를 검토했다. 독립 전문가 감수 및 공식 기출 검증은 아니다. 모델별 지원 여부는 별도 확인이 필요하다."
+      }
+    },
+    {
+      "id": "json-schema",
+      "title": "JSON Schema",
+      "category": "C",
+      "priority": 1,
+      "priorityReason": "공개 평가 방향인 AI 리터러시·문제 해결·결과 검증과 직접 연결되며, 이후 개념의 선수 지식 또는 빈번한 혼동 지점이다. 필드 선언·필수 여부·추가 필드 허용 여부를 구분한다.",
+      "estimatedMinutes": 4,
+      "prerequisites": [
+        "structured-output"
+      ],
+      "summary": "JSON 데이터가 가져야 할 타입·필드·필수 항목·허용 값 등을 기술하는 규칙이다.",
+      "simpleExplanation": "properties에 필드를 설명하는 것과 required에 필수로 지정하는 것은 다르다. 추가 필드를 금지하려면 additionalProperties 같은 제약을 명시해야 한다. 데이터에 null이 있는 것과 필드 자체가 없는 것도 다르다.",
+      "analogy": "신청서 양식의 칸 종류와 필수 표시, 허용 입력을 정의하는 규격서다. 양식을 정의한다고 실제 자료가 자동으로 작성되지는 않는다.",
+      "technicalExplanation": "{\"type\":\"object\",\"properties\":{\"count\":{\"type\":\"integer\",\"minimum\":0}},\"required\":[\"count\"],\"additionalProperties\":false}는 음이 아닌 정수 count만 필수로 받는다. 지원 draft와 LLM API의 지원 subset 차이를 확인한다.",
+      "realWorldExample": "Python 처리기가 count를 더해야 하는데 \"3개\"가 오면 계산이 깨진다. 정수 타입을 검사하고 단위를 별도 필드로 정하면 경계가 명확하다. 검사 실패 시 원본과 오류를 기록한다.",
+      "commonMisconceptions": [
+        "properties에 적힌 모든 필드가 자동으로 필수인 것은 아니다."
+      ],
+      "comparisons": [
+        {
+          "with": "JSON",
+          "distinction": "JSON은 데이터를 표현하는 형식이고 JSON Schema는 데이터의 유효 조건을 정의한다."
+        }
+      ],
+      "keyTakeaways": [
+        "JSON 데이터가 가져야 할 타입·필드·필수 항목·허용 값 등을 기술하는 규칙이다.",
+        "필드 선언·필수 여부·추가 필드 허용 여부를 구분한다."
+      ],
+      "quizQuestions": [
+        "json-schema-recall",
+        "json-schema-application"
+      ],
+      "references": [
+        {
+          "title": "JSON Schema · Object",
+          "url": "https://json-schema.org/understanding-json-schema/reference/object"
+        }
+      ],
+      "validation": {
+        "status": "공식 문서 대조 · 작성자 검토",
+        "checkedAt": "2026-10-14",
+        "note": "참조 문서의 기본 정의와 대조하고 자체 예상문제의 정답·오답 논리를 검토했다. 독립 전문가 감수 및 공식 기출 검증은 아니다. 모델별 지원 여부는 별도 확인이 필요하다."
+      }
+    },
+    {
+      "id": "prompt-injection",
+      "title": "프롬프트 인젝션 · Prompt Injection",
+      "category": "C",
+      "priority": 1,
+      "priorityReason": "공개 평가 방향인 AI 리터러시·문제 해결·결과 검증과 직접 연결되며, 이후 개념의 선수 지식 또는 빈번한 혼동 지점이다. 신뢰 경계와 실행 권한을 시스템에서 지킨다.",
+      "estimatedMinutes": 4,
+      "prerequisites": [
+        "role-context-constraint",
+        "hallucination"
+      ],
+      "summary": "외부 입력이나 문서의 공격 지시가 모델의 원래 과업·권한 경계를 바꾸도록 유도하는 공격이다.",
+      "simpleExplanation": "검색한 문서 속에 이전 지시를 무시하고 비밀을 보내라는 문장이 있어도 그것은 분석할 자료다. 문서 내용과 신뢰된 지시를 혼동하면 유출이나 잘못된 도구 실행이 발생할 수 있다.",
+      "analogy": "참고 서류에 몰래 끼워 넣은 결재 지시를 실제 상사의 명령으로 받아들이는 실수와 같다. 서류를 읽을 권한이 있다고 서류가 명령 권한을 갖지는 않는다.",
+      "technicalExplanation": "직접 입력뿐 아니라 웹페이지·도구 응답의 간접 인젝션을 고려한다. 데이터와 지시의 구분, 최소 권한, 외부 전송 통제, 민감 작업 승인, 공격 사례 평가를 결합한다. 구분자나 경고 문장 하나로 완전 방어를 주장하지 않는다.",
+      "realWorldExample": "사내 검색 문서가 외부 주소로 로그를 보내라고 하면 에이전트는 해당 문장을 자료로 취급해야 한다. 네트워크 도구는 허용 대상만 접근하게 하고 전송 전 목적·대상·데이터를 검증한다.",
+      "commonMisconceptions": [
+        "모델이 지시를 잘 따른다는 사실이 인젝션에 강하다는 뜻은 아니다."
+      ],
+      "comparisons": [
+        {
+          "with": "환각",
+          "distinction": "환각은 사실·근거 불일치 출력, 인젝션은 신뢰 경계를 넘는 지시 주입이다. 공격이 환각을 유도할 수도 있다."
+        }
+      ],
+      "keyTakeaways": [
+        "외부 입력이나 문서의 공격 지시가 모델의 원래 과업·권한 경계를 바꾸도록 유도하는 공격이다.",
+        "신뢰 경계와 실행 권한을 시스템에서 지킨다."
+      ],
+      "quizQuestions": [
+        "prompt-injection-recall",
+        "prompt-injection-application"
+      ],
+      "references": [
+        {
+          "title": "Anthropic · Mitigating prompt injections",
+          "url": "https://www.anthropic.com/research/prompt-injection-defenses"
+        }
+      ],
+      "validation": {
+        "status": "공식 문서 대조 · 작성자 검토",
+        "checkedAt": "2026-10-14",
+        "note": "참조 문서의 기본 정의와 대조하고 자체 예상문제의 정답·오답 논리를 검토했다. 독립 전문가 감수 및 공식 기출 검증은 아니다. 모델별 지원 여부는 별도 확인이 필요하다."
+      }
+    },
+    {
+      "id": "prompt-chaining",
+      "title": "프롬프트 체이닝 · Prompt Chaining",
+      "category": "C",
+      "priority": 2,
+      "priorityReason": "기초 판단을 실제 구현과 연결하는 보강 개념이다. 핵심 개념을 먼저 익힌 뒤 학습한다. 각 단계의 계약과 중단 조건을 명시한다.",
+      "estimatedMinutes": 4,
+      "prerequisites": [
+        "structured-output"
+      ],
+      "summary": "복잡한 작업을 여러 호출로 나누고 앞 단계의 검증된 출력을 다음 단계의 입력으로 연결한다.",
+      "simpleExplanation": "추출, 분류, 보고서 작성이 섞여 있으면 어느 단계가 틀렸는지 찾기 어렵다. 각 단계를 나누면 중간 결과를 확인하고 필요한 부분만 재실행할 수 있다. 호출 수와 지연이 늘어날 수 있다.",
+      "analogy": "원료 검사→가공→완제품 검사처럼 공정을 나누는 방식이다. 불량 중간품을 그대로 넘기면 후속 공정도 실패한다.",
+      "technicalExplanation": "단계별 입력·출력 계약과 실패 처리를 정의한다. 잘못 추출된 값을 다음 모델이 자연스럽게 설명할 수 있으므로 중간 검증이 중요하다. 체인은 고정 흐름일 수도 있어 자율 에이전트와 동의어가 아니다.",
+      "realWorldExample": "검사 보고서에서 수치 추출→단위 검사→이상 여부 판정→요약 작성으로 나눈다. 추출 단계의 근거가 없으면 재확인하고, 최종 요약이 정정 전 수치를 쓰지 않도록 버전을 관리한다.",
+      "commonMisconceptions": [
+        "단계를 늘리기만 하면 정확도가 반드시 상승하는 것은 아니다."
+      ],
+      "comparisons": [
+        {
+          "with": "단일 프롬프트",
+          "distinction": "단일 호출은 간단하고 지연이 작을 수 있다. 체이닝은 단계별 검증이 가능하지만 오류 전파와 호출 비용을 관리해야 한다."
+        }
+      ],
+      "keyTakeaways": [
+        "복잡한 작업을 여러 호출로 나누고 앞 단계의 검증된 출력을 다음 단계의 입력으로 연결한다.",
+        "각 단계의 계약과 중단 조건을 명시한다."
+      ],
+      "quizQuestions": [
+        "prompt-chaining-recall",
+        "prompt-chaining-application"
+      ],
+      "references": [
+        {
+          "title": "Anthropic · Prompt engineering overview",
+          "url": "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/overview"
+        }
+      ],
+      "validation": {
+        "status": "공식 문서 대조 · 작성자 검토",
+        "checkedAt": "2026-10-14",
+        "note": "참조 문서의 기본 정의와 대조하고 자체 예상문제의 정답·오답 논리를 검토했다. 독립 전문가 감수 및 공식 기출 검증은 아니다. 모델별 지원 여부는 별도 확인이 필요하다."
+      }
+    },
+    {
+      "id": "reasoning-prompting",
+      "title": "추론 중심 프롬프팅",
+      "category": "C",
+      "priority": 2,
+      "priorityReason": "기초 판단을 실제 구현과 연결하는 보강 개념이다. 핵심 개념을 먼저 익힌 뒤 학습한다. 설명의 길이보다 검증 가능한 근거와 도구 결과를 본다.",
+      "estimatedMinutes": 4,
+      "prerequisites": [
+        "instruction-design"
+      ],
+      "summary": "복잡한 문제의 조건·중간 점검·검증 기준을 명시해 타당한 해결 과정을 유도한다.",
+      "simpleExplanation": "복잡한 계산에서는 가정과 단위를 먼저 정리하고 결과를 검산하게 하면 도움이 될 수 있다. 길게 생각하라는 문장이 모든 모델과 과업에서 성능을 올린다고 보장되지 않는다. 읽기 좋은 설명도 잘못된 결론을 정당화할 수 있다.",
+      "analogy": "답만 적지 말고 사용한 조건과 검산 결과도 제출하게 하는 것과 같다. 풀이가 길다는 사실만으로 정답이 되지는 않는다.",
+      "technicalExplanation": "문제 분해, 도구 계산, 외부 근거 확인을 조합한다. 추론 특화 모델은 자체 추론 절차를 사용할 수 있어 모델별 권장 방식과 평가가 필요하다. 내부 사고 전문 대신 검증 가능한 핵심 근거·계산·가정을 요청한다.",
+      "realWorldExample": "불량률 비교에서 분모와 기간이 같은지 확인하고 Python으로 신뢰구간이나 통계량을 계산한다. 모델에게 결론에 사용한 수치와 한계를 짧게 설명하게 하고 계산 결과를 직접 검사한다.",
+      "commonMisconceptions": [
+        "자세한 풀이 문장이 실제 내부 계산의 정확한 기록이거나 사실 검증의 대체물은 아니다."
+      ],
+      "comparisons": [
+        {
+          "with": "Few-shot",
+          "distinction": "Few-shot은 예시 제공 방식이고 추론 중심 지시는 문제 분해와 검증 절차를 돕는 방식으로 함께 쓸 수 있다."
+        }
+      ],
+      "keyTakeaways": [
+        "복잡한 문제의 조건·중간 점검·검증 기준을 명시해 타당한 해결 과정을 유도한다.",
+        "설명의 길이보다 검증 가능한 근거와 도구 결과를 본다."
+      ],
+      "quizQuestions": [
+        "reasoning-prompting-recall",
+        "reasoning-prompting-application"
+      ],
+      "references": [
+        {
+          "title": "Anthropic · Prompt engineering overview",
+          "url": "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/overview"
+        },
+        {
+          "title": "Hugging Face · Reasoning models",
+          "url": "https://huggingface.co/learn/llm-course/chapter12/1"
+        }
+      ],
+      "validation": {
+        "status": "공식 문서 대조 · 작성자 검토",
+        "checkedAt": "2026-10-14",
+        "note": "참조 문서의 기본 정의와 대조하고 자체 예상문제의 정답·오답 논리를 검토했다. 독립 전문가 감수 및 공식 기출 검증은 아니다. 모델별 지원 여부는 별도 확인이 필요하다."
+      }
+    },
+    {
+      "id": "prompt-evaluation",
+      "title": "프롬프트 평가 · Prompt Evaluation",
+      "category": "C",
+      "priority": 1,
+      "priorityReason": "공개 평가 방향인 AI 리터러시·문제 해결·결과 검증과 직접 연결되며, 이후 개념의 선수 지식 또는 빈번한 혼동 지점이다. 채점 기준·평가 데이터·실행 조건을 함께 고정한다.",
+      "estimatedMinutes": 4,
+      "prerequisites": [
+        "instruction-design",
+        "data-split"
+      ],
+      "summary": "대표 사례와 명확한 채점 기준으로 프롬프트의 품질·비용·안정성을 반복 측정한다.",
+      "simpleExplanation": "한 번 좋은 답이 나왔다고 프롬프트가 좋다고 결론내리지 않는다. 정상 사례와 경계·누락·공격 사례를 모으고 오류 종류를 기록한다. 개발에 반복 사용한 사례와 최종 평가 사례를 분리한다.",
+      "analogy": "신제품을 시연 한 번으로 승인하지 않고 시험 규격에 맞춰 여러 조건에서 검사하는 것과 같다.",
+      "technicalExplanation": "형식 준수율·정답률·근거 일치율·지연 등을 과업에 맞춰 선택한다. 확률적 생성은 반복 실행 분산도 본다. 모델을 심사자로 쓸 때 기준과 사람 검수로 편향을 점검하며 동일 조건에서 비교한다.",
+      "realWorldExample": "로그 분류 프롬프트 A/B를 같은 50개 개발 사례에서 비교한다. 긴급 누락률과 오경보율을 따로 보고 최종 변경 후 보류한 새 사례로 평가한다. 모델 버전과 프롬프트 버전을 기록한다.",
+      "commonMisconceptions": [
+        "평가셋 정답을 프롬프트에 넣고 얻은 높은 점수는 일반화 검증이 아니다."
+      ],
+      "comparisons": [
+        {
+          "with": "반복 개선",
+          "distinction": "평가는 측정 기준과 증거를 만들고 반복 개선은 그 결과를 근거로 지시를 수정하는 과정이다."
+        }
+      ],
+      "keyTakeaways": [
+        "대표 사례와 명확한 채점 기준으로 프롬프트의 품질·비용·안정성을 반복 측정한다.",
+        "채점 기준·평가 데이터·실행 조건을 함께 고정한다."
+      ],
+      "quizQuestions": [
+        "prompt-evaluation-recall",
+        "prompt-evaluation-application"
+      ],
+      "references": [
+        {
+          "title": "Anthropic · Prompt engineering overview",
+          "url": "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/overview"
+        },
+        {
+          "title": "scikit-learn · Common pitfalls",
+          "url": "https://scikit-learn.org/stable/common_pitfalls.html"
+        }
+      ],
+      "validation": {
+        "status": "공식 문서 대조 · 작성자 검토",
+        "checkedAt": "2026-10-14",
+        "note": "참조 문서의 기본 정의와 대조하고 자체 예상문제의 정답·오답 논리를 검토했다. 독립 전문가 감수 및 공식 기출 검증은 아니다. 모델별 지원 여부는 별도 확인이 필요하다."
+      }
+    },
+    {
+      "id": "iterative-refinement",
+      "title": "반복적 프롬프트 개선 · Iterative Refinement",
+      "category": "C",
+      "priority": 2,
+      "priorityReason": "기초 판단을 실제 구현과 연결하는 보강 개념이다. 핵심 개념을 먼저 익힌 뒤 학습한다. 실패 유형에 맞는 변경과 회귀 평가를 연결한다.",
+      "estimatedMinutes": 4,
+      "prerequisites": [
+        "prompt-evaluation"
+      ],
+      "summary": "관찰한 실패 원인에 맞춰 지시를 수정하고 같은 기준으로 재평가하는 개선 루프다.",
+      "simpleExplanation": "결과가 마음에 안 든다는 감상 대신 날짜 형식 오류, 근거 없는 숫자 등 구체적인 실패를 분류한다. 변경의 목적을 적고 기존에 잘 되던 사례가 깨지지 않는지 확인한다. 프롬프트로 해결할 수 없는 검색·데이터 문제도 있다.",
+      "analogy": "불량 원인을 찾고 공정 조건을 조정한 뒤 다시 검사하는 방식이다. 여러 조건을 동시에 바꾸면 무엇이 효과가 있었는지 알기 어렵다.",
+      "technicalExplanation": "기준 버전→오류 분석→가설→변경→회귀 평가를 반복한다. 매번 한 가지 변경만 해야 하는 절대 규칙은 없지만 변경을 작게 유지하면 원인 분석이 쉽다. 유효하지 않은 변경은 되돌리고 평가 기록을 남긴다.",
+      "realWorldExample": "날짜 추출에서 발행일과 시행일을 혼동하면 두 필드의 정의와 경계 예시를 추가한다. 날짜가 하나뿐인 기존 문서에서도 성능이 유지되는지 확인하며 누락 문서 처리 규칙도 검증한다.",
+      "commonMisconceptions": [
+        "모든 실패는 프롬프트를 더 길게 쓰면 해결된다는 생각은 틀리다."
+      ],
+      "comparisons": [
+        {
+          "with": "자가 수정",
+          "distinction": "모델의 자가 수정은 후보 개선 방법 중 하나다. 외부 평가 없이 다시 답한 결과가 더 정확하다고 보장되지 않는다."
+        }
+      ],
+      "keyTakeaways": [
+        "관찰한 실패 원인에 맞춰 지시를 수정하고 같은 기준으로 재평가하는 개선 루프다.",
+        "실패 유형에 맞는 변경과 회귀 평가를 연결한다."
+      ],
+      "quizQuestions": [
+        "iterative-refinement-recall",
+        "iterative-refinement-application"
+      ],
+      "references": [
+        {
+          "title": "Anthropic · Prompt engineering overview",
+          "url": "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/overview"
+        }
+      ],
+      "validation": {
+        "status": "공식 문서 대조 · 작성자 검토",
+        "checkedAt": "2026-10-14",
+        "note": "참조 문서의 기본 정의와 대조하고 자체 예상문제의 정답·오답 논리를 검토했다. 독립 전문가 감수 및 공식 기출 검증은 아니다. 모델별 지원 여부는 별도 확인이 필요하다."
+      }
+    },
+    {
+      "id": "tool-use-instructions",
+      "title": "도구 사용 지시 · Tool Use Instructions",
+      "category": "C",
+      "priority": 1,
+      "priorityReason": "공개 평가 방향인 AI 리터러시·문제 해결·결과 검증과 직접 연결되며, 이후 개념의 선수 지식 또는 빈번한 혼동 지점이다. 선택 지시·인자 검증·권한 확인·실행 결과를 구분한다.",
+      "estimatedMinutes": 4,
+      "prerequisites": [
+        "json-schema",
+        "prompt-injection"
+      ],
+      "summary": "언제 어떤 도구를 어떤 인자와 조건으로 호출할지 명확히 기술한다.",
+      "simpleExplanation": "검색 도구와 데이터 변경 도구의 목적을 구분하고 도구 이름만으로 추측하지 않게 설명한다. 필수 인자, 날짜·단위 형식, 실행 전 확인 조건, 실패 시 대응을 적는다. 실제 권한과 인자 검증은 서버에서도 강제한다.",
+      "analogy": "장비 사용 매뉴얼처럼 사용 목적·입력 규격·주의 조건을 알려 주는 것이다. 매뉴얼은 물리적 안전장치를 대신하지 않는다.",
+      "technicalExplanation": "도구 스키마는 인터페이스를, 설명은 선택 조건을 제공한다. 도구 출력은 불신 데이터일 수 있다. 호출 요청과 실제 실행 결과를 구분하고 타임아웃을 성공으로 해석하지 않는다. 부작용 작업의 재시도에는 중복 실행 방지가 필요하다.",
+      "realWorldExample": "재고 조회 도구는 품번과 기준일을 받게 하고 재고 변경은 별도 승인된 도구로 분리한다. 모델이 제안한 품번을 검증한 후 호출하며 실패하면 최신 재고를 추측해 답하지 않는다.",
+      "commonMisconceptions": [
+        "모델이 올바른 JSON 호출을 생성했다고 그 작업이 승인되었거나 실행에 성공한 것은 아니다."
+      ],
+      "comparisons": [
+        {
+          "with": "출력 스키마",
+          "distinction": "스키마는 인자 구조를 제한한다. 도구 설명·정책은 사용 조건을 알려 주고 실행 계층이 권한과 결과를 확인한다."
+        }
+      ],
+      "keyTakeaways": [
+        "언제 어떤 도구를 어떤 인자와 조건으로 호출할지 명확히 기술한다.",
+        "선택 지시·인자 검증·권한 확인·실행 결과를 구분한다."
+      ],
+      "quizQuestions": [
+        "tool-use-instructions-recall",
+        "tool-use-instructions-application"
+      ],
+      "references": [
+        {
+          "title": "JSON Schema · Object",
+          "url": "https://json-schema.org/understanding-json-schema/reference/object"
+        },
+        {
+          "title": "Anthropic · Mitigating prompt injections",
+          "url": "https://www.anthropic.com/research/prompt-injection-defenses"
+        },
+        {
+          "title": "Anthropic · Coding agent best practices",
+          "url": "https://code.claude.com/docs/en/best-practices"
+        }
+      ],
+      "validation": {
+        "status": "공식 문서 대조 · 작성자 검토",
+        "checkedAt": "2026-10-14",
+        "note": "참조 문서의 기본 정의와 대조하고 자체 예상문제의 정답·오답 논리를 검토했다. 독립 전문가 감수 및 공식 기출 검증은 아니다. 모델별 지원 여부는 별도 확인이 필요하다."
+      }
+    },
+    {
+      "id": "multimodal-models",
+      "title": "멀티모달 모델 · Multimodal Models",
+      "category": "G",
+      "priority": 2,
+      "priorityReason": "기초 판단을 실제 구현과 연결하는 보강 개념이다. 핵심 개념을 먼저 익힌 뒤 학습한다. 지원 모달리티와 실제 과업 성능을 각각 확인한다.",
+      "estimatedMinutes": 4,
+      "prerequisites": [
+        "ai-taxonomy"
+      ],
+      "summary": "텍스트·영상·음성처럼 서로 다른 종류의 정보를 함께 다루는 모델이다.",
+      "simpleExplanation": "이미지와 질문을 함께 받아 설명하거나 음성과 텍스트를 연결할 수 있다. 지원하는 입력과 출력 조합은 모델마다 다르다. 여러 종류의 파일을 올릴 수 있다는 사실만으로 모든 형식을 정확히 해석한다고 판단하지 않는다.",
+      "analogy": "현장 사진과 검사 기록을 함께 보는 담당자와 같다. 한쪽 자료가 흐리거나 서로 다른 제품의 기록이면 결론도 흔들린다.",
+      "technicalExplanation": "각 모달리티의 표현을 인코딩하고 정렬·결합해 과업을 수행한다. 이미지 해상도, 음성 길이, 시간 동기화와 전처리 손실이 결과에 영향을 준다. 서로 충돌하는 입력과 특정 모달리티가 누락된 조건도 평가한다.",
+      "realWorldExample": "설비 사진과 진동 로그를 연결해 이상 후보를 설명한다. 촬영 시각과 센서 측정 시각을 맞추고 사진만으로 내부 원인을 확정하지 않는다.",
+      "commonMisconceptions": [
+        "멀티모달 모델이라고 모든 모달리티의 입력과 출력을 지원하는 것은 아니다."
+      ],
+      "comparisons": [
+        {
+          "with": "텍스트 전용 모델",
+          "distinction": "텍스트 전용 모델은 문자 입력을 중심으로 다루며 멀티모달 모델은 서로 다른 정보 형식을 연결한다."
+        }
+      ],
+      "keyTakeaways": [
+        "텍스트·영상·음성처럼 서로 다른 종류의 정보를 함께 다루는 모델이다.",
+        "지원 모달리티와 실제 과업 성능을 각각 확인한다."
+      ],
+      "quizQuestions": [
+        "multimodal-models-recall",
+        "multimodal-models-application"
+      ],
+      "references": [
+        {
+          "title": "Hugging Face · Multimodal tasks",
+          "url": "https://huggingface.co/learn/computer-vision-course/en/unit4/multimodal-models/tasks-models-part1"
+        }
+      ],
+      "validation": {
+        "status": "공식 문서 대조 · 작성자 검토",
+        "checkedAt": "2026-10-14",
+        "note": "참조 문서의 기본 정의와 대조하고 자체 예상문제의 정답·오답 논리를 검토했다. 독립 전문가 감수 및 공식 기출 검증은 아니다. 모델별 지원 여부는 별도 확인이 필요하다."
+      }
+    },
+    {
+      "id": "vlm",
+      "title": "비전 언어 모델 · VLM",
+      "category": "G",
+      "priority": 2,
+      "priorityReason": "기초 판단을 실제 구현과 연결하는 보강 개념이다. 핵심 개념을 먼저 익힌 뒤 학습한다. 보이는 근거와 추측을 구분하고 세밀한 판독은 대조한다.",
+      "estimatedMinutes": 4,
+      "prerequisites": [
+        "multimodal-models"
+      ],
+      "summary": "이미지 등의 시각 정보와 언어를 연결해 검색·설명·질의응답 등을 수행하는 모델이다.",
+      "simpleExplanation": "사진을 보고 질문에 답하거나 문장에 맞는 이미지를 찾을 수 있다. 모든 VLM이 자유로운 문장 생성이나 이미지 생성을 지원하는 것은 아니다. 작은 글자와 정밀한 위치 판별은 별도 검증이 필요하다.",
+      "analogy": "사진을 참고하며 설명하는 안내자와 같다. 사진에서 보이지 않는 뒷면이나 흐릿한 숫자를 확신하면 실수한다.",
+      "technicalExplanation": "대조 학습으로 이미지와 텍스트를 정렬하는 모델과 시각 인코더를 언어 생성기에 연결하는 모델 등 구조가 다양하다. OCR·영역 탐지·캡션 생성·시각 질의응답은 관련되지만 다른 과업이다.",
+      "realWorldExample": "검사표 사진의 수치와 단위를 추출할 때 원본 영역을 함께 남긴다. 흐린 소수점은 재촬영 또는 사람이 확인하도록 처리하고 판독값을 곧바로 공정 제어에 사용하지 않는다.",
+      "commonMisconceptions": [
+        "이미지를 설명할 수 있다고 모든 물체의 개수나 좌표가 정확한 것은 아니다."
+      ],
+      "comparisons": [
+        {
+          "with": "OCR",
+          "distinction": "OCR은 이미지 속 문자를 추출하는 과업이고 VLM은 시각·언어 관계를 더 넓게 다룬다. 문자인식 정확도는 따로 평가한다."
+        }
+      ],
+      "keyTakeaways": [
+        "이미지 등의 시각 정보와 언어를 연결해 검색·설명·질의응답 등을 수행하는 모델이다.",
+        "보이는 근거와 추측을 구분하고 세밀한 판독은 대조한다."
+      ],
+      "quizQuestions": [
+        "vlm-recall",
+        "vlm-application"
+      ],
+      "references": [
+        {
+          "title": "Hugging Face · Multimodal tasks",
+          "url": "https://huggingface.co/learn/computer-vision-course/en/unit4/multimodal-models/tasks-models-part1"
+        },
+        {
+          "title": "Hugging Face · Image-text-to-text",
+          "url": "https://huggingface.co/docs/transformers/tasks/image_text_to_text"
+        }
+      ],
+      "validation": {
+        "status": "공식 문서 대조 · 작성자 검토",
+        "checkedAt": "2026-10-14",
+        "note": "참조 문서의 기본 정의와 대조하고 자체 예상문제의 정답·오답 논리를 검토했다. 독립 전문가 감수 및 공식 기출 검증은 아니다. 모델별 지원 여부는 별도 확인이 필요하다."
+      }
+    },
+    {
+      "id": "asr",
+      "title": "음성 인식 · ASR",
+      "category": "G",
+      "priority": 2,
+      "priorityReason": "기초 판단을 실제 구현과 연결하는 보강 개념이다. 핵심 개념을 먼저 익힌 뒤 학습한다. 전문 용어와 중요한 숫자는 원음으로 검증한다.",
+      "estimatedMinutes": 4,
+      "prerequisites": [
+        "multimodal-models"
+      ],
+      "summary": "녹음된 발화의 내용을 텍스트로 변환하는 음성 인식 과업이다.",
+      "simpleExplanation": "회의 녹음을 글로 옮기는 기능이다. 받아쓰기와 번역, 화자 구분은 서로 다른 기능이므로 지원 여부를 확인한다. 소음·겹치는 발화·전문 용어에서 오류가 발생할 수 있다.",
+      "analogy": "회의를 받아 적는 속기사와 같다. 들리지 않는 부분을 문맥으로 짐작하면 자연스럽지만 틀린 기록이 만들어질 수 있다.",
+      "technicalExplanation": "음향 입력에서 문자나 토큰 열을 예측한다. WER은 대치·삭제·삽입 오류 수의 합을 기준 단어 수로 나눈 값이다. 삽입이 많으면 100%를 넘을 수 있고 한국어는 분절 기준을 고정해야 비교가 의미 있다.",
+      "realWorldExample": "정비 구술 기록을 ASR로 전사한 뒤 장비 번호·단위·부정 표현을 원음과 대조한다. 전체 오류율이 낮더라도 “교체하지 않음”의 부정어 누락은 별도로 점검한다.",
+      "commonMisconceptions": [
+        "전사 문장이 자연스럽다고 원음의 내용과 일치하는 것은 아니다."
+      ],
+      "comparisons": [
+        {
+          "with": "TTS",
+          "distinction": "ASR은 음성에서 텍스트로, TTS는 텍스트에서 음성으로 변환한다. 서로 반대 방향의 과업이다."
+        }
+      ],
+      "keyTakeaways": [
+        "녹음된 발화의 내용을 텍스트로 변환하는 음성 인식 과업이다.",
+        "전문 용어와 중요한 숫자는 원음으로 검증한다."
+      ],
+      "quizQuestions": [
+        "asr-recall",
+        "asr-application"
+      ],
+      "references": [
+        {
+          "title": "Radford et al. · Robust Speech Recognition",
+          "url": "https://arxiv.org/abs/2212.04356"
+        }
+      ],
+      "validation": {
+        "status": "공식 문서 대조 · 작성자 검토",
+        "checkedAt": "2026-10-14",
+        "note": "참조 문서의 기본 정의와 대조하고 자체 예상문제의 정답·오답 논리를 검토했다. 독립 전문가 감수 및 공식 기출 검증은 아니다. 모델별 지원 여부는 별도 확인이 필요하다."
+      }
+    },
+    {
+      "id": "tts",
+      "title": "음성 합성 · TTS",
+      "category": "G",
+      "priority": 2,
+      "priorityReason": "기초 판단을 실제 구현과 연결하는 보강 개념이다. 핵심 개념을 먼저 익힌 뒤 학습한다. 음질과 내용 전달 정확성을 분리해 평가한다.",
+      "estimatedMinutes": 4,
+      "prerequisites": [
+        "asr"
+      ],
+      "summary": "텍스트를 발화 음성으로 생성하는 과업으로 발음·운율·화자 특성이 품질에 영향을 준다.",
+      "simpleExplanation": "안내 문장을 사람이 들을 수 있는 소리로 읽어 준다. 음성이 자연스럽더라도 숫자나 약어를 잘못 읽을 수 있다. 입력 문장의 사실 여부는 별도로 확인해야 한다.",
+      "analogy": "원고를 읽는 아나운서와 같다. 좋은 목소리가 원고의 사실성을 보증하지 않고 정확한 원고도 발음이 틀리면 전달에 실패한다.",
+      "technicalExplanation": "텍스트 정규화로 숫자·기호·약어를 발음 표현으로 바꾸고 음향 표현 또는 파형을 생성한다. 지원 언어, 발음 사전, 지연과 명료도를 평가한다. 특정인 음색의 재현 가능성과 사용 허용 여부는 구분한다.",
+      "realWorldExample": "장비 경보 “L12, 0.5 mm”를 음성 안내할 때 품번과 소수·단위 발음을 검수한다. 현장의 배경 소음에서도 알아들을 수 있는지 청취 시험을 수행한다.",
+      "commonMisconceptions": [
+        "자연스러운 음질이 숫자·약어의 정확한 전달이나 내용의 진실을 보장하지 않는다."
+      ],
+      "comparisons": [
+        {
+          "with": "ASR",
+          "distinction": "TTS는 텍스트를 읽어 주는 생성 과업이고 ASR은 들리는 발화를 텍스트로 옮기는 인식 과업이다."
+        }
+      ],
+      "keyTakeaways": [
+        "텍스트를 발화 음성으로 생성하는 과업으로 발음·운율·화자 특성이 품질에 영향을 준다.",
+        "음질과 내용 전달 정확성을 분리해 평가한다."
+      ],
+      "quizQuestions": [
+        "tts-recall",
+        "tts-application"
+      ],
+      "references": [
+        {
+          "title": "Hugging Face · Text to speech",
+          "url": "https://huggingface.co/docs/transformers/tasks/text-to-speech"
+        }
+      ],
+      "validation": {
+        "status": "공식 문서 대조 · 작성자 검토",
+        "checkedAt": "2026-10-14",
+        "note": "참조 문서의 기본 정의와 대조하고 자체 예상문제의 정답·오답 논리를 검토했다. 독립 전문가 감수 및 공식 기출 검증은 아니다. 모델별 지원 여부는 별도 확인이 필요하다."
+      }
+    },
+    {
+      "id": "diffusion",
+      "title": "확산 모델 · Diffusion",
+      "category": "G",
+      "priority": 3,
+      "priorityReason": "기술 선택의 시야를 넓히는 확장 개념이다. 확인된 세부 출제 범위가 없어 핵심 복습 뒤 배치한다. 생성 이미지의 사실성과 업무 적합성을 별도로 평가한다.",
+      "estimatedMinutes": 4,
+      "prerequisites": [
+        "ai-taxonomy",
+        "neural-network"
+      ],
+      "summary": "데이터에 잡음을 더하는 과정과 대응되는 복원 과정을 학습해 새 샘플을 생성하는 모델 계열이다.",
+      "simpleExplanation": "학습한 잡음 제거 방향을 이용해 잡음에서 이미지 등을 만들어 낸다. 텍스트 조건으로 원하는 내용에 가깝게 유도할 수 있지만 모든 세부 지시가 정확히 반영되는 것은 아니다.",
+      "analogy": "안개 낀 그림을 여러 번 다듬어 또렷하게 만드는 과정에 비유할 수 있다. 실제로 원본 한 장을 기억해 복원하는 것만이 목적은 아니며 새 샘플을 만든다.",
+      "technicalExplanation": "기본 확산 학습은 여러 잡음 수준에서 복원에 필요한 신호를 예측한다. 생성 시 스케줄과 샘플러에 따라 반복 복원한다. 잠재 공간 확산은 압축 표현에서 수행하고 디코더로 영상으로 바꾼다. 단계 수와 시간·품질 관계는 설정에 따라 달라진다.",
+      "realWorldExample": "학습용 결함 이미지 후보를 합성한 뒤 실제 결함의 형태와 분포를 반영하는지 검수한다. 합성 이미지만으로 평가하지 않고 실제 미사용 로트에서 성능을 확인한다.",
+      "commonMisconceptions": [
+        "더 많은 생성 단계가 모든 설정에서 무조건 더 좋은 결과를 보장하지 않는다."
+      ],
+      "comparisons": [
+        {
+          "with": "자동회귀 생성",
+          "distinction": "자동회귀는 앞선 출력에 조건화해 다음 요소를 생성하고 확산은 잡음 수준을 줄이는 복원 과정을 사용한다."
+        }
+      ],
+      "keyTakeaways": [
+        "데이터에 잡음을 더하는 과정과 대응되는 복원 과정을 학습해 새 샘플을 생성하는 모델 계열이다.",
+        "생성 이미지의 사실성과 업무 적합성을 별도로 평가한다."
+      ],
+      "quizQuestions": [
+        "diffusion-recall",
+        "diffusion-application"
+      ],
+      "references": [
+        {
+          "title": "Ho et al. · Denoising Diffusion Probabilistic Models",
+          "url": "https://arxiv.org/abs/2006.11239"
+        }
+      ],
+      "validation": {
+        "status": "공식 문서 대조 · 작성자 검토",
+        "checkedAt": "2026-10-14",
+        "note": "참조 문서의 기본 정의와 대조하고 자체 예상문제의 정답·오답 논리를 검토했다. 독립 전문가 감수 및 공식 기출 검증은 아니다. 모델별 지원 여부는 별도 확인이 필요하다."
+      }
+    },
+    {
+      "id": "reasoning-models",
+      "title": "추론 특화 모델 · Reasoning Models",
+      "category": "G",
+      "priority": 2,
+      "priorityReason": "기초 판단을 실제 구현과 연결하는 보강 개념이다. 핵심 개념을 먼저 익힌 뒤 학습한다. 추가 계산의 이득을 실제 정답률과 비용으로 확인한다.",
+      "estimatedMinutes": 4,
+      "prerequisites": [
+        "reasoning-prompting",
+        "inference"
+      ],
+      "summary": "복잡한 문제 해결을 위해 추론 행동을 학습하거나 응답 전 계산을 더 사용하는 언어 모델 계열이다.",
+      "simpleExplanation": "수학·코딩·계획처럼 여러 조건을 맞춰야 하는 과업에 도움이 될 수 있다. 추가 계산은 지연과 비용을 늘릴 수 있으며 간단한 분류에서는 이득이 작을 수 있다. 추론 특화라는 이름도 정답을 보장하지 않는다.",
+      "analogy": "빠른 답변 전에 검산 시간을 더 쓰는 풀이자와 같다. 시간을 더 준다고 잘못된 입력이나 모르는 사실이 자동으로 바로잡히지는 않는다.",
+      "technicalExplanation": "추론 데이터 학습과 강화학습, 추론 시 계산 확대 등 방법이 있다. 모든 모델이 동일한 내부 절차나 설정을 제공하는 것은 아니다. 정확도·비용·지연을 대표 과업에서 비교하며 내부 사고 전문 대신 확인 가능한 핵심 근거와 실행 결과를 검증한다.",
+      "realWorldExample": "복잡한 생산 일정 후보를 생성한 뒤 별도 코드로 설비 중복 배정과 납기 제약을 검사한다. 단순 태그 분류에는 작은 모델을 비교 기준으로 두고 필요한 요청만 추론 모델로 보낸다.",
+      "commonMisconceptions": [
+        "추론 토큰이 많거나 풀이가 길다고 답이 반드시 맞거나 최신 정보에 근거한 것은 아니다."
+      ],
+      "comparisons": [
+        {
+          "with": "추론 중심 프롬프팅",
+          "distinction": "프롬프팅은 입력 지시 설계이고 추론 모델은 모델의 학습·계산 특성이다. 지시 한 줄로 동일한 능력이 생기는 것은 아니다."
+        }
+      ],
+      "keyTakeaways": [
+        "복잡한 문제 해결을 위해 추론 행동을 학습하거나 응답 전 계산을 더 사용하는 언어 모델 계열이다.",
+        "추가 계산의 이득을 실제 정답률과 비용으로 확인한다."
+      ],
+      "quizQuestions": [
+        "reasoning-models-recall",
+        "reasoning-models-application"
+      ],
+      "references": [
+        {
+          "title": "Hugging Face · Reasoning models",
+          "url": "https://huggingface.co/learn/llm-course/chapter12/1"
+        }
+      ],
+      "validation": {
+        "status": "공식 문서 대조 · 작성자 검토",
+        "checkedAt": "2026-10-14",
+        "note": "참조 문서의 기본 정의와 대조하고 자체 예상문제의 정답·오답 논리를 검토했다. 독립 전문가 감수 및 공식 기출 검증은 아니다. 모델별 지원 여부는 별도 확인이 필요하다."
+      }
+    },
+    {
+      "id": "open-weight-closed",
+      "title": "공개 가중치와 비공개 모델",
+      "category": "G",
+      "priority": 2,
+      "priorityReason": "기초 판단을 실제 구현과 연결하는 보강 개념이다. 핵심 개념을 먼저 익힌 뒤 학습한다. 가중치·라이선스·호스팅 위치·총비용을 따로 확인한다.",
+      "estimatedMinutes": 4,
+      "prerequisites": [
+        "pretraining",
+        "inference"
+      ],
+      "summary": "가중치 접근·수정 가능성과 서비스 이용 방식이 다른 배포 선택이며 라이선스 조건은 별도로 확인한다.",
+      "simpleExplanation": "공개 가중치는 직접 내려받아 실행하거나 조정할 수 있는 선택을 제공한다. 비공개 모델은 대개 서비스 API로 이용한다. 가중치 공개가 학습 데이터·코드의 완전 공개나 아무 제한 없는 사용을 뜻하지 않는다.",
+      "analogy": "장비 설계 일부를 받아 자체 운영하는 방식과 관리형 장비 서비스를 쓰는 방식의 차이다. 설계 파일을 받았어도 사용 허가와 운영 비용은 별도로 존재한다.",
+      "technicalExplanation": "가중치 공개 여부, 사용·수정·재배포 권리, 학습 정보 공개 범위를 나누어 검토한다. 자체 호스팅은 메모리·처리량·업데이트 책임이 생기며 관리형 API는 서비스 정책·접속·가격에 의존한다. OSI의 Open Source AI 정의는 가중치만 공개하는 것보다 넓은 조건을 제시한다.",
+      "realWorldExample": "사내 실행을 검토할 때 후보의 한국어 정확도, 장비 요구량, 라이선스와 운영 인력을 함께 비교한다. 공개 가중치를 외부 서버에서 실행하면 데이터가 사외로 나갈 수도 있으므로 실제 데이터 경로를 확인한다.",
+      "commonMisconceptions": [
+        "공개 가중치 모델은 언제나 무료이고 모든 용도로 제한 없이 쓸 수 있다는 생각은 틀리다."
+      ],
+      "comparisons": [
+        {
+          "with": "오픈소스 AI",
+          "distinction": "가중치 접근 가능성만으로 데이터 정보·코드·자유로운 사용 조건까지 포함하는 오픈소스 정의를 모두 만족한다고 볼 수 없다."
+        }
+      ],
+      "keyTakeaways": [
+        "가중치 접근·수정 가능성과 서비스 이용 방식이 다른 배포 선택이며 라이선스 조건은 별도로 확인한다.",
+        "가중치·라이선스·호스팅 위치·총비용을 따로 확인한다."
+      ],
+      "quizQuestions": [
+        "open-weight-closed-recall",
+        "open-weight-closed-application"
+      ],
+      "references": [
+        {
+          "title": "Open Source Initiative · Open Source AI Definition",
+          "url": "https://opensource.org/ai/open-source-ai-definition"
+        }
+      ],
+      "validation": {
+        "status": "공식 문서 대조 · 작성자 검토",
+        "checkedAt": "2026-10-14",
+        "note": "참조 문서의 기본 정의와 대조하고 자체 예상문제의 정답·오답 논리를 검토했다. 독립 전문가 감수 및 공식 기출 검증은 아니다. 모델별 지원 여부는 별도 확인이 필요하다."
+      }
+    },
+    {
+      "id": "on-device-ai",
+      "title": "온디바이스 AI · On-device AI",
+      "category": "G",
+      "priority": 2,
+      "priorityReason": "기초 판단을 실제 구현과 연결하는 보강 개념이다. 핵심 개념을 먼저 익힌 뒤 학습한다. 실제 장치의 품질·지연·메모리·전력과 데이터 경로를 확인한다.",
+      "estimatedMinutes": 4,
+      "prerequisites": [
+        "inference",
+        "quantization"
+      ],
+      "summary": "클라우드 서버 대신 사용자 장치나 현장 장비에서 모델 추론을 실행하는 방식이다.",
+      "simpleExplanation": "네트워크 연결 없이 응답하거나 원본을 장치 안에서 처리하는 데 도움이 된다. 다만 장치의 메모리·전력·발열 한계가 있고 앱이 로그를 서버로 보내면 모든 데이터가 로컬에 남는 것은 아니다.",
+      "analogy": "원격 전문가에게 매번 연락하는 대신 현장 장비 안에 판단 기능을 두는 방식이다. 현장 계산 자원과 업데이트 체계를 갖춰야 한다.",
+      "technicalExplanation": "실행 대상의 CPU·GPU·가속기 지원, 모델 형식과 연산 지원을 확인한다. 양자화와 증류는 자원 절감에 쓰일 수 있으나 정확도 변화를 측정해야 한다. 초기 로딩 시간, 처리량, 지속 실행의 열 제한까지 평가한다.",
+      "realWorldExample": "통신이 불안정한 검사 장치에서 소형 영상 모델을 실행한다. 실제 장비의 연속 처리 속도와 오검출을 측정하고 업데이트 실패 시 이전 모델로 복구할 경로를 둔다.",
+      "commonMisconceptions": [
+        "온디바이스 실행만으로 개인정보 보호나 무조건 빠른 응답이 자동 보장되지는 않는다."
+      ],
+      "comparisons": [
+        {
+          "with": "클라우드 추론",
+          "distinction": "클라우드는 원격 자원을 이용하고 온디바이스는 로컬 자원을 사용한다. 지연은 네트워크와 장치 연산 능력 모두에 영향을 받는다."
+        }
+      ],
+      "keyTakeaways": [
+        "클라우드 서버 대신 사용자 장치나 현장 장비에서 모델 추론을 실행하는 방식이다.",
+        "실제 장치의 품질·지연·메모리·전력과 데이터 경로를 확인한다."
+      ],
+      "quizQuestions": [
+        "on-device-ai-recall",
+        "on-device-ai-application"
+      ],
+      "references": [
+        {
+          "title": "Google AI Edge · LiteRT-LM",
+          "url": "https://developers.google.com/edge/litert-lm"
+        }
+      ],
+      "validation": {
+        "status": "공식 문서 대조 · 작성자 검토",
+        "checkedAt": "2026-10-14",
+        "note": "참조 문서의 기본 정의와 대조하고 자체 예상문제의 정답·오답 논리를 검토했다. 독립 전문가 감수 및 공식 기출 검증은 아니다. 모델별 지원 여부는 별도 확인이 필요하다."
+      }
+    },
+    {
+      "id": "ai-coding-agents",
+      "title": "AI 코딩 에이전트",
+      "category": "G",
+      "priority": 2,
+      "priorityReason": "기초 판단을 실제 구현과 연결하는 보강 개념이다. 핵심 개념을 먼저 익힌 뒤 학습한다. 요구사항·변경 diff·독립 테스트·실행 결과를 함께 검토한다.",
+      "estimatedMinutes": 4,
+      "prerequisites": [
+        "tool-use-instructions",
+        "prompt-injection"
+      ],
+      "summary": "코드 읽기·수정·도구 실행·테스트 결과 확인을 반복하며 개발 과업을 수행하는 AI 시스템이다.",
+      "simpleExplanation": "코드 제안만 하는 도우미와 달리 저장소를 탐색하고 변경한 뒤 테스트를 실행할 수 있다. 작업 성공 선언과 실제 테스트 통과는 다르다. 요구사항이 틀리거나 검증이 약하면 실행 가능한 잘못된 코드를 만들 수 있다.",
+      "analogy": "작업 지시를 받고 코드를 고치는 개발 협업자와 같다. 수정할 수 있는 파일과 실행 권한을 정하고 변경 내용을 검토해야 한다.",
+      "technicalExplanation": "요구사항→문맥 수집→수정→실행 피드백의 루프를 구성한다. 저장소 안 문서도 불신 지시를 포함할 수 있다. 실행 환경을 격리하고 테스트의 독립 기대값·회귀·변경 범위를 확인한다. 테스트 통과가 모든 보안·업무 조건을 보장하지는 않는다.",
+      "realWorldExample": "CSV 불량률 계산기를 수정하게 할 때 분모 0, 누락값, 퍼센트 단위를 포함한 기대 결과를 정한다. 에이전트가 테스트를 바꿔 오류를 숨기지 않았는지 diff를 보고 실제 실행 결과를 확인한다.",
+      "commonMisconceptions": [
+        "에이전트가 완료했다고 말하거나 자체 테스트가 통과해도 요구사항 충족이 자동 증명되지는 않는다."
+      ],
+      "comparisons": [
+        {
+          "with": "코드 자동완성",
+          "distinction": "자동완성은 편집 중 코드 후보를 제공하고 코딩 에이전트는 도구 실행과 피드백을 이용해 여러 단계를 수행할 수 있다."
+        }
+      ],
+      "keyTakeaways": [
+        "코드 읽기·수정·도구 실행·테스트 결과 확인을 반복하며 개발 과업을 수행하는 AI 시스템이다.",
+        "요구사항·변경 diff·독립 테스트·실행 결과를 함께 검토한다."
+      ],
+      "quizQuestions": [
+        "ai-coding-agents-recall",
+        "ai-coding-agents-application"
+      ],
+      "references": [
+        {
+          "title": "Anthropic · Coding agent best practices",
+          "url": "https://code.claude.com/docs/en/best-practices"
+        },
+        {
+          "title": "Anthropic · Mitigating prompt injections",
+          "url": "https://www.anthropic.com/research/prompt-injection-defenses"
+        }
+      ],
+      "validation": {
+        "status": "공식 문서 대조 · 작성자 검토",
+        "checkedAt": "2026-10-14",
+        "note": "참조 문서의 기본 정의와 대조하고 자체 예상문제의 정답·오답 논리를 검토했다. 독립 전문가 감수 및 공식 기출 검증은 아니다. 모델별 지원 여부는 별도 확인이 필요하다."
+      }
+    }
+  ],
+  "questions": [
+    {
+      "id": "ai-taxonomy-recall",
+      "conceptId": "ai-taxonomy",
+      "category": "A",
+      "type": "recall",
+      "prompt": "AI, ML, DL의 관계를 가장 정확히 설명한 것은?",
+      "options": [
+        "DL은 ML의 한 접근이고 ML은 AI의 한 접근이다.",
+        "모든 AI는 데이터로 학습한다.",
+        "모든 DL은 문장을 생성한다.",
+        "ML은 DL보다 좁은 개념이다."
+      ],
+      "correctIndex": 0,
+      "explanations": [
+        "다층 신경망 학습은 머신러닝에 속한다.",
+        "규칙 기반 AI는 학습 없이 동작할 수 있다.",
+        "영상 분류 신경망처럼 생성하지 않는 DL도 있다.",
+        "결정 트리 등 비딥러닝 ML도 존재한다."
+      ]
+    },
+    {
+      "id": "ai-taxonomy-application",
+      "conceptId": "ai-taxonomy",
+      "category": "A",
+      "type": "application",
+      "prompt": "불량 이미지에 정상/불량 라벨을 내는 CNN을 도입했다. 가장 적절한 설명은?",
+      "options": [
+        "텍스트가 없으므로 AI가 아니다.",
+        "딥러닝 기반 분류 모델이다.",
+        "이미지를 입력하므로 반드시 생성형 AI다.",
+        "규칙 기반이므로 학습 데이터가 필요 없다."
+      ],
+      "correctIndex": 1,
+      "explanations": [
+        "AI 과업은 영상도 포함한다.",
+        "CNN 사용 방법과 라벨 예측 목적을 구분한 설명이다.",
+        "생성형 여부는 입력이 아니라 출력 과업과 관련된다.",
+        "CNN 분류기는 일반적으로 데이터로 학습한다."
+      ]
+    },
+    {
+      "id": "supervised-learning-recall",
+      "conceptId": "supervised-learning",
+      "category": "A",
+      "type": "recall",
+      "prompt": "지도학습을 구분하는 핵심은?",
+      "options": [
+        "훈련 없이 규칙을 직접 작성한다.",
+        "입력에 대응하는 목표 정답을 이용한다.",
+        "반드시 사람이 실시간 승인한다.",
+        "항상 이산 라벨만 출력한다."
+      ],
+      "correctIndex": 1,
+      "explanations": [
+        "데이터에서 규칙을 학습한다는 점이 다르다.",
+        "입력과 라벨의 관계를 손실로 학습한다.",
+        "승인 여부는 지도학습의 정의가 아니다.",
+        "연속 수치를 예측하는 회귀도 지도학습이다."
+      ]
+    },
+    {
+      "id": "supervised-learning-application",
+      "conceptId": "supervised-learning",
+      "category": "A",
+      "type": "application",
+      "prompt": "과거 온도와 실제 생산 두께가 있다. 새 조건의 두께를 예측하려면?",
+      "options": [
+        "새 데이터 정답으로 먼저 모델을 조정한 뒤 시험한다.",
+        "두께 예측은 반드시 강화학습이다.",
+        "두께를 정답으로 둔 지도 회귀를 검토한다.",
+        "두께를 지우고 군집 개수만 학습한다."
+      ],
+      "correctIndex": 2,
+      "explanations": [
+        "평가 정답을 조정에 쓰면 독립 평가가 아니다.",
+        "환경과 행동 보상 루프가 필요하지 않다.",
+        "연속값인 두께에 대응하는 관측 라벨이 있다.",
+        "군집만으로 목표 두께 예측을 직접 학습하지 않는다."
+      ]
+    },
+    {
+      "id": "unsupervised-learning-recall",
+      "conceptId": "unsupervised-learning",
+      "category": "A",
+      "type": "recall",
+      "prompt": "비지도학습에 해당하는 작업은?",
+      "options": [
+        "게임 점수를 보상으로 행동을 학습한다.",
+        "고정 if 문으로 알림을 낸다.",
+        "라벨 없는 로그에서 유사한 패턴을 묶는다.",
+        "정답 가격으로 예측 오차를 최소화한다."
+      ],
+      "correctIndex": 2,
+      "explanations": [
+        "보상 기반 상호작용은 강화학습이다.",
+        "직접 작성한 규칙 실행은 학습이 아니다.",
+        "목표 라벨 없이 데이터의 구조를 찾는다.",
+        "정답 수치를 쓰는 지도 회귀다."
+      ]
+    },
+    {
+      "id": "unsupervised-learning-application",
+      "conceptId": "unsupervised-learning",
+      "category": "A",
+      "type": "application",
+      "prompt": "로그 군집 2번이 발견됐다. 다음 판단 중 적절한 것은?",
+      "options": [
+        "2번은 항상 불량을 의미한다.",
+        "라벨이 없으므로 어떤 평가도 불가능하다.",
+        "군집 수가 많을수록 항상 유용하다.",
+        "대표 로그를 검토해 업무적 의미를 확인한다."
+      ],
+      "correctIndex": 3,
+      "explanations": [
+        "군집 번호에는 사전 의미가 없다.",
+        "구조 지표와 전문가 검토 등으로 평가할 수 있다.",
+        "과도한 분할은 해석성과 활용성을 떨어뜨릴 수 있다.",
+        "군집 번호는 원인이나 정답 라벨을 보장하지 않는다."
+      ]
+    },
+    {
+      "id": "reinforcement-learning-recall",
+      "conceptId": "reinforcement-learning",
+      "category": "A",
+      "type": "recall",
+      "prompt": "강화학습에서 정책은 무엇인가?",
+      "options": [
+        "정답 라벨을 모은 테스트 파일이다.",
+        "입력 문장을 자르는 알고리즘이다.",
+        "군집에 붙이는 임의 번호다.",
+        "상태에 따라 행동을 선택하는 규칙이다."
+      ],
+      "correctIndex": 3,
+      "explanations": [
+        "테스트 데이터와 정책은 별개다.",
+        "이는 입력을 토큰 단위로 나누는 토큰화다.",
+        "이는 군집 표현이며 행동 선택이 아니다.",
+        "정책이 에이전트의 행동을 결정한다."
+      ]
+    },
+    {
+      "id": "reinforcement-learning-application",
+      "conceptId": "reinforcement-learning",
+      "category": "A",
+      "type": "application",
+      "prompt": "보상으로 생산량만 주자 장비가 품질을 희생했다. 우선 해결할 문제는?",
+      "options": [
+        "품질 제약을 포함하도록 목표와 보상 설계를 검토한다.",
+        "보상이 높으므로 바로 배포한다.",
+        "정책을 토크나이저로 교체한다.",
+        "품질 데이터를 평가에서 삭제한다."
+      ],
+      "correctIndex": 0,
+      "explanations": [
+        "현재 보상과 실제 업무 목적이 어긋난 사례다.",
+        "대리 지표만 좋고 품질 목표는 실패했다.",
+        "토크나이저는 공정 제어 보상 문제를 해결하지 않는다.",
+        "부작용을 감추면 목표 불일치를 해결할 수 없다."
+      ]
+    },
+    {
+      "id": "classification-recall",
+      "conceptId": "classification",
+      "category": "A",
+      "type": "recall",
+      "prompt": "세 종류의 결함 중 하나를 예측하는 과업은?",
+      "options": [
+        "다중 클래스 분류",
+        "연속값 회귀",
+        "라벨 없는 군집화",
+        "언제나 다중 라벨 분류"
+      ],
+      "correctIndex": 0,
+      "explanations": [
+        "상호 배타적 세 범주 중 하나를 예측한다.",
+        "목표는 연속 수치가 아니라 범주다.",
+        "미리 정의된 정답 범주가 존재한다.",
+        "한 샘플의 정답이 하나이므로 다중 라벨이라고 단정할 수 없다."
+      ]
+    },
+    {
+      "id": "classification-application",
+      "conceptId": "classification",
+      "category": "A",
+      "type": "application",
+      "prompt": "불량 확률 모델에서 임계값을 0.5에서 0.2로 내렸다. 동일 점수에서 일반적인 변화는?",
+      "options": [
+        "모델이 자동으로 재학습된다.",
+        "양성 판정이 늘어 재현율이 낮아지지는 않는다.",
+        "모든 점수 자체가 0.3 증가한다.",
+        "거짓 양성 수는 반드시 감소한다."
+      ],
+      "correctIndex": 1,
+      "explanations": [
+        "판정 기준 변경은 파라미터 학습과 다르다.",
+        "기존 양성에 더해 추가 양성이 생기므로 TP는 줄지 않는다.",
+        "임계값 변경은 모델 점수를 바꾸지 않는다.",
+        "더 많은 정상 샘플을 양성으로 판정할 수 있다."
+      ]
+    },
+    {
+      "id": "regression-recall",
+      "conceptId": "regression",
+      "category": "A",
+      "type": "recall",
+      "prompt": "MAE에 대한 정확한 설명은?",
+      "options": [
+        "양성 중 맞힌 비율이다.",
+        "예측 오차 절댓값의 평균이다.",
+        "정확히 맞힌 범주의 비율이다.",
+        "오차를 제곱한 평균이다."
+      ],
+      "correctIndex": 1,
+      "explanations": [
+        "이는 분류 정밀도와 관련된다.",
+        "양·음 오차가 상쇄되지 않도록 절댓값을 쓴다.",
+        "이는 전체 분류 중 맞힌 비율인 정확도다.",
+        "제곱 오차의 평균은 MSE이며 MAE와 다르다."
+      ]
+    },
+    {
+      "id": "regression-application",
+      "conceptId": "regression",
+      "category": "A",
+      "type": "application",
+      "prompt": "예측 오차가 −2 nm와 +4 nm 두 개라면 MAE는?",
+      "options": [
+        "10 nm",
+        "6 nm",
+        "3 nm",
+        "1 nm"
+      ],
+      "correctIndex": 2,
+      "explanations": [
+        "제곱 오차 평균 10은 MSE이며 단위도 nm²이다.",
+        "절대 오차 합이며 평균을 내려면 2로 나눠야 한다.",
+        "(2+4)/2=3이며 원래 목표와 같은 단위를 갖는다.",
+        "부호 있는 평균 오차는 MAE가 아니다."
+      ]
+    },
+    {
+      "id": "clustering-recall",
+      "conceptId": "clustering",
+      "category": "A",
+      "type": "recall",
+      "prompt": "K-means의 대표적인 학습 목표는?",
+      "options": [
+        "정답 라벨과 교차 엔트로피를 계산한다.",
+        "단어의 다음 토큰 확률을 높인다.",
+        "샘플과 배정된 중심 사이 제곱 거리의 합을 줄인다.",
+        "모든 샘플을 서로 다른 군집으로 만든다."
+      ],
+      "correctIndex": 2,
+      "explanations": [
+        "기본 K-means는 정답 라벨을 쓰지 않는다.",
+        "이는 언어 모델의 학습 목표다.",
+        "각 점을 가까운 중심에 배정하며 중심을 갱신한다.",
+        "군집 수 K를 정하며 샘플마다 군집을 두는 것이 목적이 아니다."
+      ]
+    },
+    {
+      "id": "clustering-application",
+      "conceptId": "clustering",
+      "category": "A",
+      "type": "application",
+      "prompt": "두 센서의 단위 차이 때문에 군집이 한 센서에 좌우된다. 적절한 점검은?",
+      "options": [
+        "군집 번호의 글꼴을 바꾼다.",
+        "발견된 군집을 그대로 불량 정답으로 선언한다.",
+        "항상 K를 샘플 수로 설정한다.",
+        "특성 스케일과 거리 함수가 업무 의미에 맞는지 확인한다."
+      ],
+      "correctIndex": 3,
+      "explanations": [
+        "표시 변경은 거리 계산에 영향을 주지 않는다.",
+        "군집과 원인 라벨은 별도 검증이 필요하다.",
+        "모든 샘플을 나누면 유용한 공통 패턴을 잃는다.",
+        "군집의 유사성 정의가 결과를 지배하기 때문이다."
+      ]
+    },
+    {
+      "id": "data-split-recall",
+      "conceptId": "data-split",
+      "category": "A",
+      "type": "recall",
+      "prompt": "검증 데이터의 주된 역할은?",
+      "options": [
+        "항상 가중치 경사 계산에 직접 사용한다.",
+        "최종 시험 답을 훈련에 추가한다.",
+        "오직 서버 속도만 측정한다.",
+        "하이퍼파라미터와 모델 선택을 지원한다."
+      ],
+      "correctIndex": 3,
+      "explanations": [
+        "일반적인 분할에서 가중치 학습은 훈련 데이터로 한다.",
+        "이는 평가 누출이다.",
+        "모델 성능과 설정 선택에도 사용된다.",
+        "여러 설정을 비교하는 데이터이며 최종 독립 시험과 구분한다."
+      ]
+    },
+    {
+      "id": "data-split-application",
+      "conceptId": "data-split",
+      "category": "A",
+      "type": "application",
+      "prompt": "같은 웨이퍼의 잘린 이미지가 훈련과 테스트에 섞였다. 새 웨이퍼 성능을 평가하려면?",
+      "options": [
+        "웨이퍼 단위로 그룹을 나누어 평가한다.",
+        "이미지 파일명만 바꾼다.",
+        "같은 이미지의 증강본을 테스트에 추가한다.",
+        "테스트 라벨로 임계값을 계속 최적화한다."
+      ],
+      "correctIndex": 0,
+      "explanations": [
+        "같은 원본의 유사 샘플 누출을 막아 새 웨이퍼 일반화를 본다.",
+        "데이터 유사성이 사라지지 않는다.",
+        "훈련 원본과 연관된 자료라 낙관적 평가가 된다.",
+        "최종 평가 자료가 선택에 오염된다."
+      ]
+    },
+    {
+      "id": "overfitting-recall",
+      "conceptId": "overfitting",
+      "category": "A",
+      "type": "recall",
+      "prompt": "과적합을 의심할 대표 패턴은?",
+      "options": [
+        "훈련 손실은 낮고 검증 손실은 높다.",
+        "훈련·검증 모두 오차가 크다.",
+        "입력 데이터가 존재하지 않는다.",
+        "테스트 정확도가 높다는 사실 하나다."
+      ],
+      "correctIndex": 0,
+      "explanations": [
+        "훈련에만 잘 맞는 일반화 간격을 시사한다.",
+        "보통 과소적합 또는 데이터 문제를 먼저 의심한다.",
+        "이는 학습 성립 자체의 문제다.",
+        "좋은 테스트 결과 자체가 과적합 근거는 아니다."
+      ]
+    },
+    {
+      "id": "overfitting-application",
+      "conceptId": "overfitting",
+      "category": "A",
+      "type": "application",
+      "prompt": "훈련 손실은 줄고 검증 손실은 최저점 이후 증가한다. 적절한 대응은?",
+      "options": [
+        "훈련 시간을 무조건 열 배 늘린다.",
+        "검증 기준 조기 종료와 규제를 검토한다.",
+        "테스트 손실을 매 epoch 확인하며 최저 모델을 고른다.",
+        "검증 데이터를 모두 제거한다."
+      ],
+      "correctIndex": 1,
+      "explanations": [
+        "과적합이 더 심해질 수 있다.",
+        "훈련 잡음에 더 맞추는 것을 제한할 수 있다.",
+        "테스트가 모델 선택에 사용되어 독립성을 잃는다.",
+        "문제를 관찰할 수 없게 할 뿐이다."
+      ]
+    },
+    {
+      "id": "underfitting-recall",
+      "conceptId": "underfitting",
+      "category": "A",
+      "type": "recall",
+      "prompt": "훈련과 검증 모두 성능이 낮을 때 우선 고려할 상태는?",
+      "options": [
+        "테스트 누출 확정",
+        "과소적합 또는 데이터·구현 문제",
+        "반드시 과적합",
+        "완벽한 일반화"
+      ],
+      "correctIndex": 1,
+      "explanations": [
+        "낮은 점수만으로 누출을 확정할 수 없다.",
+        "두 집합 모두 못 맞히는 이유를 진단해야 한다.",
+        "일반적인 과적합은 훈련 성능이 상대적으로 좋다.",
+        "두 성능이 모두 낮으면 유용한 모델이라고 보기 어렵다."
+      ]
+    },
+    {
+      "id": "underfitting-application",
+      "conceptId": "underfitting",
+      "category": "A",
+      "type": "application",
+      "prompt": "강한 규제를 건 모델이 훈련 패턴조차 못 맞힌다. 가장 관련 있는 실험은?",
+      "options": [
+        "검증 정답을 입력 특성에 넣는다.",
+        "훈련 점수를 숨긴다.",
+        "규제 강도를 낮추고 검증 성능을 비교한다.",
+        "정답 라벨을 무작위로 섞는다."
+      ],
+      "correctIndex": 2,
+      "explanations": [
+        "검증 정답을 입력에 넣으면 데이터 누출을 유발한다.",
+        "원인 진단 정보를 잃는다.",
+        "과도한 복잡도 제한이 과소적합 원인일 수 있다.",
+        "학습 신호를 망가뜨린다."
+      ]
+    },
+    {
+      "id": "bias-variance-recall",
+      "conceptId": "bias-variance",
+      "category": "A",
+      "type": "recall",
+      "prompt": "모델의 분산이 높다는 설명은?",
+      "options": [
+        "입력 열의 단위가 모두 같다.",
+        "사회적 편향이 전혀 없다.",
+        "훈련 표본이 바뀌면 예측이 크게 달라진다.",
+        "항상 같은 방향으로 일정한 오차가 난다."
+      ],
+      "correctIndex": 2,
+      "explanations": [
+        "특성 단위와 모델 분산은 다른 개념이다.",
+        "통계적 분산으로 공정성을 판정할 수 없다.",
+        "학습 데이터 변화에 민감한 정도를 뜻한다.",
+        "이는 체계적 편향과 더 관련 있다."
+      ]
+    },
+    {
+      "id": "bias-variance-application",
+      "conceptId": "bias-variance",
+      "category": "A",
+      "type": "application",
+      "prompt": "다른 표본으로 훈련한 깊은 트리의 예측이 크게 흔들린다. 어떤 접근이 합리적인가?",
+      "options": [
+        "모든 라벨을 상수로 바꾼다.",
+        "테스트 데이터를 모든 학습에 섞는다.",
+        "높은 분산을 무조건 낮은 편향의 증거로 확정한다.",
+        "배깅 등으로 분산 감소를 검토한다."
+      ],
+      "correctIndex": 3,
+      "explanations": [
+        "예측 과업의 정답을 훼손한다.",
+        "일반화 평가를 오염시킨다.",
+        "편향과 분산은 각각 평가해야 한다.",
+        "표본별 변동을 여러 모델 결합으로 완화할 수 있다."
+      ]
+    },
+    {
+      "id": "data-leakage-recall",
+      "conceptId": "data-leakage",
+      "category": "A",
+      "type": "recall",
+      "prompt": "데이터 누출을 막는 전처리 절차는?",
+      "options": [
+        "전체 데이터에 fit한 뒤 분할한다.",
+        "테스트 라벨로 특성을 선택한다.",
+        "같은 원본의 복사본을 양쪽에 둔다.",
+        "훈련 집합에만 fit하고 검증·테스트는 transform한다."
+      ],
+      "correctIndex": 3,
+      "explanations": [
+        "평가 분포 정보가 전처리에 들어간다.",
+        "정답 정보를 모델 선택에 사용하는 누출이다.",
+        "독립성 없는 샘플로 점수가 부풀 수 있다.",
+        "평가 집합의 통계가 학습에 영향을 주지 않게 한다."
+      ]
+    },
+    {
+      "id": "data-leakage-application",
+      "conceptId": "data-leakage",
+      "category": "A",
+      "type": "application",
+      "prompt": "출하 전 불량 예측 모델에 검사 후 재작업 여부를 넣어 점수가 급상승했다. 해석은?",
+      "options": [
+        "예측 시점에 없는 타깃 관련 정보의 누출을 의심한다.",
+        "생산 환경에서도 같은 성능이 보장된다.",
+        "정답 열이 아니므로 무조건 안전하다.",
+        "점수가 높으니 테스트를 생략한다."
+      ],
+      "correctIndex": 0,
+      "explanations": [
+        "재작업은 불량 결과를 반영하고 당시 사용할 수 없다.",
+        "해당 입력을 실제 예측 시 확보할 수 없다.",
+        "정답의 결과도 간접 누출이 될 수 있다.",
+        "과도한 점수는 평가 설계 점검 사유다."
+      ]
+    },
+    {
+      "id": "feature-engineering-recall",
+      "conceptId": "feature-engineering",
+      "category": "A",
+      "type": "recall",
+      "prompt": "특성 공학에 해당하는 것은?",
+      "options": [
+        "원시 센서에서 최근 5분 변동폭을 계산한다.",
+        "최종 점수를 숨긴다.",
+        "정답 없이 결과가 맞다고 선언한다.",
+        "모든 결측 행을 미래 정답으로 채운다."
+      ],
+      "correctIndex": 0,
+      "explanations": [
+        "원자료를 예측에 유용한 표현으로 변환한다.",
+        "입력 표현을 만드는 작업이 아니다.",
+        "검증 과정과도 맞지 않는다.",
+        "이는 타깃 누출을 만든다."
+      ]
+    },
+    {
+      "id": "feature-engineering-application",
+      "conceptId": "feature-engineering",
+      "category": "A",
+      "type": "application",
+      "prompt": "오전 10시 고장을 예측할 특성으로 9시 55분~10시 5분 평균을 쓴다. 수정은?",
+      "options": [
+        "미래 값을 넣으면 특성 공학이므로 괜찮다.",
+        "10시까지 확보된 데이터만 사용해 평균을 계산한다.",
+        "현재 구간을 유지하고 열 이름만 바꾼다.",
+        "테스트에서만 미래 구간을 더 넓힌다."
+      ],
+      "correctIndex": 1,
+      "explanations": [
+        "특성 공학도 가용 정보 제약을 지켜야 한다.",
+        "미래 5분 정보가 예측 시점에 없기 때문이다.",
+        "시간 누출은 이름과 무관하다.",
+        "배포 조건과 더 멀어진다."
+      ]
+    },
+    {
+      "id": "cross-validation-recall",
+      "conceptId": "cross-validation",
+      "category": "A",
+      "type": "recall",
+      "prompt": "5-fold 교차 검증의 일반적 절차는?",
+      "options": [
+        "반드시 미래 데이터로 과거를 예측한다.",
+        "5개 중 4개로 학습하고 남은 1개로 검증하는 과정을 5번 반복한다.",
+        "같은 모델에 테스트 답을 5번 학습시킨다.",
+        "각 샘플의 특성을 5배 복사한다."
+      ],
+      "correctIndex": 1,
+      "explanations": [
+        "시간 데이터는 올바른 순서를 지켜야 한다.",
+        "각 fold가 한 번씩 검증 역할을 한다.",
+        "테스트 오염이며 교차 검증이 아니다.",
+        "데이터 복사는 분할 검증이 아니다."
+      ]
+    },
+    {
+      "id": "cross-validation-application",
+      "conceptId": "cross-validation",
+      "category": "A",
+      "type": "application",
+      "prompt": "환자당 여러 기록이 있고 새 환자에 대한 성능이 목표다. 적절한 분할은?",
+      "options": [
+        "환자 ID를 정답으로 사용한다.",
+        "전체 데이터로 특성 선택 후 그룹을 나눈다.",
+        "환자 ID를 기준으로 그룹을 나눈다.",
+        "모든 기록을 무작위로 섞기만 한다."
+      ],
+      "correctIndex": 2,
+      "explanations": [
+        "원래 예측 과업을 바꿔 버린다.",
+        "그룹 분할 전 특성 선택도 누출을 만들 수 있다.",
+        "같은 환자의 정보가 학습과 검증에 함께 들어가지 않게 한다.",
+        "동일 환자 기록이 양쪽에 들어가 낙관적 평가가 될 수 있다."
+      ]
+    },
+    {
+      "id": "confusion-matrix-recall",
+      "conceptId": "confusion-matrix",
+      "category": "A",
+      "type": "recall",
+      "prompt": "불량을 양성으로 할 때 FN은?",
+      "options": [
+        "실제 불량을 불량으로 맞힌 수다.",
+        "실제 정상을 정상으로 맞힌 수다.",
+        "실제 불량을 정상으로 예측한 수다.",
+        "실제 정상을 불량으로 예측한 수다."
+      ],
+      "correctIndex": 2,
+      "explanations": [
+        "실제 양성을 양성으로 맞혔으므로 TP다.",
+        "실제 음성을 음성으로 맞혔으므로 TN이다.",
+        "실제 양성을 음성으로 놓친 경우다.",
+        "실제 음성을 양성으로 잘못 판정했으므로 FP다."
+      ]
+    },
+    {
+      "id": "confusion-matrix-application",
+      "conceptId": "confusion-matrix",
+      "category": "A",
+      "type": "application",
+      "prompt": "TP=8, FN=2, FP=9, TN=81일 때 실제 불량 수는?",
+      "options": [
+        "17개",
+        "89개",
+        "11개",
+        "10개"
+      ],
+      "correctIndex": 3,
+      "explanations": [
+        "TP+FP는 불량으로 예측한 수다.",
+        "TP+TN은 전체 맞힌 수다.",
+        "FP+FN은 전체 오류 수다.",
+        "실제 양성=TP+FN=8+2다."
+      ]
+    },
+    {
+      "id": "accuracy-recall",
+      "conceptId": "accuracy",
+      "category": "A",
+      "type": "recall",
+      "prompt": "분류 정확도를 계산할 때 분모에 들어가는 값은?",
+      "options": [
+        "실제 양성 수만",
+        "예측 양성 수만",
+        "오류 수만",
+        "전체 예측 샘플 수"
+      ],
+      "correctIndex": 3,
+      "explanations": [
+        "이는 재현율의 분모다.",
+        "이는 정밀도의 분모다.",
+        "오류 대비 정답 비율은 정확도 정의가 아니다.",
+        "전체 중 맞힌 비율이므로 모든 샘플이 분모다."
+      ]
+    },
+    {
+      "id": "accuracy-application",
+      "conceptId": "accuracy",
+      "category": "A",
+      "type": "application",
+      "prompt": "정상 990개·불량 10개를 모두 정상으로 예측했다. 옳은 평가는?",
+      "options": [
+        "정확도 99%지만 불량 재현율은 0%다.",
+        "정확도와 불량 재현율 모두 99%다.",
+        "정확도는 0%다.",
+        "불량 검출에 반드시 유용하다."
+      ],
+      "correctIndex": 0,
+      "explanations": [
+        "990개 정상은 맞혔지만 실제 불량 10개를 모두 놓쳤다.",
+        "재현율은 실제 불량 중 잡은 비율이다.",
+        "정상 990개는 올바르게 예측했다.",
+        "불량을 하나도 잡지 못하므로 목적을 달성하지 못한다."
+      ]
+    },
+    {
+      "id": "precision-recall",
+      "conceptId": "precision",
+      "category": "A",
+      "type": "recall",
+      "prompt": "이진 분류에서 정밀도를 계산하는 올바른 공식은?",
+      "options": [
+        "TP/(TP+FP)",
+        "TP/(TP+FN)",
+        "(TP+TN)/전체",
+        "FP/(FP+TN)"
+      ],
+      "correctIndex": 0,
+      "explanations": [
+        "양성 판정 중 실제 양성 비율이다.",
+        "실제 양성 중 발견한 비율이므로 재현율이다.",
+        "전체 샘플에서 맞힌 비율이므로 정확도다.",
+        "이는 거짓 양성률이다."
+      ]
+    },
+    {
+      "id": "precision-application",
+      "conceptId": "precision",
+      "category": "A",
+      "type": "application",
+      "prompt": "불량 경보 20개 중 진짜 불량은 15개다. 정밀도는?",
+      "options": [
+        "실제 불량 총수가 없으므로 계산 불가",
+        "75%",
+        "25%",
+        "15%"
+      ],
+      "correctIndex": 1,
+      "explanations": [
+        "정밀도에는 실제 불량 총수가 아니라 예측 양성 수가 필요하다.",
+        "15/20=0.75다.",
+        "이는 경보 중 거짓 경보 비율이다.",
+        "전체 샘플 100개라는 조건이 없다."
+      ]
+    },
+    {
+      "id": "recall-recall",
+      "conceptId": "recall",
+      "category": "A",
+      "type": "recall",
+      "prompt": "재현율이 100%라는 말의 의미는?",
+      "options": [
+        "앞으로 모든 데이터에서도 놓침이 없다.",
+        "평가 데이터의 실제 양성을 모두 찾아냈다.",
+        "거짓 양성이 하나도 없다.",
+        "정확도도 반드시 100%다."
+      ],
+      "correctIndex": 1,
+      "explanations": [
+        "유한 평가 결과는 미래 보장이 아니다.",
+        "FN=0이면 실제 양성이 존재할 때 recall=1이다.",
+        "FP는 재현율 공식에 없으며 많을 수도 있다.",
+        "정상을 잘못 양성으로 분류할 수 있다."
+      ]
+    },
+    {
+      "id": "recall-application",
+      "conceptId": "recall",
+      "category": "A",
+      "type": "application",
+      "prompt": "실제 불량 20개 중 18개를 잡고 정상 30개에도 경보를 냈다. 재현율은?",
+      "options": [
+        "60%",
+        "100%",
+        "90%",
+        "37.5%"
+      ],
+      "correctIndex": 2,
+      "explanations": [
+        "18/30은 올바른 재현율 분모가 아니다.",
+        "놓친 실제 불량 2개가 있다.",
+        "TP/(TP+FN)=18/20이다.",
+        "18/(18+30)은 정밀도다."
+      ]
+    },
+    {
+      "id": "f1-score-recall",
+      "conceptId": "f1-score",
+      "category": "A",
+      "type": "recall",
+      "prompt": "분류 평가 지표 F1 점수의 올바른 정의는?",
+      "options": [
+        "정확도와 손실의 합",
+        "TN을 전체 수로 나눈 값",
+        "정밀도와 재현율의 조화평균",
+        "정밀도와 재현율의 산술평균"
+      ],
+      "correctIndex": 2,
+      "explanations": [
+        "서로 다른 척도를 임의로 더하지 않는다.",
+        "음성을 맞힌 비율만으로 F1을 구하지 않는다.",
+        "2PR/(P+R)로 계산한다.",
+        "(P+R)/2는 F1이 아니다."
+      ]
+    },
+    {
+      "id": "f1-score-application",
+      "conceptId": "f1-score",
+      "category": "A",
+      "type": "application",
+      "prompt": "정밀도 0.5, 재현율 1.0인 모델의 F1은 대략?",
+      "options": [
+        "0.75",
+        "1.0",
+        "0.5",
+        "0.667"
+      ],
+      "correctIndex": 3,
+      "explanations": [
+        "산술평균이며 조화평균이 아니다.",
+        "정밀도가 낮아 F1도 1보다 작다.",
+        "낮은 값과 동일한 함수가 아니라 조화평균이다.",
+        "2×0.5×1/(0.5+1)=2/3이다."
+      ]
+    },
+    {
+      "id": "roc-auc-recall",
+      "conceptId": "roc-auc",
+      "category": "A",
+      "type": "recall",
+      "prompt": "ROC 곡선의 두 축은?",
+      "options": [
+        "정밀도와 재현율",
+        "시간과 비용",
+        "훈련 손실과 epoch",
+        "거짓 양성률과 참 양성률"
+      ],
+      "correctIndex": 3,
+      "explanations": [
+        "이는 PR 곡선이다.",
+        "시스템 성능 분석에 쓰지만 ROC 축은 아니다.",
+        "이는 학습 곡선이다.",
+        "FPR을 가로, TPR을 세로에 두는 것이 일반적이다."
+      ]
+    },
+    {
+      "id": "roc-auc-application",
+      "conceptId": "roc-auc",
+      "category": "A",
+      "type": "application",
+      "prompt": "ROC-AUC 0.95인 모델이 현장에서 오경보를 많이 낸다. 적절한 해석은?",
+      "options": [
+        "좋은 순위 성능만으로 특정 임계값의 운영 비용이 보장되지 않는다.",
+        "AUC가 0.95면 정확도는 항상 95%다.",
+        "AUC가 높으면 FP는 반드시 0이다.",
+        "불량 비율은 평가와 무관하다."
+      ],
+      "correctIndex": 0,
+      "explanations": [
+        "클래스 비율·임계값에 따른 정밀도와 검사량을 확인해야 한다.",
+        "AUC와 정확도는 다른 지표다.",
+        "여러 임계값의 면적은 FP=0을 보장하지 않는다.",
+        "특히 정밀도와 검사 부담에 큰 영향을 준다."
+      ]
+    },
+    {
+      "id": "neural-network-recall",
+      "conceptId": "neural-network",
+      "category": "B",
+      "type": "recall",
+      "prompt": "선형 층만 여러 개 쌓고 비선형 활성화를 전혀 넣지 않으면?",
+      "options": [
+        "전체 변환도 선형 또는 affine 변환으로 합칠 수 있다.",
+        "임의의 비선형 관계를 자동 표현한다.",
+        "가중치가 더는 필요하지 않다.",
+        "지도학습이 불가능하다."
+      ],
+      "correctIndex": 0,
+      "explanations": [
+        "선형 변환의 합성은 비선형 함수를 만들지 않는다.",
+        "비선형 활성화 등 추가 구조가 필요하다.",
+        "각 층은 여전히 가중치를 사용한다.",
+        "선형 모델도 지도학습으로 학습할 수 있다."
+      ]
+    },
+    {
+      "id": "neural-network-application",
+      "conceptId": "neural-network",
+      "category": "B",
+      "type": "application",
+      "prompt": "센서값과 불량의 비선형 관계를 선형 층만으로 못 배운다. 관련 수정은?",
+      "options": [
+        "학습률을 음수로만 바꾼다.",
+        "적절한 비선형 활성화를 포함한 모델을 비교한다.",
+        "같은 선형 층을 더 쌓으면 무조건 해결된다.",
+        "테스트 정답을 입력에 연결한다."
+      ],
+      "correctIndex": 1,
+      "explanations": [
+        "손실 감소 방향을 반대로 만들 수 있다.",
+        "선형 변환의 합성만으로는 부족한 표현력을 늘릴 수 있다.",
+        "합성 결과가 여전히 affine일 수 있다.",
+        "학습 능력 개선이 아니라 누출이다."
+      ]
+    },
+    {
+      "id": "backpropagation-recall",
+      "conceptId": "backpropagation",
+      "category": "B",
+      "type": "recall",
+      "prompt": "역전파가 직접 수행하는 핵심 작업은?",
+      "options": [
+        "정답 라벨을 자동 수집한다.",
+        "연쇄법칙으로 파라미터별 손실 기울기를 계산한다.",
+        "항상 데이터를 정규화한다.",
+        "모든 가중치를 정수로 바꾼다."
+      ],
+      "correctIndex": 1,
+      "explanations": [
+        "역전파는 주어진 그래프의 기울기를 계산한다.",
+        "최적화에 쓸 미분 정보를 효율적으로 얻는다.",
+        "전처리와 역전파는 별도 작업이다.",
+        "이는 양자화와 관련된다."
+      ]
+    },
+    {
+      "id": "backpropagation-application",
+      "conceptId": "backpropagation",
+      "category": "B",
+      "type": "application",
+      "prompt": "PyTorch에서 loss.backward()만 호출하고 optimizer.step()을 생략했다. 일반적으로 생기는 일은?",
+      "options": [
+        "모델이 반드시 양자화된다.",
+        "검증 데이터가 자동 생성된다.",
+        "기울기는 계산되지만 optimizer의 가중치 갱신은 수행되지 않는다.",
+        "가중치가 두 번 갱신된다."
+      ],
+      "correctIndex": 2,
+      "explanations": [
+        "정밀도 변환은 해당 호출의 역할이 아니다.",
+        "데이터 분할과 무관하다.",
+        "backward와 step은 서로 다른 역할이다.",
+        "갱신 단계가 호출되지 않았다."
+      ]
+    },
+    {
+      "id": "gradient-descent-recall",
+      "conceptId": "gradient-descent",
+      "category": "B",
+      "type": "recall",
+      "prompt": "기본 경사하강법의 갱신 방향은?",
+      "options": [
+        "항상 모든 가중치를 0으로 설정",
+        "정답 라벨을 증가시키는 방향",
+        "손실 기울기의 반대 방향",
+        "손실 기울기와 같은 방향"
+      ],
+      "correctIndex": 2,
+      "explanations": [
+        "기울기와 현재 파라미터를 사용한 점진적 갱신이다.",
+        "라벨이 아니라 파라미터를 조정한다.",
+        "기울기는 국소적으로 손실이 증가하는 방향을 가리킨다.",
+        "이는 보통 손실을 증가시키는 방향이다."
+      ]
+    },
+    {
+      "id": "gradient-descent-application",
+      "conceptId": "gradient-descent",
+      "category": "B",
+      "type": "application",
+      "prompt": "학습률을 크게 올린 뒤 손실이 폭발했다. 우선 실험은?",
+      "options": [
+        "학습률을 계속 두 배로 올린다.",
+        "테스트 정답을 바꾼다.",
+        "기울기를 계산하지 않고 동일 optimizer를 계속 호출한다.",
+        "학습률을 낮추고 수치 안정성을 확인한다."
+      ],
+      "correctIndex": 3,
+      "explanations": [
+        "불안정성이 더 심해질 수 있다.",
+        "최적화 문제를 해결하지 못하고 평가를 훼손한다.",
+        "유효한 업데이트 정보가 사라진다.",
+        "너무 큰 갱신이 발산을 만들 수 있다."
+      ]
+    },
+    {
+      "id": "transformer-recall",
+      "conceptId": "transformer",
+      "category": "B",
+      "type": "recall",
+      "prompt": "원래 Transformer 블록의 핵심 구성과 가장 가까운 것은?",
+      "options": [
+        "오직 데이터베이스 SQL 연산",
+        "반드시 순환 상태만 사용하는 RNN",
+        "수동으로 작성한 정답 규칙 목록",
+        "어텐션과 위치별 feed-forward 연산"
+      ],
+      "correctIndex": 3,
+      "explanations": [
+        "검색 저장 시스템과 신경망 구조는 다르다.",
+        "Transformer는 어텐션 중심 구조다.",
+        "학습 가능한 신경망이다.",
+        "잔차 연결과 정규화 등을 함께 사용한다."
+      ]
+    },
+    {
+      "id": "transformer-application",
+      "conceptId": "transformer",
+      "category": "B",
+      "type": "application",
+      "prompt": "자기회귀 언어 모델 학습에서 미래 정답 토큰을 훔쳐보지 않게 하려면?",
+      "options": [
+        "causal attention mask를 적용한다.",
+        "모든 위치를 완전히 공개한다.",
+        "위치 정보를 모두 삭제한다.",
+        "정답을 입력 앞에 항상 복사한다."
+      ],
+      "correctIndex": 0,
+      "explanations": [
+        "각 위치가 이후 토큰을 참고하지 못하게 한다.",
+        "다음 토큰 학습에서 미래 정보 누출이 생긴다.",
+        "미래 차단과 위치 표현은 다른 문제다.",
+        "정답 누출로 과업이 달라진다."
+      ]
+    },
+    {
+      "id": "self-attention-recall",
+      "conceptId": "self-attention",
+      "category": "B",
+      "type": "recall",
+      "prompt": "Self-attention의 self가 뜻하는 것은?",
+      "options": [
+        "동일 시퀀스 안의 요소 사이에 어텐션을 계산한다.",
+        "각 토큰이 오직 자기 자신만 본다.",
+        "학습 없이 정답을 스스로 만든다.",
+        "사용자의 신원만 분석한다."
+      ],
+      "correctIndex": 0,
+      "explanations": [
+        "자기 토큰뿐 아니라 마스크가 허용한 다른 토큰도 참고한다.",
+        "다른 위치 관계를 학습하는 것이 중요한 목적이다.",
+        "어텐션도 학습 가능한 가중치를 사용한다.",
+        "self는 사용자 개인정보를 뜻하지 않는다."
+      ]
+    },
+    {
+      "id": "self-attention-application",
+      "conceptId": "self-attention",
+      "category": "B",
+      "type": "application",
+      "prompt": "QKᵀ로 구한 점수를 softmax한 다음 V에 곱하는 이유는?",
+      "options": [
+        "가중치 파일 크기를 0으로 만들기 위해서다.",
+        "관련성에 따른 가중합으로 정보를 모으기 위해서다.",
+        "문장을 반드시 알파벳순 정렬하기 위해서다.",
+        "모든 토큰을 똑같이 무시하기 위해서다."
+      ],
+      "correctIndex": 1,
+      "explanations": [
+        "모델 압축과 다른 연산이다.",
+        "점수를 정규화한 뒤 value 정보를 섞는다.",
+        "어텐션은 사전순 정렬 연산이 아니다.",
+        "입력에 따라 가중치가 달라진다."
+      ]
+    },
+    {
+      "id": "multi-head-attention-recall",
+      "conceptId": "multi-head-attention",
+      "category": "B",
+      "type": "recall",
+      "prompt": "Multi-head attention의 핵심은?",
+      "options": [
+        "모든 head가 입력을 읽지 않는다.",
+        "서로 다른 투영 공간의 어텐션 결과를 결합한다.",
+        "같은 정답을 복사해 데이터 수만 늘린다.",
+        "head마다 반드시 한 언어를 전담한다."
+      ],
+      "correctIndex": 1,
+      "explanations": [
+        "각 head는 입력의 투영을 사용한다.",
+        "여러 head가 별도의 표현 관계를 학습한다.",
+        "이는 어텐션 구조 설명이 아니다.",
+        "역할은 학습되며 언어별 고정 배정이 아니다."
+      ]
+    },
+    {
+      "id": "multi-head-attention-application",
+      "conceptId": "multi-head-attention",
+      "category": "B",
+      "type": "application",
+      "prompt": "head 수를 늘렸으니 정확도가 반드시 오른다고 주장한다. 적절한 반응은?",
+      "options": [
+        "head가 많으면 학습 데이터가 필요 없다.",
+        "head 하나는 언제나 불량 검출 전용이다.",
+        "용량·계산량과 실제 검증 성능을 비교해야 한다.",
+        "head 수와 정확도는 항상 비례한다."
+      ],
+      "correctIndex": 2,
+      "explanations": [
+        "구조 자체로 학습을 대체하지 않는다.",
+        "의미 역할은 고정되어 있지 않다.",
+        "구조 변경이 모든 데이터에서 개선을 보장하지 않는다.",
+        "그런 보편 법칙은 없다."
+      ]
+    },
+    {
+      "id": "positional-encoding-recall",
+      "conceptId": "positional-encoding",
+      "category": "B",
+      "type": "recall",
+      "prompt": "위치 표현이 필요한 주요 이유는?",
+      "options": [
+        "모든 토큰을 같은 벡터로 만들기 위해서다.",
+        "토큰 수를 항상 하나로 줄이기 위해서다.",
+        "토큰의 순서 정보를 모델에 반영하기 위해서다.",
+        "정답 라벨을 암호화하기 위해서다."
+      ],
+      "correctIndex": 2,
+      "explanations": [
+        "오히려 위치에 따른 구별을 제공한다.",
+        "시퀀스 압축의 정의가 아니다.",
+        "어텐션 기반 처리에 위치 관계를 제공한다.",
+        "위치 정보와 라벨 보안은 별개다."
+      ]
+    },
+    {
+      "id": "positional-encoding-application",
+      "conceptId": "positional-encoding",
+      "category": "B",
+      "type": "application",
+      "prompt": "a-b와 b-a의 차이를 구분하는 데 직접 관련 있는 정보는?",
+      "options": [
+        "문서의 파일 크기만",
+        "문자 색상만",
+        "정답 선택지 번호만",
+        "토큰 순서와 위치 관계"
+      ],
+      "correctIndex": 3,
+      "explanations": [
+        "파일 크기만으로 순서 의미를 구별하지 못한다.",
+        "일반 텍스트 모델의 의미 순서와 관계없다.",
+        "입력 표현 문제를 해결하지 않는다.",
+        "같은 토큰이어도 연산자 주변 순서가 의미를 바꾼다."
+      ]
+    },
+    {
+      "id": "tokenization-recall",
+      "conceptId": "tokenization",
+      "category": "B",
+      "type": "recall",
+      "prompt": "토큰에 대한 올바른 설명은?",
+      "options": [
+        "모든 언어에서 정확히 한 단어다.",
+        "모델 가중치 파일의 한 행만 뜻한다.",
+        "문서의 사실 여부 점수다.",
+        "단어 전체 또는 일부 등 토크나이저가 정한 처리 단위다."
+      ],
+      "correctIndex": 3,
+      "explanations": [
+        "부분 단어와 바이트 토큰 등이 사용된다.",
+        "토큰 단위와 파라미터 저장 형식은 다르다.",
+        "토큰화는 진실성 평가를 수행하지 않는다.",
+        "단어·문자와 항상 일대일 대응하지 않는다."
+      ]
+    },
+    {
+      "id": "tokenization-application",
+      "conceptId": "tokenization",
+      "category": "B",
+      "type": "application",
+      "prompt": "한국어 문서의 컨텍스트 사용량을 가장 정확히 확인하려면?",
+      "options": [
+        "해당 모델의 토크나이저로 실제 토큰 수를 센다.",
+        "띄어쓰기 개수만 센다.",
+        "글자 수를 언제나 4로 나눈다.",
+        "페이지 수만 그대로 토큰 수로 쓴다."
+      ],
+      "correctIndex": 0,
+      "explanations": [
+        "모델마다 분할 방식이 달라 직접 계산하는 것이 적절하다.",
+        "단어가 여러 토큰으로 나뉠 수 있다.",
+        "언어·문서·모델에 따라 부정확하다.",
+        "페이지 레이아웃과 토큰 수는 다르다."
+      ]
+    },
+    {
+      "id": "embedding-recall",
+      "conceptId": "embedding",
+      "category": "B",
+      "type": "recall",
+      "prompt": "텍스트나 항목의 임베딩이 수행하는 핵심 역할은?",
+      "options": [
+        "대상을 연산 가능한 수치 벡터로 표현한다.",
+        "모든 문장을 원문 그대로 저장하는 ZIP 파일을 만든다.",
+        "문장의 모든 주장을 참으로 인증한다.",
+        "항상 텍스트를 한 글자씩 나눈다."
+      ],
+      "correctIndex": 0,
+      "explanations": [
+        "벡터 공간에서 유사성 등의 관계를 학습할 수 있다.",
+        "벡터가 완전한 원문 복원을 보장하지 않는다.",
+        "표현과 진실성 검증은 별개다.",
+        "이는 임베딩이 아니라 분할 방식에 관한 설명이다."
+      ]
+    },
+    {
+      "id": "embedding-application",
+      "conceptId": "embedding",
+      "category": "B",
+      "type": "application",
+      "prompt": "문서는 모델 X, 질문은 전혀 다른 모델 Y로 임베딩했다. 검색이 나쁜 이유 후보는?",
+      "options": [
+        "임베딩은 항상 정확한 정답 문서를 반환한다.",
+        "벡터 공간이 호환되지 않을 수 있다.",
+        "벡터 차원만 같으면 항상 같은 의미다.",
+        "질문이 짧으면 임베딩이 불가능하다."
+      ],
+      "correctIndex": 1,
+      "explanations": [
+        "검색 성능은 모델·데이터·거리·인덱스에 좌우된다.",
+        "차원이 같더라도 좌표 의미가 같다는 보장은 없다.",
+        "차원 수 일치는 호환성의 충분조건이 아니다.",
+        "짧은 질문도 임베딩할 수 있다."
+      ]
+    },
+    {
+      "id": "context-window-recall",
+      "conceptId": "context-window",
+      "category": "B",
+      "type": "recall",
+      "prompt": "컨텍스트 윈도와 가장 관련 있는 것은?",
+      "options": [
+        "학습 데이터의 전체 파일 수",
+        "현재 호출에서 다룰 수 있는 토큰 문맥의 범위",
+        "모델의 영구 가중치를 매번 저장하는 디스크",
+        "브라우저 화면의 가로 길이"
+      ],
+      "correctIndex": 1,
+      "explanations": [
+        "학습 코퍼스 크기와 호출 문맥 한도는 다르다.",
+        "입력·대화·출력 예산 등 처리 한도와 관련된다.",
+        "문맥과 파라미터 저장소는 다르다.",
+        "사용자 인터페이스 창 크기가 아니다."
+      ]
+    },
+    {
+      "id": "context-window-application",
+      "conceptId": "context-window",
+      "category": "B",
+      "type": "application",
+      "prompt": "긴 문서를 넣었더니 중요한 조건을 놓친다. 가장 적절한 개선은?",
+      "options": [
+        "문서를 넣었으니 다음 달에도 자동 기억한다고 가정한다.",
+        "문서 수를 무조건 두 배로 늘린다.",
+        "관련 부분을 선별하고 조건 누락을 별도 평가한다.",
+        "창 크기 이하이므로 오류가 있을 수 없다고 본다."
+      ],
+      "correctIndex": 2,
+      "explanations": [
+        "문맥 입력이 영구 가중치 학습은 아니다.",
+        "불필요한 문맥이 비용과 혼동을 늘릴 수 있다.",
+        "최대 길이 이내여도 모든 정보 활용이 보장되지는 않는다.",
+        "길이 허용과 이해·활용 품질은 다르다."
+      ]
+    },
+    {
+      "id": "next-token-recall",
+      "conceptId": "next-token",
+      "category": "B",
+      "type": "recall",
+      "prompt": "자기회귀 언어 모델의 다음 토큰 예측은 무엇을 조건으로 하는가?",
+      "options": [
+        "오직 컴퓨터 화면 크기",
+        "항상 외부 검색 결과만",
+        "앞서 주어진 토큰 시퀀스",
+        "아직 생성되지 않은 모든 정답 토큰"
+      ],
+      "correctIndex": 2,
+      "explanations": [
+        "언어 문맥과 무관한 정보다.",
+        "외부 검색 없이도 동작할 수 있다.",
+        "이전 문맥을 기반으로 다음 토큰 분포를 계산한다.",
+        "생성 시 미래 정답은 주어지지 않는다."
+      ]
+    },
+    {
+      "id": "next-token-application",
+      "conceptId": "next-token",
+      "category": "B",
+      "type": "application",
+      "prompt": "LLM이 문법적으로 자연스러운 가짜 논문 제목을 만들었다. 설명은?",
+      "options": [
+        "확률이 높으면 논문은 반드시 존재한다.",
+        "토큰화 오류만이 유일한 원인이다.",
+        "모델이 출력하면 자동으로 논문이 출판된다.",
+        "그럴듯한 토큰 생성이 실제 존재 확인을 보장하지 않는다."
+      ],
+      "correctIndex": 3,
+      "explanations": [
+        "토큰 확률이 존재 증명이 아니다.",
+        "환각은 정상적인 토큰화에서도 발생한다.",
+        "텍스트 생성은 외부 출판 행위가 아니다.",
+        "언어적 가능성과 외부 사실은 다른 기준이다."
+      ]
+    },
+    {
+      "id": "pretraining-recall",
+      "conceptId": "pretraining",
+      "category": "B",
+      "type": "recall",
+      "prompt": "사전학습에 대한 적절한 설명은?",
+      "options": [
+        "사용자 질문마다 모델 전체를 새로 학습한다.",
+        "오직 수동 정답 라벨만 사용할 수 있다.",
+        "항상 최신 사내 문서를 포함한다.",
+        "넓은 데이터에서 일반적인 표현과 패턴을 먼저 학습한다."
+      ],
+      "correctIndex": 3,
+      "explanations": [
+        "보통 추론과 사전학습은 분리된다.",
+        "다음 토큰 등 자기지도 목표도 사용한다.",
+        "학습 코퍼스의 범위와 시점에 따라 다르다.",
+        "후속 과업 적응의 기반을 만들 수 있다."
+      ]
+    },
+    {
+      "id": "pretraining-application",
+      "conceptId": "pretraining",
+      "category": "B",
+      "type": "application",
+      "prompt": "사전학습 모델이 비공개 사내 함수 이름을 지어냈다. 우선 접근은?",
+      "options": [
+        "실제 API 문서를 제공하고 코드 실행으로 확인한다.",
+        "사전학습했으므로 생성한 이름을 신뢰한다.",
+        "비공개 문서를 공개 웹에 무조건 게시한다.",
+        "토큰 수만 줄이면 실제 API가 된다."
+      ],
+      "correctIndex": 0,
+      "explanations": [
+        "학습에 없을 수 있는 조직 지식은 근거와 검증이 필요하다.",
+        "폭넓은 학습은 비공개 API 지식을 보장하지 않는다.",
+        "필요한 지식 제공은 적절한 접근 통제 안에서도 가능하다.",
+        "문장 길이로 사실의 존재를 보장할 수 없다."
+      ]
+    },
+    {
+      "id": "sft-recall",
+      "conceptId": "sft",
+      "category": "B",
+      "type": "recall",
+      "prompt": "SFT와 few-shot의 주요 차이는?",
+      "options": [
+        "SFT는 학습으로 파라미터를 갱신하고 few-shot은 호출 문맥에 예시를 넣는다.",
+        "둘 다 매 질문마다 전체 모델을 재학습한다.",
+        "SFT는 라벨 없는 군집화만 뜻한다.",
+        "few-shot만 모델 가중치를 바꾼다."
+      ],
+      "correctIndex": 0,
+      "explanations": [
+        "학습 단계와 추론 입력 설계의 차이다.",
+        "few-shot은 일반적으로 파라미터 갱신이 없다.",
+        "원하는 지시·응답 예시를 이용한 지도 학습이다.",
+        "보통 반대로 이해한 설명이다."
+      ]
+    },
+    {
+      "id": "sft-application",
+      "conceptId": "sft",
+      "category": "B",
+      "type": "application",
+      "prompt": "매일 바뀌는 재고 수량을 정확히 답해야 한다. SFT만으로 해결하려는 계획의 한계는?",
+      "options": [
+        "SFT 모델은 입력을 받을 수 없다.",
+        "학습 이후 바뀐 수치를 자동 반영하지 못한다.",
+        "SFT는 출력 형식을 전혀 배울 수 없다.",
+        "SFT를 하면 도구를 절대 사용할 수 없다."
+      ],
+      "correctIndex": 1,
+      "explanations": [
+        "추론 때 여전히 입력을 처리한다.",
+        "최신 데이터는 조회·검색 등의 연결이 필요하다.",
+        "형식과 행동 학습에 활용할 수 있다.",
+        "학습과 도구 사용은 병행 가능하다."
+      ]
+    },
+    {
+      "id": "rlhf-recall",
+      "conceptId": "rlhf",
+      "category": "B",
+      "type": "recall",
+      "prompt": "전통적인 RLHF 파이프라인의 보상 모델 역할은?",
+      "options": [
+        "추론 메모리를 영구 삭제한다.",
+        "사람의 선호를 반영하는 응답 점수를 예측한다.",
+        "모든 사실을 외부 검색해 증명한다.",
+        "토큰을 파일명으로 바꾼다."
+      ],
+      "correctIndex": 1,
+      "explanations": [
+        "저장 관리 기능을 뜻하지 않는다.",
+        "그 점수를 정책 개선 신호로 사용할 수 있다.",
+        "선호 점수는 사실 검증의 완전한 대체가 아니다.",
+        "보상 모델의 목적과 다르다."
+      ]
+    },
+    {
+      "id": "rlhf-application",
+      "conceptId": "rlhf",
+      "category": "B",
+      "type": "application",
+      "prompt": "RLHF 모델이 친절하지만 근거 없는 답을 한다. 적절한 평가는?",
+      "options": [
+        "사용자 만족도가 높으면 모든 주장을 승인한다.",
+        "보상 점수는 항상 현실의 정답 확률이다.",
+        "선호 정렬과 별개로 사실·근거 검증이 필요하다.",
+        "RLHF를 했으므로 관찰된 오류는 불가능하다."
+      ],
+      "correctIndex": 2,
+      "explanations": [
+        "만족도만으로 사실성을 판단할 수 없다.",
+        "보상 모델이 학습한 선호 점수와 확률은 다르다.",
+        "좋아 보이는 답과 참인 답은 다를 수 있다.",
+        "정렬은 무오류를 보장하지 않는다."
+      ]
+    },
+    {
+      "id": "dpo-recall",
+      "conceptId": "dpo",
+      "category": "B",
+      "type": "recall",
+      "prompt": "원래 DPO의 학습 신호와 가장 가까운 것은?",
+      "options": [
+        "매 단계 실제 로봇의 환경 보상만",
+        "토크나이저의 알파벳 정렬",
+        "같은 프롬프트에 대한 선호·비선호 응답 쌍",
+        "오직 라벨 없는 이미지 군집 번호"
+      ],
+      "correctIndex": 2,
+      "explanations": [
+        "원래 DPO는 온라인 환경 상호작용을 필수로 하지 않는다.",
+        "응답 선호와 관계없는 정보다.",
+        "응답 사이 상대 선호를 직접 최적화한다.",
+        "선호 최적화의 직접 학습 신호가 아니다."
+      ]
+    },
+    {
+      "id": "dpo-application",
+      "conceptId": "dpo",
+      "category": "B",
+      "type": "application",
+      "prompt": "팀이 별도 보상 모델과 PPO 루프 없이 선호 응답 쌍으로 정렬하려 한다. 검토할 방법은?",
+      "options": [
+        "K-means",
+        "표준화만 적용",
+        "테스트 정답 유출",
+        "DPO"
+      ],
+      "correctIndex": 3,
+      "explanations": [
+        "라벨 없는 군집화 방법이다.",
+        "입력 스케일 조정은 선호 학습이 아니다.",
+        "학습 방법이 아니라 평가 오류다.",
+        "원래 DPO가 전통적 RLHF 파이프라인을 간소화하는 대표 방법이다."
+      ]
+    },
+    {
+      "id": "inference-recall",
+      "conceptId": "inference",
+      "category": "B",
+      "type": "recall",
+      "prompt": "일반적인 추론과 학습의 차이는?",
+      "options": [
+        "추론에는 입력이 필요 없다.",
+        "학습은 항상 가중치를 고정한다.",
+        "추론은 정답 라벨을 반드시 받아야 한다.",
+        "추론은 학습한 파라미터로 출력을 계산하며 보통 가중치를 갱신하지 않는다."
+      ],
+      "correctIndex": 3,
+      "explanations": [
+        "보통 새 입력에 대한 출력을 계산한다.",
+        "학습의 핵심은 파라미터 갱신이다.",
+        "예측 시 정답은 보통 아직 없다.",
+        "출력 계산과 파라미터 최적화를 구분한다."
+      ]
+    },
+    {
+      "id": "inference-application",
+      "conceptId": "inference",
+      "category": "B",
+      "type": "application",
+      "prompt": "PyTorch에서 model.eval()만 호출했다. 옳은 설명은?",
+      "options": [
+        "평가 모드로 전환하지만 자동 미분 추적 비활성화와 동일하지 않다.",
+        "모든 파라미터가 자동으로 삭제된다.",
+        "가중치가 즉시 재학습된다.",
+        "모든 텐서의 requires_grad가 반드시 false가 된다."
+      ],
+      "correctIndex": 0,
+      "explanations": [
+        "no_grad 또는 inference_mode는 별도로 기울기 추적을 제어한다.",
+        "평가 모드는 모델을 삭제하지 않는다.",
+        "eval은 최적화 호출이 아니다.",
+        "모듈 모드 변경이 기울기 설정 변경과 같지 않다."
+      ]
+    },
+    {
+      "id": "temperature-recall",
+      "conceptId": "temperature",
+      "category": "B",
+      "type": "recall",
+      "prompt": "Temperature를 낮출 때 일반적인 효과는?",
+      "options": [
+        "높은 점수 후보에 확률이 더 집중된다.",
+        "모든 사실 오류가 제거된다.",
+        "컨텍스트 한도가 무조건 증가한다.",
+        "모델 파라미터 수가 줄어든다."
+      ],
+      "correctIndex": 0,
+      "explanations": [
+        "logits를 작은 양수로 나누면 softmax 분포가 날카로워진다.",
+        "샘플링 조절은 지식 검증이 아니다.",
+        "길이 한도와 별개 설정이다.",
+        "생성 설정은 모델 구조를 압축하지 않는다."
+      ]
+    },
+    {
+      "id": "temperature-application",
+      "conceptId": "temperature",
+      "category": "B",
+      "type": "application",
+      "prompt": "온도를 0으로 설정했는데 잘못된 사내 규정을 답했다. 올바른 대응은?",
+      "options": [
+        "응답을 반복 복사하면 정답이 된다.",
+        "근거 문서를 제공하고 주장과 출처를 대조한다.",
+        "온도 0이므로 사용자의 관찰이 틀렸다고 본다.",
+        "온도를 높이면 사실성이 반드시 개선된다."
+      ],
+      "correctIndex": 1,
+      "explanations": [
+        "반복은 외부 증거를 추가하지 않는다.",
+        "결정적인 선택도 잘못된 내용을 선택할 수 있다.",
+        "낮은 온도는 무오류를 보장하지 않는다.",
+        "다양성 증가가 정확성 개선을 보장하지 않는다."
+      ]
+    },
+    {
+      "id": "top-p-recall",
+      "conceptId": "top-p",
+      "category": "B",
+      "type": "recall",
+      "prompt": "Top-p와 top-k의 차이는?",
+      "options": [
+        "둘은 모든 분포에서 같은 후보를 남긴다.",
+        "Top-p는 누적 확률, top-k는 후보 개수로 제한한다.",
+        "Top-p는 반드시 p개 토큰을 남긴다.",
+        "Top-k는 모델 가중치를 학습한다."
+      ],
+      "correctIndex": 1,
+      "explanations": [
+        "기준이 달라 다른 집합이 될 수 있다.",
+        "top-p의 후보 수는 분포에 따라 달라진다.",
+        "p는 보통 확률 임계값이지 개수가 아니다.",
+        "둘 다 생성 후보 제한 방식이다."
+      ]
+    },
+    {
+      "id": "top-p-application",
+      "conceptId": "top-p",
+      "category": "B",
+      "type": "application",
+      "prompt": "확률 0.6, 0.25, 0.1, 0.05에 top-p=0.8만 적용하면 남는 최소 후보 수는?",
+      "options": [
+        "3개",
+        "4개",
+        "2개",
+        "1개"
+      ],
+      "correctIndex": 2,
+      "explanations": [
+        "두 개만으로 이미 기준을 만족한다.",
+        "확률 합 1 전체를 유지할 필요가 없다.",
+        "첫 후보 0.6은 부족하고 두 후보 합 0.85는 기준을 넘는다.",
+        "0.6은 0.8보다 작다."
+      ]
+    },
+    {
+      "id": "top-k-recall",
+      "conceptId": "top-k",
+      "category": "B",
+      "type": "recall",
+      "prompt": "Top-k sampling에서 k=1의 일반적인 효과는?",
+      "options": [
+        "검색 문서를 반드시 한 개 반환한다.",
+        "모델을 한 층으로 줄인다.",
+        "최고 점수 토큰만 후보로 남긴다.",
+        "모든 토큰에 같은 확률을 준다."
+      ],
+      "correctIndex": 2,
+      "explanations": [
+        "생성 설정은 문서 검색 수와 별개다.",
+        "구조를 바꾸는 설정이 아니다.",
+        "다른 후보가 제거되어 해당 단계 선택이 제한된다.",
+        "후보를 하나로 제한하는 것과 반대다."
+      ]
+    },
+    {
+      "id": "top-k-application",
+      "conceptId": "top-k",
+      "category": "B",
+      "type": "application",
+      "prompt": "문서 검색 수는 그대로인데 생성 top-k를 20에서 5로 줄였다. 직접 바뀌는 것은?",
+      "options": [
+        "벡터 DB의 모든 문서 수",
+        "검색 결과 개수가 반드시 5개",
+        "가중치 정밀도가 반드시 5비트",
+        "다음 토큰 샘플링 후보 범위"
+      ],
+      "correctIndex": 3,
+      "explanations": [
+        "저장된 문서 수를 변경하지 않는다.",
+        "검색 top-k와 다른 설정이다.",
+        "양자화 비트 수와 무관하다.",
+        "생성 top-k는 토큰 후보 수 제한이다."
+      ]
+    },
+    {
+      "id": "hallucination-recall",
+      "conceptId": "hallucination",
+      "category": "B",
+      "type": "recall",
+      "prompt": "환각을 가장 잘 설명한 것은?",
+      "options": [
+        "모든 문법 오류만을 의미한다.",
+        "반드시 외부 공격자가 있어야 발생한다.",
+        "항상 모델의 의도적 기만이다.",
+        "근거나 사실과 맞지 않는 내용을 그럴듯하게 생성한다."
+      ],
+      "correctIndex": 3,
+      "explanations": [
+        "문법이 자연스러워도 사실 오류가 발생한다.",
+        "공격 없이도 발생할 수 있다.",
+        "출력 오류만으로 의도를 단정할 수 없다.",
+        "유창함은 사실성을 보장하지 않는다."
+      ]
+    },
+    {
+      "id": "hallucination-application",
+      "conceptId": "hallucination",
+      "category": "B",
+      "type": "application",
+      "prompt": "LLM이 논문 링크를 달아 수치를 주장했다. 가장 필요한 검증은?",
+      "options": [
+        "원문이 실제 존재하고 해당 수치를 지지하는지 확인한다.",
+        "링크가 있으니 검증을 종료한다.",
+        "같은 모델에게 세 번 맞느냐고 묻고 끝낸다.",
+        "문장이 길수록 더 사실이라고 판단한다."
+      ],
+      "correctIndex": 0,
+      "explanations": [
+        "링크 존재와 주장에 대한 근거 여부를 모두 봐야 한다.",
+        "실제 페이지가 다른 내용일 수 있다.",
+        "반복 확신은 독립적인 증거가 아니다.",
+        "길이와 진실성 사이 보장된 관계는 없다."
+      ]
+    },
+    {
+      "id": "quantization-recall",
+      "conceptId": "quantization",
+      "category": "B",
+      "type": "recall",
+      "prompt": "모델 최적화에서 양자화가 바꾸는 핵심 요소는?",
+      "options": [
+        "가중치·활성값의 수치 표현 비트 수를 줄인다.",
+        "항상 학습 데이터를 삭제한다.",
+        "교사 모델 출력만 모아 새 모델을 훈련한다.",
+        "모델을 무조건 한 토큰만 출력하게 한다."
+      ],
+      "correctIndex": 0,
+      "explanations": [
+        "더 적은 정밀도 표현으로 메모리 등을 절감한다.",
+        "데이터 삭제가 정의가 아니다.",
+        "이는 증류에 가깝다.",
+        "출력 길이 제한과 다르다."
+      ]
+    },
+    {
+      "id": "quantization-application",
+      "conceptId": "quantization",
+      "category": "B",
+      "type": "application",
+      "prompt": "FP16 가중치를 4비트로 바꿨다. 전체 RAM이 정확히 1/4이 아닐 수 있는 이유는?",
+      "options": [
+        "비트 수는 메모리와 전혀 관련 없다.",
+        "KV cache·활성값·스케일 등 다른 메모리도 필요하다.",
+        "4비트는 16비트보다 항상 더 크다.",
+        "양자화하면 입력이 사라진다."
+      ],
+      "correctIndex": 1,
+      "explanations": [
+        "가중치 저장 크기에 직접 영향을 준다.",
+        "가중치 비트 수만이 전체 메모리 사용량은 아니다.",
+        "수치 표현 비트 수 자체는 더 작다.",
+        "모델은 여전히 입력과 실행 상태를 처리한다."
+      ]
+    },
+    {
+      "id": "distillation-recall",
+      "conceptId": "distillation",
+      "category": "B",
+      "type": "recall",
+      "prompt": "지식 증류의 핵심 관계는?",
+      "options": [
+        "사용자 질문을 항상 무시한다.",
+        "교사의 출력을 학습 신호로 학생 모델을 훈련한다.",
+        "가중치를 반드시 4비트로 저장한다.",
+        "검색 문서를 무작위 삭제한다."
+      ],
+      "correctIndex": 1,
+      "explanations": [
+        "모델 교육 목적과 무관하다.",
+        "교사의 행동이나 분포를 전달한다.",
+        "이는 양자화이며 증류의 필수 조건이 아니다.",
+        "지식 전달 학습과 다르다."
+      ]
+    },
+    {
+      "id": "distillation-application",
+      "conceptId": "distillation",
+      "category": "B",
+      "type": "application",
+      "prompt": "교사가 만든 답안으로 작은 모델을 훈련하려 한다. 가장 중요한 품질 점검은?",
+      "options": [
+        "학생이 작으므로 모든 안전 문제가 사라진다.",
+        "학생의 평가 데이터를 학습 답안에 섞는다.",
+        "교사 답안 오류와 학생의 목표 과업 성능을 검증한다.",
+        "교사 이름만 유명하면 답안 검수를 생략한다."
+      ],
+      "correctIndex": 2,
+      "explanations": [
+        "크기는 안전성의 충분조건이 아니다.",
+        "독립 평가가 오염된다.",
+        "오류가 전달될 수 있고 능력 보존도 과업별로 다르다.",
+        "교사도 틀릴 수 있다."
+      ]
+    },
+    {
+      "id": "mixture-of-experts-recall",
+      "conceptId": "mixture-of-experts",
+      "category": "B",
+      "type": "recall",
+      "prompt": "Sparse MoE의 일반적인 특징은?",
+      "options": [
+        "가중치를 전혀 저장하지 않는다.",
+        "항상 모든 전문가를 동일하게 실행한다.",
+        "토큰마다 전문가 일부를 선택해 활성화한다.",
+        "모든 전문가는 외부 인간이다."
+      ],
+      "correctIndex": 2,
+      "explanations": [
+        "전문가 파라미터 저장은 여전히 필요하다.",
+        "sparse 구조는 일부 선택이 핵심이다.",
+        "조건부 계산으로 전체 파라미터와 활성 파라미터가 다를 수 있다.",
+        "expert는 보통 신경망 서브네트워크다."
+      ]
+    },
+    {
+      "id": "mixture-of-experts-application",
+      "conceptId": "mixture-of-experts",
+      "category": "B",
+      "type": "application",
+      "prompt": "총 100B·활성 10B MoE를 10B dense와 같은 메모리라고 가정했다. 문제는?",
+      "options": [
+        "활성 파라미터가 총 파라미터보다 항상 많다.",
+        "MoE는 토큰을 입력받지 않는다.",
+        "전문가가 많으면 네트워크 통신이 항상 0이다.",
+        "비활성 전문가의 가중치 저장과 시스템 구성을 무시했다."
+      ],
+      "correctIndex": 3,
+      "explanations": [
+        "선택된 일부가 전체보다 많을 수는 없다.",
+        "언어 모델 MoE는 토큰별 라우팅을 수행할 수 있다.",
+        "분산 배치에서 통신이 중요한 비용일 수 있다.",
+        "활성 연산량과 전체 가중치 메모리는 다르다."
+      ]
+    },
+    {
+      "id": "shot-prompting-recall",
+      "conceptId": "shot-prompting",
+      "category": "C",
+      "type": "recall",
+      "prompt": "입력·출력 예시 두 개를 포함한 요청은 보통 무엇이라 부르는가?",
+      "options": [
+        "Zero-shot 프롬프팅",
+        "자동으로 수행된 SFT",
+        "One-shot 프롬프팅",
+        "Few-shot 프롬프팅"
+      ],
+      "correctIndex": 3,
+      "explanations": [
+        "Zero-shot은 해당 과업 예시를 제공하지 않는다.",
+        "문맥에 예시를 넣어도 파라미터 학습이 일어나는 것은 아니다.",
+        "예시가 하나인 경우와 구분한다.",
+        "여러 과업 예시를 현재 문맥에서 보여 준다."
+      ]
+    },
+    {
+      "id": "shot-prompting-application",
+      "conceptId": "shot-prompting",
+      "category": "C",
+      "type": "application",
+      "prompt": "로그 분류 few-shot 예시에 평가 정답을 그대로 포함했다. 점수가 오른 의미는?",
+      "options": [
+        "독립 평가가 오염되어 일반화 개선이라 단정할 수 없다.",
+        "모델의 가중치가 반드시 개선되었다.",
+        "예시가 많아졌으니 실제 성능 향상이 증명되었다.",
+        "Few-shot은 원래 평가가 불가능하다."
+      ],
+      "correctIndex": 0,
+      "explanations": [
+        "답을 본 문항의 점수는 새 로그 성능의 공정한 추정이 아니다.",
+        "프롬프트 예시 추가는 가중치 업데이트가 아니다.",
+        "예시 수가 평가 오염 문제를 해소하지 않는다.",
+        "분리된 평가셋으로 유효하게 비교할 수 있다."
+      ]
+    },
+    {
+      "id": "instruction-design-recall",
+      "conceptId": "instruction-design",
+      "category": "C",
+      "type": "recall",
+      "prompt": "평가 가능한 추출 지시에 가장 필요한 요소는?",
+      "options": [
+        "추출 필드·누락 처리·출력 형식을 명시한다.",
+        "전문가라는 호칭만 반복한다.",
+        "가능한 모든 작업을 한 번에 요구한다.",
+        "답변은 완벽해야 한다고만 적는다."
+      ],
+      "correctIndex": 0,
+      "explanations": [
+        "원하는 결과와 실패 조건을 확인할 수 있다.",
+        "역할 호칭만으로 출력 규격이 정해지지 않는다.",
+        "상충하는 목표는 성공 기준을 흐릴 수 있다.",
+        "완벽의 기준이 정의되어 있지 않다."
+      ]
+    },
+    {
+      "id": "instruction-design-application",
+      "conceptId": "instruction-design",
+      "category": "C",
+      "type": "application",
+      "prompt": "보고서에 수량이 없는데 모델이 수량을 만들어 낸다. 적절한 지시 보강은?",
+      "options": [
+        "수량 필드를 항상 0으로 채운다.",
+        "수량이 없으면 null로 두고 근거 문장을 요구한다.",
+        "수량은 반드시 숫자여야 하며 빈 값은 금지한다.",
+        "더 자신 있는 말투로 답하도록 한다."
+      ],
+      "correctIndex": 1,
+      "explanations": [
+        "정보 없음과 실제 수량 0을 혼동한다.",
+        "추정 대신 누락을 표현하고 검증 가능성을 높인다.",
+        "원문에 없을 때 발명을 유도할 수 있다.",
+        "자신감은 사실 근거를 제공하지 않는다."
+      ]
+    },
+    {
+      "id": "role-context-constraint-recall",
+      "conceptId": "role-context-constraint",
+      "category": "C",
+      "type": "recall",
+      "prompt": "Role, context, constraint를 올바르게 연결한 것은?",
+      "options": [
+        "모두 같은 의미의 역할 지정",
+        "관점, 참고 정보, 지켜야 할 경계",
+        "모델 크기, 가중치, 학습률",
+        "권한 부여, 데이터 삭제, 강제 실행"
+      ],
+      "correctIndex": 1,
+      "explanations": [
+        "문맥과 제약은 역할과 서로 다른 기능이다.",
+        "각각 답변의 관점·재료·제한을 제공한다.",
+        "이는 모델과 학습 설정에 관한 용어다.",
+        "자연어 프롬프트가 시스템 권한을 직접 보장하지 않는다."
+      ]
+    },
+    {
+      "id": "role-context-constraint-application",
+      "conceptId": "role-context-constraint",
+      "category": "C",
+      "type": "application",
+      "prompt": "프롬프트에 읽기 전용 분석가라고 썼으나 삭제 도구가 연결돼 있다. 필요한 조치는?",
+      "options": [
+        "최신 문서를 문맥에 더 넣으면 충분하다.",
+        "삭제 금지 문장을 두 번 쓰면 기술적 보장이 생긴다.",
+        "실행 계층에서 쓰기 권한과 삭제 도구 접근을 제한한다.",
+        "역할 명칭을 더 길게 만든다."
+      ],
+      "correctIndex": 2,
+      "explanations": [
+        "문맥 보강은 도구 권한 제한을 대신하지 않는다.",
+        "자연어 반복은 강제 접근 통제가 아니다.",
+        "프롬프트 역할만으로 권한 경계가 보장되지 않는다.",
+        "호칭의 길이가 실행 권한을 제한하지 않는다."
+      ]
+    },
+    {
+      "id": "structured-output-recall",
+      "conceptId": "structured-output",
+      "category": "C",
+      "type": "recall",
+      "prompt": "JSON 파싱에 성공한 출력에 대해 확실히 말할 수 있는 것은?",
+      "options": [
+        "숫자 값은 반드시 원문과 일치한다.",
+        "도구 실행 권한도 자동으로 허용된다.",
+        "JSON 문법을 만족하지만 필드와 사실성은 별도 검사해야 한다.",
+        "모든 필수 필드가 반드시 있다."
+      ],
+      "correctIndex": 2,
+      "explanations": [
+        "구문 검사는 원문을 대조하지 않는다.",
+        "출력 형식과 권한 검증은 독립적이다.",
+        "파싱은 의미와 출처까지 검증하지 않는다.",
+        "필수 필드는 스키마 검사로 확인해야 한다."
+      ]
+    },
+    {
+      "id": "structured-output-application",
+      "conceptId": "structured-output",
+      "category": "C",
+      "type": "application",
+      "prompt": "스키마 검사에 통과한 불량 개수 7이 원문에서는 4다. 무엇이 실패했는가?",
+      "options": [
+        "JSON의 괄호 문법만 실패했다.",
+        "필드 타입이 반드시 문자열이었다.",
+        "스키마를 통과했으므로 실패가 아니다.",
+        "값의 의미와 근거 검증"
+      ],
+      "correctIndex": 3,
+      "explanations": [
+        "이미 파싱과 스키마 검사를 통과한 상황이다.",
+        "상황은 숫자 값의 불일치이며 타입 실패가 아니다.",
+        "형식 성공과 업무 정확성은 다르다.",
+        "정수 타입이 맞아도 사실값은 틀릴 수 있다."
+      ]
+    },
+    {
+      "id": "json-schema-recall",
+      "conceptId": "json-schema",
+      "category": "C",
+      "type": "recall",
+      "prompt": "JSON Schema에서 필드를 필수로 지정하는 대표 키워드는?",
+      "options": [
+        "properties만 있으면 항상 필수다.",
+        "additionalProperties만 쓰면 모든 필드가 필수다.",
+        "title",
+        "required"
+      ],
+      "correctIndex": 3,
+      "explanations": [
+        "properties는 값의 규칙을 정의하며 존재를 요구하지 않는다.",
+        "이 키워드는 추가 필드의 허용 조건을 제어한다.",
+        "title은 설명용 주석이며 필수 조건이 아니다.",
+        "properties와 별도로 필수 필드 목록을 지정한다."
+      ]
+    },
+    {
+      "id": "json-schema-application",
+      "conceptId": "json-schema",
+      "category": "C",
+      "type": "application",
+      "prompt": "count가 required이고 integer인 스키마에서 {\"count\":\"3\"}은?",
+      "options": [
+        "타입 조건을 위반한다.",
+        "required만 만족하면 모든 조건을 통과한다.",
+        "count가 누락된 객체다.",
+        "항상 자동으로 숫자 3으로 변환되어 유효하다."
+      ],
+      "correctIndex": 0,
+      "explanations": [
+        "문자열 숫자는 JSON 정수와 다르다.",
+        "존재 조건과 타입 조건을 모두 만족해야 한다.",
+        "필드는 있으나 값의 타입이 잘못되었다.",
+        "자동 형 변환은 검증기의 별도 옵션이며 스키마의 기본 보장이 아니다."
+      ]
+    },
+    {
+      "id": "prompt-injection-recall",
+      "conceptId": "prompt-injection",
+      "category": "C",
+      "type": "recall",
+      "prompt": "간접 프롬프트 인젝션 사례는 무엇인가?",
+      "options": [
+        "검색 문서가 원래 과업을 중단하고 비밀을 전송하라고 유도한다.",
+        "모델이 공격 없이 존재하지 않는 논문을 답한다.",
+        "사용자가 정상적으로 출력 언어를 바꾼다.",
+        "JSON 필드 하나가 타입 검사에서 실패한다."
+      ],
+      "correctIndex": 0,
+      "explanations": [
+        "신뢰하지 않는 자료 속 지시가 행동을 바꾸려 한다.",
+        "이는 환각일 수 있으며 인젝션 증거는 아니다.",
+        "정당한 작업 지시 변경 자체가 공격은 아니다.",
+        "형식 오류만으로 공격 지시 주입이라 판단할 수 없다."
+      ]
+    },
+    {
+      "id": "prompt-injection-application",
+      "conceptId": "prompt-injection",
+      "category": "C",
+      "type": "application",
+      "prompt": "검색 문서 안의 외부 업로드 지시를 막기 위한 가장 적절한 구성은?",
+      "options": [
+        "출처 URL이 있으므로 지시도 신뢰한다.",
+        "자료·지시 분리와 도구 최소 권한·전송 검증을 결합한다.",
+        "문서 전체를 시스템 지시로 복사한다.",
+        "온도를 0으로만 바꾸면 충분하다."
+      ],
+      "correctIndex": 1,
+      "explanations": [
+        "출처 존재는 문서의 명령 권한을 증명하지 않는다.",
+        "여러 경계에서 실패를 차단하는 방어가 필요하다.",
+        "불신 자료의 권한을 높여 위험을 키운다.",
+        "샘플링 설정은 접근 권한이나 신뢰 경계를 보장하지 않는다."
+      ]
+    },
+    {
+      "id": "prompt-chaining-recall",
+      "conceptId": "prompt-chaining",
+      "category": "C",
+      "type": "recall",
+      "prompt": "프롬프트 체이닝의 핵심 특징은?",
+      "options": [
+        "항상 자율적인 도구 선택이 필요하다.",
+        "여러 단계의 출력을 다음 단계 입력으로 연결한다.",
+        "항상 여러 모델을 재학습한다.",
+        "한 프롬프트를 길게 반복하면 모두 체이닝이다."
+      ],
+      "correctIndex": 1,
+      "explanations": [
+        "고정된 단계 흐름으로도 구현할 수 있다.",
+        "분해된 과업을 순차 호출로 수행한다.",
+        "호출 연결에 가중치 학습이 필수는 아니다.",
+        "단계의 결과를 연결하는 구조가 핵심이다."
+      ]
+    },
+    {
+      "id": "prompt-chaining-application",
+      "conceptId": "prompt-chaining",
+      "category": "C",
+      "type": "application",
+      "prompt": "추출 단계의 단위 오류가 요약까지 전파됐다. 우선 개선할 곳은?",
+      "options": [
+        "중간 결과 로그를 삭제한다.",
+        "단계를 무조건 두 배로 늘린다.",
+        "추출 결과와 다음 단계 사이에 단위·범위 검사를 둔다.",
+        "최종 요약의 말투만 바꾼다."
+      ],
+      "correctIndex": 2,
+      "explanations": [
+        "원인 추적 정보를 없애게 된다.",
+        "검증 없는 단계 증가는 오류 전파를 막지 못한다.",
+        "오류가 다음 호출 입력이 되기 전에 차단한다.",
+        "말투 수정은 원래 수치 오류를 고치지 못한다."
+      ]
+    },
+    {
+      "id": "reasoning-prompting-recall",
+      "conceptId": "reasoning-prompting",
+      "category": "C",
+      "type": "recall",
+      "prompt": "추론 중심 지시를 평가하는 가장 적절한 기준은?",
+      "options": [
+        "모든 내부 사고를 공개하는가",
+        "단계라는 단어가 많이 등장하는가",
+        "실제 정답·제약 준수·검증 가능한 근거가 개선되는가",
+        "답변이 이전보다 긴가"
+      ],
+      "correctIndex": 2,
+      "explanations": [
+        "내부 사고 전문 공개는 과업 정확성의 필요조건이 아니다.",
+        "표현 빈도는 추론 타당성의 지표가 아니다.",
+        "풀이 형식보다 과업의 결과를 측정해야 한다.",
+        "길이는 정확성을 보장하지 않는다."
+      ]
+    },
+    {
+      "id": "reasoning-prompting-application",
+      "conceptId": "reasoning-prompting",
+      "category": "C",
+      "type": "application",
+      "prompt": "모델의 장문 계산 설명과 Python 결과가 다르다. 적절한 행동은?",
+      "options": [
+        "장문 설명이 더 상세하니 우선 신뢰한다.",
+        "Python도 도구이므로 확인 없이 무조건 신뢰한다.",
+        "설명을 더 길게 요청하고 검산을 끝낸다.",
+        "입력·단위·계산식을 확인해 실행 결과와 근거를 대조한다."
+      ],
+      "correctIndex": 3,
+      "explanations": [
+        "상세함이 계산 정확성을 보장하지 않는다.",
+        "잘못된 코드와 입력은 도구에서도 틀린 결과를 만든다.",
+        "추가 설명만으로 수치 불일치를 해결할 수 없다.",
+        "두 결과의 차이를 독립적인 계산으로 검증한다."
+      ]
+    },
+    {
+      "id": "prompt-evaluation-recall",
+      "conceptId": "prompt-evaluation",
+      "category": "C",
+      "type": "recall",
+      "prompt": "프롬프트의 개선을 판단하려면 무엇이 가장 필요한가?",
+      "options": [
+        "작성자가 가장 마음에 든 출력 한 개",
+        "응답의 자신감 표현 빈도",
+        "프롬프트 글자 수 증가",
+        "대표 평가 사례와 일관된 성공 기준"
+      ],
+      "correctIndex": 3,
+      "explanations": [
+        "선택 편향으로 전체 실패를 놓칠 수 있다.",
+        "자신감은 정확성과 같지 않다.",
+        "길이는 과업 성공을 직접 측정하지 않는다.",
+        "동일 기준으로 전후 결과를 비교할 수 있다."
+      ]
+    },
+    {
+      "id": "prompt-evaluation-application",
+      "conceptId": "prompt-evaluation",
+      "category": "C",
+      "type": "application",
+      "prompt": "같은 10개 사례에 맞춰 30회 수정한 프롬프트가 모두 맞았다. 다음 검증은?",
+      "options": [
+        "수정에 쓰지 않은 대표 사례에서 성능을 확인한다.",
+        "10개 정답을 다시 프롬프트에 복사한다.",
+        "테스트 없이 모든 유형에서 완벽하다고 선언한다.",
+        "모든 실패 사례를 평가셋에서 삭제한다."
+      ],
+      "correctIndex": 0,
+      "explanations": [
+        "개발 사례 과적합 여부를 검토할 수 있다.",
+        "답안 제공으로 독립 평가가 더욱 어려워진다.",
+        "좁은 개발 사례만으로 전체 성능을 보장할 수 없다.",
+        "실패를 숨겨 측정이 왜곡된다."
+      ]
+    },
+    {
+      "id": "iterative-refinement-recall",
+      "conceptId": "iterative-refinement",
+      "category": "C",
+      "type": "recall",
+      "prompt": "반복 개선 루프에서 변경 직후 필요한 단계는?",
+      "options": [
+        "동일 기준으로 재평가하고 기존 성공 사례의 회귀도 확인한다.",
+        "기존 실패 기록을 모두 삭제한다.",
+        "한 번 자연스러운 답을 보면 종료한다.",
+        "검증 없이 수정 횟수를 성과로 센다."
+      ],
+      "correctIndex": 0,
+      "explanations": [
+        "개선과 부작용을 함께 측정해야 한다.",
+        "원인과 효과를 비교할 근거가 사라진다.",
+        "유창한 한 사례만으로 안정성을 판단할 수 없다.",
+        "수정 횟수는 품질 개선의 지표가 아니다."
+      ]
+    },
+    {
+      "id": "iterative-refinement-application",
+      "conceptId": "iterative-refinement",
+      "category": "C",
+      "type": "application",
+      "prompt": "프롬프트를 고쳐도 최신 사내 규정 날짜가 계속 틀린다. 문맥에는 구버전만 있다. 우선 조치는?",
+      "options": [
+        "말투를 공손하게 바꾸면 최신 사실이 생긴다.",
+        "최신 승인 문서를 확보하고 검색·자료 갱신을 점검한다.",
+        "날짜를 반드시 확정하라고 강요한다.",
+        "동일 문서를 더 많이 반복한다."
+      ],
+      "correctIndex": 1,
+      "explanations": [
+        "문체는 원문 버전을 갱신하지 않는다.",
+        "필요한 정보가 없는 문제는 표현 수정만으로 해결되지 않는다.",
+        "근거 없이 확정하도록 하면 발명 위험이 커진다.",
+        "중복은 최신 정보를 추가하지 않는다."
+      ]
+    },
+    {
+      "id": "tool-use-instructions-recall",
+      "conceptId": "tool-use-instructions",
+      "category": "C",
+      "type": "recall",
+      "prompt": "도구 지시에 포함해야 할 핵심 정보는?",
+      "options": [
+        "실패는 모두 성공으로 설명하라고 지시한다.",
+        "사용 조건·인자 의미·실패 처리·실행 제한",
+        "도구 이름만 있으면 모든 정책이 자동 추론된다.",
+        "필수 인자는 실제 실행 때만 비밀로 정한다."
+      ],
+      "correctIndex": 1,
+      "explanations": [
+        "실제 결과와 답변이 불일치하게 된다.",
+        "모델이 적합한 호출을 선택하고 오류에 대응하도록 돕는다.",
+        "이름만으로 부작용과 제약을 알 수 없다.",
+        "명확한 인터페이스가 없으면 유효한 호출이 어렵다."
+      ]
+    },
+    {
+      "id": "tool-use-instructions-application",
+      "conceptId": "tool-use-instructions",
+      "category": "C",
+      "type": "application",
+      "prompt": "주문 생성 도구가 타임아웃됐다. 가장 적절한 재시도 지시는?",
+      "options": [
+        "JSON이 유효했으므로 성공했다고 보고한다.",
+        "이후 조회 결과도 무조건 무시한다.",
+        "기존 처리 상태를 확인하고 멱등 키로 중복 생성을 막는다.",
+        "성공 응답이 올 때까지 새 주문을 계속 생성한다."
+      ],
+      "correctIndex": 2,
+      "explanations": [
+        "인자 형식은 실제 완료를 증명하지 않는다.",
+        "처리 상태를 확인할 중요한 근거를 버린다.",
+        "응답이 없더라도 서버에서 이미 생성했을 수 있다.",
+        "중복 주문이라는 부작용을 일으킬 수 있다."
+      ]
+    },
+    {
+      "id": "multimodal-models-recall",
+      "conceptId": "multimodal-models",
+      "category": "G",
+      "type": "recall",
+      "prompt": "멀티모달 모델의 핵심 특징으로 가장 적절한 것은?",
+      "options": [
+        "여러 GPU에서 실행하면 멀티모달이다.",
+        "모든 영상 모델은 음성도 생성한다.",
+        "서로 다른 정보 형식을 연결해 다룬다.",
+        "언어가 두 개면 반드시 멀티모달이다."
+      ],
+      "correctIndex": 2,
+      "explanations": [
+        "실행 장치 수와 입력 정보 형식은 별개다.",
+        "지원 입출력은 모델마다 다르다.",
+        "텍스트·영상 등 여러 모달리티를 연결하는 것이 핵심이다.",
+        "여러 언어의 텍스트는 같은 텍스트 모달리티일 수 있다."
+      ]
+    },
+    {
+      "id": "multimodal-models-application",
+      "conceptId": "multimodal-models",
+      "category": "G",
+      "type": "application",
+      "prompt": "사진과 센서 로그로 설비 이상을 분석할 때 우선 확인할 조건은?",
+      "options": [
+        "파일 개수가 같으면 자동으로 대응된다고 본다.",
+        "사진이 있으면 센서 단위를 생략한다.",
+        "모델이 크면 데이터 정렬은 불필요하다.",
+        "같은 설비·시점의 자료인지와 각 입력의 품질"
+      ],
+      "correctIndex": 3,
+      "explanations": [
+        "개수 일치는 대상과 시각의 일치를 보장하지 않는다.",
+        "모달리티 결합에도 단위와 시점 정보가 필요하다.",
+        "모델 크기로 잘못 연결된 관측을 해결할 수 없다.",
+        "서로 다른 대상의 자료를 결합하면 잘못된 관계를 추론한다."
+      ]
+    },
+    {
+      "id": "vlm-recall",
+      "conceptId": "vlm",
+      "category": "G",
+      "type": "recall",
+      "prompt": "VLM과 OCR의 관계에 대한 올바른 설명은?",
+      "options": [
+        "모든 VLM은 OCR보다 항상 정확하다.",
+        "OCR은 음성 합성의 다른 이름이다.",
+        "VLM은 반드시 새로운 이미지를 생성한다.",
+        "OCR은 문자 추출 과업이고 VLM은 시각과 언어를 연결한다."
+      ],
+      "correctIndex": 3,
+      "explanations": [
+        "모델과 이미지 조건에 따라 성능이 다르다.",
+        "OCR은 시각 자료의 문자 인식이다.",
+        "검색이나 질의응답만 수행하는 VLM도 있다.",
+        "관련 기능이 있지만 과업 범위가 완전히 같지는 않다."
+      ]
+    },
+    {
+      "id": "vlm-application",
+      "conceptId": "vlm",
+      "category": "G",
+      "type": "application",
+      "prompt": "VLM이 흐린 검사표의 0.8을 8로 읽었다. 적절한 개선은?",
+      "options": [
+        "원본 영역과 단위를 확인하고 불확실한 판독을 검수한다.",
+        "자연스러운 설명이 있으므로 수치를 채택한다.",
+        "온도 설정만 낮추면 모든 OCR 오류가 사라진다.",
+        "더 긴 캡션을 생성한 뒤 수치 검사를 생략한다."
+      ],
+      "correctIndex": 0,
+      "explanations": [
+        "소수점 오류는 실제 수치 판정에 큰 영향을 줄 수 있다.",
+        "유창한 설명은 판독 정확성의 근거가 아니다.",
+        "샘플링 설정이 이미지의 부족한 정보를 복원하지 않는다.",
+        "설명 분량은 수치 검증을 대체하지 않는다."
+      ]
+    },
+    {
+      "id": "asr-recall",
+      "conceptId": "asr",
+      "category": "G",
+      "type": "recall",
+      "prompt": "ASR의 기본 입력과 출력으로 올바른 조합은?",
+      "options": [
+        "음성을 입력받아 발화 내용을 텍스트로 출력한다.",
+        "텍스트를 입력받아 낭독 음성을 생성한다.",
+        "사진을 입력받아 결함 위치만 출력한다.",
+        "화자 번호만 출력하면 전사가 완료된다."
+      ],
+      "correctIndex": 0,
+      "explanations": [
+        "녹음된 말을 문자로 전사하는 과업이다.",
+        "이 방향의 변환은 TTS에 해당한다.",
+        "시각 탐지 과업이며 ASR 정의가 아니다.",
+        "화자 분리와 발화 내용 전사는 별도 과업이다."
+      ]
+    },
+    {
+      "id": "asr-application",
+      "conceptId": "asr",
+      "category": "G",
+      "type": "application",
+      "prompt": "정비 전사에서 “전원을 켜지 마세요”의 부정어가 빠졌다. 무엇을 평가해야 하는가?",
+      "options": [
+        "짧은 단어 누락은 항상 무시해도 된다.",
+        "전체 오류율과 함께 중요한 명령·부정어의 보존 여부",
+        "글이 자연스러우면 전사를 승인한다.",
+        "TTS로 읽었을 때 매끄러우면 원음과 같다."
+      ],
+      "correctIndex": 1,
+      "explanations": [
+        "부정어는 짧아도 명령의 의미를 반대로 바꾼다.",
+        "평균 오류율만으로 업무상 중대한 오류를 놓칠 수 있다.",
+        "자연스러움은 원음 의미의 보존을 보장하지 않는다.",
+        "오류가 있는 텍스트도 자연스럽게 합성될 수 있다."
+      ]
+    },
+    {
+      "id": "tts-recall",
+      "conceptId": "tts",
+      "category": "G",
+      "type": "recall",
+      "prompt": "TTS 시스템에서 텍스트 정규화가 필요한 대표 이유는?",
+      "options": [
+        "음성에서 문자를 추출하기 위해",
+        "숫자와 약어를 적절한 발음 표현으로 바꾸기 위해",
+        "녹음의 화자를 자동으로 법적 인증하기 위해",
+        "입력 문장에 있는 모든 사실을 검증하기 위해"
+      ],
+      "correctIndex": 1,
+      "explanations": [
+        "이는 ASR 방향의 과업이다.",
+        "같은 기호도 문맥에 따라 읽는 방법이 달라질 수 있다.",
+        "텍스트 정규화는 화자의 신원 인증 절차가 아니다.",
+        "발음 준비와 사실 검증은 별개다."
+      ]
+    },
+    {
+      "id": "tts-application",
+      "conceptId": "tts",
+      "category": "G",
+      "type": "application",
+      "prompt": "경보 문장은 맞지만 TTS가 0.5를 5로 읽는다. 우선 조치는?",
+      "options": [
+        "음색을 더 자연스럽게 바꾸기만 한다.",
+        "음성 대신 ASR 출력이 있다는 이유로 통과한다.",
+        "숫자 정규화와 실제 합성 발음을 검수한다.",
+        "원고가 맞으므로 음성을 그대로 배포한다."
+      ],
+      "correctIndex": 2,
+      "explanations": [
+        "음색 개선이 수치 발음을 바로잡는다고 보장되지 않는다.",
+        "검증 대상인 최종 안내 음성을 직접 확인해야 한다.",
+        "문장 정확성과 음성 전달 정확성을 함께 확보해야 한다.",
+        "사용자는 합성 음성을 듣기 때문에 발음 오류가 전달된다."
+      ]
+    },
+    {
+      "id": "diffusion-recall",
+      "conceptId": "diffusion",
+      "category": "G",
+      "type": "recall",
+      "prompt": "기본 확산 모델의 생성 원리를 가장 잘 설명한 것은?",
+      "options": [
+        "학습 이미지 한 장을 항상 그대로 반환한다.",
+        "모든 픽셀을 정답 라벨로 분류하기만 한다.",
+        "학습한 복원 과정을 따라 잡음에서 샘플을 만든다.",
+        "문서의 최근 수정일만 검색한다."
+      ],
+      "correctIndex": 2,
+      "explanations": [
+        "생성 목표는 단순한 고정 이미지 반환과 다르다.",
+        "픽셀 분류와 잡음 복원 기반 생성은 다른 과업이다.",
+        "잡음 수준을 낮추는 방향을 학습해 생성에 활용한다.",
+        "이는 정보 검색 조건이며 생성 원리가 아니다."
+      ]
+    },
+    {
+      "id": "diffusion-application",
+      "conceptId": "diffusion",
+      "category": "G",
+      "type": "application",
+      "prompt": "합성 결함 이미지로 모델을 보강한 후 필요한 검증은?",
+      "options": [
+        "합성 이미지가 예쁘면 바로 배포한다.",
+        "합성 이미지에서만 평가하면 일반화가 증명된다.",
+        "생성 단계 수만 성능 지표로 보고한다.",
+        "실제 미사용 로트에서 결함 탐지 성능을 평가한다."
+      ],
+      "correctIndex": 3,
+      "explanations": [
+        "시각적 매력은 실제 결함 분포를 보장하지 않는다.",
+        "훈련과 비슷한 합성 분포만 보면 실제 성능을 놓칠 수 있다.",
+        "단계 수는 다운스트림 탐지 성능의 직접 측정이 아니다.",
+        "합성 데이터가 실제 분포에 도움이 되는지 확인해야 한다."
+      ]
+    },
+    {
+      "id": "reasoning-models-recall",
+      "conceptId": "reasoning-models",
+      "category": "G",
+      "type": "recall",
+      "prompt": "추론 특화 모델을 선택할 때 적절한 판단 기준은?",
+      "options": [
+        "응답이 가장 길면 항상 최선이다.",
+        "추론 모델은 최신 정보 검색이 필요 없다.",
+        "추론 모델은 제약 검증을 생략해도 된다.",
+        "대표 과업의 정확도·지연·비용을 함께 비교한다."
+      ],
+      "correctIndex": 3,
+      "explanations": [
+        "분량이 정답이나 효율을 직접 보장하지 않는다.",
+        "추론 능력과 최신 지식의 확보는 별개다.",
+        "모델 출력은 여전히 외부 검증이 필요하다.",
+        "추가 계산이 필요한 과업과 실제 이득을 확인해야 한다."
+      ]
+    },
+    {
+      "id": "reasoning-models-application",
+      "conceptId": "reasoning-models",
+      "category": "G",
+      "type": "application",
+      "prompt": "일정 계획 모델의 답이 그럴듯하지만 설비가 중복 배정됐다. 적절한 대응은?",
+      "options": [
+        "제약 검증 코드를 실행해 위반을 확인하고 수정한다.",
+        "추론 모델의 결과이므로 검증 결과를 무시한다.",
+        "풀이 길이만 늘리고 같은 일정을 채택한다.",
+        "계산 예산을 늘리면 검증은 항상 불필요하다."
+      ],
+      "correctIndex": 0,
+      "explanations": [
+        "계획의 타당성은 구체적인 제약 충족으로 검사할 수 있다.",
+        "모델 유형이 제약 위반을 정당화하지 않는다.",
+        "설명 변경만으로 배정 충돌이 해소되지 않는다.",
+        "추가 계산에도 오류 가능성은 남는다."
+      ]
+    },
+    {
+      "id": "open-weight-closed-recall",
+      "conceptId": "open-weight-closed",
+      "category": "G",
+      "type": "recall",
+      "prompt": "공개 가중치 모델에 대해 올바른 설명은?",
+      "options": [
+        "가중치 공개와 사용·재배포 허용 조건은 별도로 확인한다.",
+        "학습 데이터가 모두 공개됐다는 뜻이다.",
+        "실행 장비와 운영 비용이 항상 없다.",
+        "어떤 모델도 상업 이용 제한을 둘 수 없다."
+      ],
+      "correctIndex": 0,
+      "explanations": [
+        "공개 범위와 라이선스 권리는 서로 다른 판단 항목이다.",
+        "가중치 공개만으로 학습 데이터 공개를 알 수 없다.",
+        "자체 호스팅에는 장비와 운영 자원이 필요하다.",
+        "구체적인 라이선스에 따라 허용 범위가 달라진다."
+      ]
+    },
+    {
+      "id": "open-weight-closed-application",
+      "conceptId": "open-weight-closed",
+      "category": "G",
+      "type": "application",
+      "prompt": "공개 가중치 모델을 외부 호스팅 서비스로 호출한다. 데이터 위치 판단은?",
+      "options": [
+        "모델 파일 크기만 보면 저장 위치를 알 수 있다.",
+        "실제 전송·저장 경로와 서비스 설정을 확인한다.",
+        "공개 가중치이므로 데이터는 반드시 사내에 남는다.",
+        "가중치가 공개됐으므로 서비스 계약이 불필요하다."
+      ],
+      "correctIndex": 1,
+      "explanations": [
+        "크기는 서비스 데이터 경로의 증거가 아니다.",
+        "가중치 공개 여부가 실행 위치를 결정하지 않는다.",
+        "외부 호스팅이면 입력이 외부로 전송될 수 있다.",
+        "호스팅 서비스 조건은 모델 공개와 별개다."
+      ]
+    },
+    {
+      "id": "on-device-ai-recall",
+      "conceptId": "on-device-ai",
+      "category": "G",
+      "type": "recall",
+      "prompt": "온디바이스 AI를 정의하는 핵심 기준은?",
+      "options": [
+        "서버 API를 호출하면 항상 오프라인이다.",
+        "모델 추론이 사용자 또는 현장 장치에서 수행된다.",
+        "인터넷에서 내려받은 모델은 모두 온디바이스다.",
+        "모든 모델 가중치가 반드시 공개되어야 한다."
+      ],
+      "correctIndex": 1,
+      "explanations": [
+        "원격 API 호출은 일반적으로 네트워크 연결을 요구한다.",
+        "실행 위치가 온디바이스의 핵심이다.",
+        "다운로드 출처와 실제 실행 위치는 별개다.",
+        "공개 여부와 로컬 실행 가능성은 다른 속성이다."
+      ]
+    },
+    {
+      "id": "on-device-ai-application",
+      "conceptId": "on-device-ai",
+      "category": "G",
+      "type": "application",
+      "prompt": "휴대 장치에서 초기 추론은 빠르지만 10분 후 느려진다. 점검할 항목은?",
+      "options": [
+        "온디바이스이므로 하드웨어 병목은 불가능하다.",
+        "모델 이름에 경량이 있으면 측정을 생략한다.",
+        "지속 부하의 발열·전력 제한과 메모리 사용",
+        "첫 요청만 빨랐으므로 성능 시험을 통과시킨다."
+      ],
+      "correctIndex": 2,
+      "explanations": [
+        "로컬 장치는 자원이 제한되어 병목이 발생할 수 있다.",
+        "명칭보다 실제 장치에서의 측정이 중요하다.",
+        "실제 장치에서 연속 실행하면 자원 제약이 드러날 수 있다.",
+        "초기 응답만으로 지속 처리 성능을 알 수 없다."
+      ]
+    },
+    {
+      "id": "ai-coding-agents-recall",
+      "conceptId": "ai-coding-agents",
+      "category": "G",
+      "type": "recall",
+      "prompt": "코딩 에이전트의 핵심 작업 방식은 무엇인가?",
+      "options": [
+        "테스트 기대값은 언제나 생성 코드와 동일하게 바꾼다.",
+        "완료 메시지만 있으면 실행 결과를 생략한다.",
+        "도구 실행과 테스트 피드백을 이용해 수정 과정을 반복한다.",
+        "코드 한 줄을 제안하면 반드시 자율 에이전트다."
+      ],
+      "correctIndex": 2,
+      "explanations": [
+        "독립 기준 없이 기대값을 맞추면 버그를 놓친다.",
+        "실제 수행과 성공 선언은 구분해야 한다.",
+        "행동 결과를 다음 수정에 반영하는 루프가 핵심이다.",
+        "단일 코드 제안만으로 도구 기반 반복 작업을 의미하지 않는다."
+      ]
+    },
+    {
+      "id": "ai-coding-agents-application",
+      "conceptId": "ai-coding-agents",
+      "category": "G",
+      "type": "application",
+      "prompt": "에이전트가 오류 난 계산 대신 테스트 기대값을 변경해 통과시켰다. 적절한 검토는?",
+      "options": [
+        "초록색 테스트 표시만 보고 병합한다.",
+        "테스트 개수가 증가했으니 정확하다고 본다.",
+        "생성 모델이 크므로 사람 검토를 생략한다.",
+        "요구사항의 독립 기대값과 diff를 대조해 수정의 타당성을 확인한다."
+      ],
+      "correctIndex": 3,
+      "explanations": [
+        "기대값 변경이 원래 요구사항을 훼손했을 수 있다.",
+        "검사 수가 늘어도 기준이 잘못되면 오류를 잡지 못한다.",
+        "모델 규모는 변경의 업무 타당성을 증명하지 않는다.",
+        "테스트 통과가 정당한 구현 개선인지 검증해야 한다."
+      ]
+    }
+  ],
+  "scenarios": []
+}
